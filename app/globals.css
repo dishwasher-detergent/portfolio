@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.display {
+  font-family: var(--display-font);
+}
+
+.project-grid > *:last-child,
+.project-grid > *:nth-child(even):nth-last-child(2) {
+  @apply rounded-br-xl overflow-hidden;
+}
+
+.project-grid > *:last-child:first-child {
+  @apply rounded-xl overflow-hidden;
+}

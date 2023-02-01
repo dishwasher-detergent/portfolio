@@ -1,7 +1,15 @@
-import { Nunito } from "@next/font/google";
-
-const inter = Nunito({ subsets: ["latin"] });
+import Project from "#/ui/Project";
 
 export default function Home() {
-  return <main className="bg-slate-900 w-full h-full">1234</main>;
+  return (
+    <section className="w-full h-full overflow-hidden rounded-xl grid grid-cols-2 project-grid">
+      <Project />
+      <Project />
+      <Project />
+      <Project />
+      <Project />
+      <Project />
+      <Project />
+    </section>
+  );
 }

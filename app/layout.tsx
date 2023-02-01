@@ -1,5 +1,12 @@
 import Layout from "ui/layout";
 import "./globals.css";
+import { Space_Grotesk, Unbounded } from "@next/font/google";
+
+const font = Space_Grotesk({ subsets: ["latin"], variable: "--main-font" });
+const display = Unbounded({
+  subsets: ["latin"],
+  variable: "--display-font",
+});
 
 export default function RootLayout({
   children,
@@ -14,7 +21,9 @@ export default function RootLayout({
       */}
       <head />
       <body>
-        <Layout>{children}</Layout>
+        <Layout className={`${font.className} ${display.variable}`}>
+          {children}
+        </Layout>
       </body>
     </html>
   );
