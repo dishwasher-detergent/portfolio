@@ -21,7 +21,7 @@ export default function Project() {
           Descriptionasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf
         </p>
         <div className="flex flex-row flex-nowrap py-2 gap-1 overflow-x-auto overflow-y-hidden">
-          <div className="whitespace-nowrap rounded-full px-1.5 py-0.5 text-xs font-bold text-white bg-purple-600">
+          <div className="whitespace-nowrap rounded-full px-1.5 py-0.5 text-xs font-bold text-white bg-emerald-600">
             Test
           </div>
         </div>
