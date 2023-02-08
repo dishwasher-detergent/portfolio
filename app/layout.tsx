@@ -1,6 +1,7 @@
 import Layout from "ui/layout";
 import "./globals.css";
 import { Space_Grotesk, Unbounded } from "@next/font/google";
+import ToastWrapper from "#/ui/toast";
 
 const font = Space_Grotesk({ subsets: ["latin"], variable: "--main-font" });
 const display = Unbounded({
@@ -24,6 +25,7 @@ export default function RootLayout({
         <Layout className={`${font.className} ${display.variable}`}>
           {children}
         </Layout>
+        <ToastWrapper />
       </body>
     </html>
   );

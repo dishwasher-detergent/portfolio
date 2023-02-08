@@ -1,19 +1,17 @@
 import Project from "#/ui/Project";
-import projects from "#/_projects/projects.json";
+import api from "#/utils/appwrite";
 
-export type Projects = {
-  title: string;
-  short_description: string;
-  description: string;
-  banner: string;
-  images: string[];
-  tags: string[];
-};
+async function getProjects() {
+  const documents = await api.listDocuments("63e17a3b092917cea721");
+  return documents.documents;
+}
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getProjects();
+
   return (
     <section className="w-full h-full overflow-hidden rounded-xl grid grid-cols-1 md:grid-cols-2 project-grid">
-      {projects.map((item: Projects) => {
+      {projects.map((item) => {
         return <Project key={item.title} content={item} />;
       })}
     </section>
