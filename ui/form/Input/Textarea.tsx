@@ -1,9 +1,10 @@
 interface InputProps {
   label: string;
   onChange: (e: any) => void;
+  value?: string;
 }
 
-export default function Input({ label, onChange }: InputProps) {
+export default function Input({ label, onChange, value }: InputProps) {
   return (
     <label className="flex flex-col gap-1">
       {label && (
@@ -12,6 +13,7 @@ export default function Input({ label, onChange }: InputProps) {
       <textarea
         onChange={onChange}
         className="px-2 py-1 rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-800 min-h-[10rem] max-h-[15rem] max-w-full"
+        value={value}
       />
     </label>
   );

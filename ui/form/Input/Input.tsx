@@ -5,6 +5,7 @@ interface InputProps {
   onChange: (e: any) => void;
   type?: HTMLInputTypeAttribute;
   placeholder?: string;
+  value?: string;
 }
 
 export default function Input({
@@ -12,6 +13,7 @@ export default function Input({
   onChange,
   type,
   placeholder,
+  value,
 }: InputProps) {
   return (
     <label className="flex flex-col gap-1">
@@ -23,6 +25,7 @@ export default function Input({
         placeholder={placeholder}
         onChange={onChange}
         className="px-2 py-1 rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-800"
+        value={value}
       />
     </label>
   );

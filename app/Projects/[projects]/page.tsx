@@ -2,6 +2,8 @@ import { Client, Databases, Query } from "appwrite";
 import Image from "next/image";
 
 export type Projects = {
+  $id: string;
+  $collectionId: string;
   title: string;
   short_description: string;
   description: string;

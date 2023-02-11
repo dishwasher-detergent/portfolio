@@ -1,6 +1,6 @@
 "use client";
 
-import Input from "#/ui/form/Input";
+import Input from "#/ui/form/Input/Input";
 import api from "#/utils/appwrite";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -18,10 +18,29 @@ export default function Login() {
     try {
       await api.createSession(username, password);
     } catch (error: any) {
-      toast(error.message);
+      toast(error.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        type: "error",
+      });
       return;
     }
 
+    toast("Logged In", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "light",
+      type: "success",
+    });
     router.push("/Admin");
   };
 

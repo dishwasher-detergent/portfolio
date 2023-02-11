@@ -1,7 +1,53 @@
+"use client";
+
 import { Github, Linkedin, Codepen } from "lucide-react";
 import Logo from "#/ui/layout/Nav/Logo";
+import api from "#/utils/appwrite";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
 export default function Nav() {
+  const [logged, setLogged] = useState<boolean>(false);
+
+  useEffect(() => {
+    (async () => {
+      if (!(await api.checkSessionStatus())) {
+        setLogged(false);
+        return;
+      }
+      setLogged(true);
+    })();
+  });
+
+  const Logout = async () => {
+    try {
+      await api.deleteCurrentSession();
+    } catch (error: any) {
+      toast(error.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        type: "error",
+      });
+      return;
+    }
+
+    toast("Logged Out", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "light",
+      type: "success",
+    });
+  };
+
   return (
     <header className="sticky top-0 z-40 h-16 w-full flex-none border-b border-slate-300 bg-white/60 backdrop-blur-md dark:border-slate-700 dark:bg-slate-900/90 dark:text-white lg:z-50">
       <div className="mx-auto h-full w-full max-w-[90rem]">
@@ -30,6 +76,16 @@ export default function Nav() {
                       Contact
                     </a>
                   </li>
+                  {logged && (
+                    <li>
+                      <button
+                        onClick={() => Logout()}
+                        className="block rounded-xl p-2 hover:bg-slate-200 hover:dark:bg-slate-800"
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  )}
                 </ul>
               </nav>
               <div className="ml-4 flex items-center space-x-2 border-l border-slate-300 pl-4 dark:border-slate-700">

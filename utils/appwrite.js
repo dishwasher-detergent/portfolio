@@ -14,9 +14,9 @@ let api = {
     const database = new Databases(appwrite);
     const storage = new Storage(appwrite);
 
-    api.sdk = { database, account, storage };
+    api.sdk = { database, account, storage, appwrite };
 
-    return { database, account, storage };
+    return { database, account, storage, appwrite };
   },
 
   createAccount: (email, password, name) => {
@@ -29,6 +29,10 @@ let api = {
 
   createSession: (email, password) => {
     return api.provider().account.createEmailSession(email, password);
+  },
+
+  getSession: () => {
+    return api.provider().account.getSession("current");
   },
 
   deleteCurrentSession: () => {
@@ -59,7 +63,9 @@ let api = {
   },
 
   deleteDocument: (collectionId, documentId) => {
-    return api.provider().database.deleteDocument(collectionId, documentId);
+    return api
+      .provider()
+      .database.deleteDocument(Server.databaseID, collectionId, documentId);
   },
 
   createFile: (file) => {
@@ -68,8 +74,30 @@ let api = {
       .storage.createFile(Server.bucketID, ID.unique(), file);
   },
 
+  getFile: (fileId) => {
+    return api.provider().storage.getFile(Server.bucketID, fileId);
+  },
+
+  getFilePreview: (
+    fileId,
+    height = null,
+    width = null,
+    quality = null,
+    gravity = null
+  ) => {
+    return api.provider().storage.getFilePreview(Server.bucketID, fileId);
+  },
+
   deleteFile: (fileID) => {
     return api.provider().storage.deleteFile(Server.bucketID, fileID);
+  },
+
+  checkSessionStatus: async () => {
+    try {
+      return await api.getSession();
+    } catch (error) {
+      return null;
+    }
   },
 };
 
