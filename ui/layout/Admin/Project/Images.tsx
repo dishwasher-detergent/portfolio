@@ -1,6 +1,5 @@
 "use client";
 
-import { Projects } from "#/app/projects]/page";
 import api from "#/utils/appwrite";
 import { AnimatePresence, motion } from "framer-motion";
 import { ImagePlus, Trash } from "lucide-react";
@@ -15,7 +14,16 @@ type Image = {
 
 interface ProjectImagesProps {
   images: Image[];
-  project: Projects;
+  project: {
+    $id: string;
+    $collectionId: string;
+    title: string;
+    short_description: string;
+    description: string;
+    banner: string;
+    images: string[];
+    tags: string[];
+  };
 }
 
 export default function ProjectImages({ images, project }: ProjectImagesProps) {
