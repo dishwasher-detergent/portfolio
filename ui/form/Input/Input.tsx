@@ -18,13 +18,15 @@ export default function Input({
   return (
     <label className="flex flex-col gap-1">
       {label && (
-        <p className="text-xs pl-2 font-semibold text-slate-600">{label}</p>
+        <p className="pl-2 text-xs font-semibold text-slate-600 dark:text-slate-200">
+          {label}
+        </p>
       )}
       <input
         type={type}
         placeholder={placeholder}
         onChange={onChange}
-        className="px-2 py-1 rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-800"
+        className="rounded-xl border border-slate-200 px-2 py-1 text-white dark:border-slate-700 dark:bg-slate-900"
         value={value}
       />
     </label>

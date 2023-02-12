@@ -59,7 +59,12 @@ let api = {
   updateDocument: (collectionId, documentId, data) => {
     return api
       .provider()
-      .database.updateDocument(collectionId, documentId, data);
+      .database.updateDocument(
+        Server.databaseID,
+        collectionId,
+        documentId,
+        data
+      );
   },
 
   deleteDocument: (collectionId, documentId) => {

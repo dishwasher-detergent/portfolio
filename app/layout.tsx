@@ -1,7 +1,7 @@
 import Layout from "ui/layout";
 import "./globals.css";
 import { Space_Grotesk, Unbounded } from "@next/font/google";
-import ToastWrapper from "#/ui/toast";
+import ToastWrapper from "#/ui/toast/ToastWrapper";
 
 const font = Space_Grotesk({ subsets: ["latin"], variable: "--main-font" });
 const display = Unbounded({
@@ -21,7 +21,7 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
+      <body className="dark">
         <Layout className={`${font.className} ${display.variable}`}>
           {children}
         </Layout>

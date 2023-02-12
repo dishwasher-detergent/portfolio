@@ -38,8 +38,10 @@ export default function ImageInput({
   };
 
   return (
-    <div className="flex flex-col gap-1">
-      <p className="text-xs pl-2 font-semibold text-slate-600">Images</p>
+    <div className="flex flex-col gap-2">
+      <p className="pl-2 text-xs font-semibold text-slate-600 dark:text-slate-200">
+        Images ({images.length})
+      </p>
       <div className="grid grid-cols-3 gap-2">
         <AnimatePresence initial={false} mode="popLayout">
           {images.map((image: File, index: number) => (
@@ -58,7 +60,7 @@ export default function ImageInput({
               }}
               key={image.name}
             >
-              <div className="relative w-full h-24 rounded-xl border overflow-hidden border-slate-200 group cursor-pointer">
+              <div className="group relative h-24 w-full cursor-pointer overflow-hidden rounded-xl border border-slate-200">
                 <Image
                   fill
                   style={{
@@ -70,7 +72,7 @@ export default function ImageInput({
                 />
                 <button
                   onClick={() => removeImageFromArray(image.name)}
-                  className="z-20 hidden group-hover:grid absolute top-1 right-1 w-6 h-6 p-1 place-items-center cursor-pointer rounded-full bg-rose-600 text-white"
+                  className="absolute top-1 right-1 z-20 hidden h-6 w-6 cursor-pointer place-items-center rounded-full bg-rose-600 p-1 text-white group-hover:grid"
                 >
                   <Trash size="100%" />
                 </button>
@@ -84,14 +86,14 @@ export default function ImageInput({
                 />
                 <label
                   htmlFor={image.name}
-                  className="cursor-pointer absolute z-10 inset-0 peer-checked/input:bg-blue-500/30 rounded-xl"
+                  className="absolute inset-0 z-10 cursor-pointer rounded-xl peer-checked/input:bg-blue-500/30"
                 />
               </div>
             </motion.div>
           ))}
         </AnimatePresence>
         <label
-          className={`relative w-full h-24 bg-slate-200 border border-slate-300 rounded-xl text-slate-400 grid place-items-center cursor-pointer ${
+          className={`relative grid h-24 w-full cursor-pointer place-items-center rounded-xl border border-slate-200 bg-slate-200 text-slate-400 dark:border-slate-700 dark:bg-slate-900 dark:text-white ${
             images.length == 0 ? "col-span-3" : ""
           }`}
         >

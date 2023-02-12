@@ -27,9 +27,11 @@ export default function TagInput({
   };
 
   return (
-    <div className="flex flex-col gap-1">
-      <p className="text-xs pl-2 font-semibold text-slate-600">Tags</p>
-      <div className="relative w-full p-2 min-h-[2rem] bg-slate-200 border border-slate-300 rounded-xl text-slate-400 flex flex-row gap-1 flex-wrap cursor-pointer">
+    <div className="flex flex-col gap-2">
+      <p className="pl-2 text-xs font-semibold text-slate-600 dark:text-slate-200">
+        Tags
+      </p>
+      <div className="relative flex min-h-[2rem] w-full cursor-pointer flex-row flex-wrap gap-1 rounded-xl border bg-slate-200 p-2 text-slate-400 dark:border-slate-700 dark:bg-slate-900">
         <AnimatePresence initial={false} mode="popLayout">
           {tags.map((item: string) => {
             if (item == null) return;
@@ -48,7 +50,8 @@ export default function TagInput({
                   },
                 }}
                 key={item}
-                className="whitespace-nowrap rounded-full px-2 py-1 text-xs font-semibold text-white bg-emerald-600 group relative hover:bg-rose-600"
+                type="button"
+                className="group relative whitespace-nowrap rounded-full bg-emerald-600 px-2 py-1 text-xs font-semibold text-white hover:bg-rose-600"
                 onClick={() => removeTagsFromArray(item)}
               >
                 {item}
@@ -61,14 +64,21 @@ export default function TagInput({
         <input
           type="text"
           placeholder="Add Tag"
-          className="h-9 px-2 py-1 rounded-xl border border-slate-200 dark:border-slate-700 dark:bg-slate-800 w-full"
+          className="h-9 w-full rounded-xl border border-slate-200 px-2 py-1 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
           maxLength={16}
           onChange={(e) => setTag(e.target.value)}
           value={tag}
+          onKeyDown={(e) => {
+            if (e.key == "Tab") {
+              e.preventDefault();
+              addTagsToArray();
+            }
+          }}
         />
         <button
           disabled={tag && tags.indexOf(tag) != -1 ? true : false}
-          className="p-2 grid place-items-center h-9 w-9 flex-none bg-blue-600 text-white rounded-xl disabled:bg-slate-300 disabled:text-slate-700"
+          type="button"
+          className="grid h-9 w-9 flex-none place-items-center rounded-xl bg-blue-600 p-2 text-white disabled:bg-slate-300 disabled:text-slate-700"
           onClick={() => addTagsToArray()}
         >
           <Plus size={20} />

@@ -8,9 +8,9 @@
 
 .project-grid > *:last-child,
 .project-grid > *:nth-child(even):nth-last-child(2) {
-  @apply rounded-br-xl overflow-hidden;
+  @apply overflow-hidden rounded-br-xl;
 }
 
 .project-grid > *:last-child:first-child {
-  @apply rounded-xl overflow-hidden;
+  @apply overflow-hidden rounded-xl;
 }

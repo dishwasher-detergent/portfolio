@@ -19,33 +19,25 @@ export default function Login() {
       await api.createSession(username, password);
     } catch (error: any) {
       toast(error.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "light",
         type: "error",
       });
       return;
     }
 
     toast("Logged In", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      theme: "light",
       type: "success",
     });
     router.push("/Admin");
   };
 
   return (
-    <section className="w-96 p-4 rounded-xl bg-slate-50 border border-slate-200 dark:bg-slate-900 dark:border-slate-700">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        Login();
+      }}
+      className="w-96 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"
+    >
       <div className="flex flex-col gap-2">
         <Input label="Username" onChange={(e) => setUsername(e.target.value)} />
         <Input
@@ -54,12 +46,12 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button
-          onClick={() => Login()}
-          className="w-full px-4 py-2 rounded-xl bg-blue-600 text-white flex flex-row flex-nowrap gap-2 items-center justify-center"
+          type="submit"
+          className="flex w-full flex-row flex-nowrap items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white"
         >
           Log In
         </button>
       </div>
-    </section>
+    </form>
   );
 }

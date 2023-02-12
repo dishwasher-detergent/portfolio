@@ -34,16 +34,16 @@ export default async function Project({ params }) {
   const projects = await getProjects(params.projects);
   return (
     <>
-      <div className="p-4 w-full md:w-96 md:h-72 flex-none bg-slate-100 border border-slate-200 rounded-xl md:top-20 md:sticky">
-        <h1 className="display text-2xl font-bold truncate">
+      <div className="w-full flex-none rounded-xl border border-slate-200 bg-slate-100 p-4 md:sticky md:top-20 md:h-72 md:w-96">
+        <h1 className="display truncate text-2xl font-bold">
           {projects.title}
         </h1>
-        <div className="flex flex-row flex-nowrap py-2 gap-1 overflow-x-auto overflow-y-hidden">
+        <div className="flex flex-row flex-nowrap gap-1 overflow-x-auto overflow-y-hidden py-2">
           {projects.tags.map((item: string, index: number) => {
             if (item == null) return;
             return (
               <div
-                className="whitespace-nowrap rounded-full px-2 py-1 text-xs font-semibold text-white bg-emerald-600"
+                className="whitespace-nowrap rounded-full bg-emerald-600 px-2 py-1 text-xs font-semibold text-white"
                 key={index}
               >
                 {item}
@@ -60,7 +60,7 @@ export default async function Project({ params }) {
             return (
               <div
                 key={image}
-                className="relative w-full aspect-square overflow-hidden rounded-xl"
+                className="relative aspect-square w-full overflow-hidden rounded-xl"
               >
                 <Image
                   className="object-cover"

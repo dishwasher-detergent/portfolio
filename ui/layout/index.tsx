@@ -12,7 +12,7 @@ function Layout({ children, className }: LayoutProps) {
       className={`relative flex min-h-screen w-full flex-col items-center dark:bg-slate-900 ${className}`}
     >
       <Nav />
-      <div className="py-4 z-10 w-full max-w-[90rem] flex-1 px-4 sm:px-6 md:px-8 relative">
+      <div className="relative z-10 w-full max-w-[90rem] flex-1 py-4 px-4 sm:px-6 md:px-8">
         {children}
       </div>
     </div>

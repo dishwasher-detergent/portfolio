@@ -4,7 +4,7 @@ export default function ProjectLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="w-full h-full flex flex-col md:flex-row gap-4">
+    <section className="flex h-full w-full flex-col gap-4 md:flex-row">
       {children}
     </section>
   );
