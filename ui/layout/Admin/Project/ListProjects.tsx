@@ -7,7 +7,9 @@ export default function ListProjects() {
 
   useEffect(() => {
     (async () => {
-      const fetchProjects = await api.listDocuments("63e17a3b092917cea721");
+      const fetchProjects = await api.listDocuments(
+        process.env.NEXT_PUBLIC_APP_COLLECTION_ID
+      );
       setProjects(fetchProjects);
     })();
 
@@ -15,11 +17,13 @@ export default function ListProjects() {
       .provider()
       .appwrite.subscribe(
         [
-          "databases.63e17a380bdd4f868114.collections.63e17a3b092917cea721.documents",
-          "buckets.63e17bd7024f7fadf59d.files",
+          `databases.${process.env.NEXT_PUBLIC_APP_DATABASE_ID}.collections.${process.env.NEXT_PUBLIC_APP_COLLECTION_ID}.documents`,
+          `buckets.${process.env.NEXT_PUBLIC_APP_BUCKET_ID}.files`,
         ],
         async () => {
-          const fetchProjects = await api.listDocuments("63e17a3b092917cea721");
+          const fetchProjects = await api.listDocuments(
+            process.env.NEXT_PUBLIC_APP_COLLECTION_ID
+          );
           setProjects(fetchProjects);
         }
       );

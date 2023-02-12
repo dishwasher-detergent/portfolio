@@ -44,7 +44,7 @@ export default function CreateProject() {
     }
 
     try {
-      await api.createDocument("63e17a3b092917cea721", {
+      await api.createDocument(process.env.NEXT_PUBLIC_APP_COLLECTION_ID, {
         title: title,
         short_description: shortDesc,
         description: desc,

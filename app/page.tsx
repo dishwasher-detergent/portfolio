@@ -2,7 +2,9 @@ import Project from "#/ui/Project";
 import api from "#/utils/appwrite";
 
 async function getProjects() {
-  const documents = await api.listDocuments("63e17a3b092917cea721");
+  const documents = await api.listDocuments(
+    process.env.NEXT_PUBLIC_APP_COLLECTION_ID
+  );
   return documents.documents;
 }
 
