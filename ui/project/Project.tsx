@@ -41,9 +41,9 @@ export default function Project({ content }: ProjectProps) {
   }, [content]);
 
   return (
-    <Card type="article" className="h-[28rem] md:w-full">
+    <Card type="article" className="md:h-[28rem] md:w-full">
       <div className="flex h-full w-full flex-col-reverse flex-nowrap gap-2 md:flex-row">
-        <div className="flex w-1/3 flex-none flex-col gap-2 p-4 text-slate-900 dark:text-white">
+        <div className="flex w-full flex-none flex-col gap-2 p-4 text-slate-900 dark:text-white md:w-1/3">
           <h1 className="flex flex-row flex-nowrap items-center gap-2">
             <a
               href={content.website}
@@ -65,12 +65,12 @@ export default function Project({ content }: ProjectProps) {
               </span>
             ))}
           </div>
-          <p className="flex-1 overflow-y-auto break-words pt-4 pr-1">
+          <p className="overflow-y-auto break-words pt-4 pr-1 sm:max-h-48 md:flex-1">
             {content.description}
           </p>
         </div>
-        <div className="flex h-full flex-1 flex-row flex-nowrap gap-2">
-          <div className="relative h-full flex-1 overflow-hidden rounded-xl border border-slate-200 bg-slate-600 dark:border-slate-700 dark:bg-slate-900">
+        <div className="flex h-full flex-1 flex-col flex-nowrap gap-2 md:flex-row">
+          <div className="relative h-64 flex-none overflow-hidden rounded-xl border border-slate-200 bg-slate-600 dark:border-slate-700 dark:bg-slate-900 md:h-full md:flex-1">
             {banner && (
               <Image
                 fill
@@ -84,14 +84,14 @@ export default function Project({ content }: ProjectProps) {
             )}
           </div>
           {images.length > 1 && (
-            <div className="flex h-full w-1/3 flex-none flex-col gap-2 overflow-y-auto rounded-xl pr-1">
+            <div className="flex h-full w-full flex-none flex-row gap-2 overflow-y-auto rounded-xl pr-1 md:w-1/3 md:flex-col">
               {images.length > 0 ? (
                 images.map((image: Image) => {
                   if (image.name == content.banner) return;
                   return (
                     <div
                       key={image.name}
-                      className="relative h-1/3 w-full flex-none overflow-hidden rounded-xl border border-slate-200 bg-slate-600 dark:border-slate-700 dark:bg-slate-900"
+                      className="relative h-32 w-1/2 flex-none overflow-hidden rounded-xl border border-slate-200 bg-slate-600 dark:border-slate-700 dark:bg-slate-900 md:h-1/3 md:w-full"
                     >
                       <Image
                         fill
