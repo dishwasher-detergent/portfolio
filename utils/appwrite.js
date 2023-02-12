@@ -83,14 +83,16 @@ let api = {
     return api.provider().storage.getFile(Server.bucketID, fileId);
   },
 
-  getFilePreview: (
-    fileId,
-    height = null,
-    width = null,
-    quality = null,
-    gravity = null
-  ) => {
-    return api.provider().storage.getFilePreview(Server.bucketID, fileId);
+  getFilePreview: (fileId, option = {}) => {
+    const baseUrl =
+      Server.endpoint +
+      `/storage/buckets/${Server.bucketID}/files/${fileId}/preview`;
+
+    const url = new URL(baseUrl);
+    option.project = Server.project;
+    url.search = new URLSearchParams(option);
+
+    return url;
   },
 
   deleteFile: (fileID) => {

@@ -1,5 +1,6 @@
 "use client";
 
+import Card from "#/ui/form/Card";
 import ImageInput from "#/ui/form/Input/Images";
 import Input from "#/ui/form/Input/Input";
 import TagInput from "#/ui/form/Input/Tags";
@@ -69,16 +70,15 @@ export default function CreateProject() {
   };
 
   return (
-    <form
-      onSubmit={(e) => {
+    <Card
+      type="form"
+      title="Create Project"
+      onSubmit={(e: HTMLFormElement) => {
         e.preventDefault();
         addProject();
       }}
       className="w-full flex-none rounded-xl border border-slate-200 bg-slate-50 p-4 text-white dark:border-slate-700 dark:bg-slate-800 md:w-96"
     >
-      <h2 className="display mb-4 border-b border-slate-200 pb-2 font-bold dark:border-slate-700">
-        Create Project
-      </h2>
       <div className="flex w-full flex-col gap-2">
         <Input
           label="Project Name"
@@ -112,6 +112,6 @@ export default function CreateProject() {
           <Send size={20} />
         </button>
       </div>
-    </form>
+    </Card>
   );
 }

@@ -7,7 +7,7 @@ interface ProjectProps {
   content: Models.Document;
 }
 
-export default function Project({ content }: ProjectProps) {
+export default function ProjectCompressed({ content }: ProjectProps) {
   return (
     <article className="group relative h-72 overflow-hidden bg-white">
       <Link

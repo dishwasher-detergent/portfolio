@@ -1,5 +1,6 @@
 "use client";
 
+import Card from "#/ui/form/Card";
 import Input from "#/ui/form/Input/Input";
 import api from "#/utils/appwrite";
 import { useRouter } from "next/navigation";
@@ -31,12 +32,13 @@ export default function Login() {
   };
 
   return (
-    <form
-      onSubmit={(e) => {
+    <Card
+      type="form"
+      title="Login"
+      onSubmit={(e: HTMLFormElement) => {
         e.preventDefault();
         Login();
       }}
-      className="w-full rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800 md:w-96"
     >
       <div className="flex flex-col gap-2">
         <Input label="Username" onChange={(e) => setUsername(e.target.value)} />
@@ -52,6 +54,6 @@ export default function Login() {
           Log In
         </button>
       </div>
-    </form>
+    </Card>
   );
 }
