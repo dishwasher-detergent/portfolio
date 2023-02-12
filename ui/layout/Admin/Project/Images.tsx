@@ -1,6 +1,6 @@
 "use client";
 
-import { Projects } from "#/app/Projects/[projects]/page";
+import { Projects } from "#/app/projects]/page";
 import api from "#/utils/appwrite";
 import { AnimatePresence, motion } from "framer-motion";
 import { ImagePlus, Trash } from "lucide-react";

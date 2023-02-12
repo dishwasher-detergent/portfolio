@@ -1,6 +1,5 @@
 "use client";
 
-import { Projects } from "#/app/Projects/[projects]/page";
 import api from "#/utils/appwrite";
 import { motion } from "framer-motion";
 import { Trash } from "lucide-react";
@@ -10,7 +9,16 @@ import { toast } from "react-toastify";
 import ProjectImages from "#/ui/layout/Admin/Project/Images";
 
 interface ProjectProps {
-  project: Projects;
+  project: {
+    $id: string;
+    $collectionId: string;
+    title: string;
+    short_description: string;
+    description: string;
+    banner: string;
+    images: string[];
+    tags: string[];
+  };
 }
 
 type Image = {
