@@ -74,7 +74,7 @@ export default function CreateProject() {
         e.preventDefault();
         addProject();
       }}
-      className="w-96 flex-none rounded-xl border border-slate-200 bg-slate-50 p-4 text-white dark:border-slate-700 dark:bg-slate-800"
+      className="w-full flex-none rounded-xl border border-slate-200 bg-slate-50 p-4 text-white dark:border-slate-700 dark:bg-slate-800 md:w-96"
     >
       <h2 className="display mb-4 border-b border-slate-200 pb-2 font-bold dark:border-slate-700">
         Create Project

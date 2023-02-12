@@ -36,7 +36,7 @@ export default function Login() {
         e.preventDefault();
         Login();
       }}
-      className="w-96 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800"
+      className="w-full rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800 md:w-96"
     >
       <div className="flex flex-col gap-2">
         <Input label="Username" onChange={(e) => setUsername(e.target.value)} />
