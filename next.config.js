@@ -6,7 +6,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "allbeefhotdogs.corndocs.com",
+        protocol: 'https',
+        hostname: '**.kennethbass.com',
       },
     ],
   },
