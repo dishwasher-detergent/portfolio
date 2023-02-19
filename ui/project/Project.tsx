@@ -41,9 +41,12 @@ export default function Project({ content }: ProjectProps) {
   }, [content]);
 
   return (
-    <Card type="article" className="md:h-[28rem] md:w-full">
-      <div className="flex h-full w-full flex-col-reverse flex-nowrap gap-2 md:flex-row">
-        <div className="flex w-full flex-none flex-col gap-2 p-4 text-slate-900 dark:text-white md:w-1/3">
+    <Card
+      type="article"
+      className="z-10 border-none bg-transparent bg-white dark:bg-slate-900"
+    >
+      <div className="flex h-full w-full flex-col-reverse flex-nowrap gap-2">
+        <div className="flex w-full flex-none flex-col gap-2 p-4 text-slate-900 dark:text-white">
           <h1 className="flex flex-row flex-nowrap items-center gap-2">
             <a
               href={content.website}
@@ -65,12 +68,12 @@ export default function Project({ content }: ProjectProps) {
               </span>
             ))}
           </div>
-          <p className="overflow-y-auto break-words pt-4 pr-1 sm:max-h-48 md:flex-1">
+          <p className="overflow-y-auto break-words pt-4 pr-1 sm:max-h-48 ">
             {content.description}
           </p>
         </div>
-        <div className="flex h-full flex-1 flex-col flex-nowrap gap-2 md:flex-row">
-          <div className="relative h-64 flex-none overflow-hidden rounded-xl border border-slate-200 bg-slate-600 dark:border-slate-700 dark:bg-slate-900 md:h-full md:flex-1">
+        <div className="flex h-full flex-1 flex-col flex-nowrap gap-2 ">
+          <div className="relative h-64 flex-none overflow-hidden rounded-xl dark:bg-slate-900 ">
             {banner && (
               <Image
                 fill
@@ -79,19 +82,19 @@ export default function Project({ content }: ProjectProps) {
                   objectPosition: "top left",
                 }}
                 src={banner}
-                alt={"test"}
+                alt={content.short_description}
               />
             )}
           </div>
           {images.length > 1 && (
-            <div className="flex h-full w-full flex-none flex-row gap-2 overflow-y-auto rounded-xl pr-1 md:w-1/3 md:flex-col">
+            <div className="flex h-full w-full flex-none flex-row gap-2 overflow-y-auto rounded-xl pr-1 ">
               {images.length > 0 ? (
                 images.map((image: Image) => {
                   if (image.name == content.banner) return;
                   return (
                     <div
                       key={image.name}
-                      className="relative h-32 w-1/2 flex-none overflow-hidden rounded-xl border border-slate-200 bg-slate-600 dark:border-slate-700 dark:bg-slate-900 md:h-1/3 md:w-full"
+                      className="relative h-32 w-1/2 flex-none overflow-hidden rounded-xl dark:bg-slate-900 "
                     >
                       <Image
                         fill
@@ -106,7 +109,7 @@ export default function Project({ content }: ProjectProps) {
                   );
                 })
               ) : (
-                <div className="relative h-1/3 w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-600 dark:border-slate-700 dark:bg-slate-900" />
+                <div className="relative h-1/3 w-full overflow-hidden rounded-xl dark:bg-slate-900" />
               )}
             </div>
           )}

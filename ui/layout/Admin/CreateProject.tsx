@@ -1,6 +1,7 @@
 "use client";
 
 import Card from "#/ui/form/Card";
+import Checkbox from "#/ui/form/Input/Checkbox";
 import ImageInput from "#/ui/form/Input/Images";
 import Input from "#/ui/form/Input/Input";
 import TagInput from "#/ui/form/Input/Tags";
@@ -17,6 +18,9 @@ export default function CreateProject() {
   const [title, setTitle] = useState<string | null>(null);
   const [shortDesc, setShortDesc] = useState<string | null>(null);
   const [desc, setDesc] = useState<string | null>(null);
+  const [website, setWebsite] = useState<string | null>(null);
+  const [github, setGithub] = useState<string | null>(null);
+  const [showcase, setShowcase] = useState<boolean>(false);
   const [banner, setBanner] = useState<HTMLInputElement | null>(null);
 
   const clearForm = () => {
@@ -49,7 +53,10 @@ export default function CreateProject() {
         title: title,
         short_description: shortDesc,
         description: desc,
+        github: github,
+        website: website,
         tags: tags,
+        showcase: showcase,
         images: submittedImages.map((x) => x.$id),
         banner: banner
           ? submittedImages.filter((x) => x.name == banner.value)[0].$id
@@ -95,6 +102,16 @@ export default function CreateProject() {
           onChange={(e) => setDesc(e.target.value)}
           value={desc ? desc : ""}
         />
+        <Input
+          label="Website"
+          onChange={(e) => setWebsite(e.target.value)}
+          value={website ? website : ""}
+        />
+        <Input
+          label="GitHub"
+          onChange={(e) => setGithub(e.target.value)}
+          value={github ? github : ""}
+        />
         <ImageInput
           setImages={setImages}
           images={images}
@@ -102,6 +119,11 @@ export default function CreateProject() {
           banner={banner}
         />
         <TagInput setTag={setTag} tag={tag} setTags={setTags} tags={tags} />
+        <Checkbox
+          label="Showcase"
+          value={showcase}
+          onChange={(e) => setShowcase(e.target.checked)}
+        />
       </div>
       <div className="my-4 border-t border-slate-200 pt-4 dark:border-slate-700">
         <button

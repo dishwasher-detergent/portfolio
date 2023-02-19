@@ -1,20 +1,10 @@
-import { HTMLInputTypeAttribute } from "react";
-
 interface InputProps {
   label?: string;
   onChange: (e: any) => void;
-  type?: HTMLInputTypeAttribute;
-  placeholder?: string;
-  value?: string;
+  value: boolean;
 }
 
-export default function Input({
-  label,
-  onChange,
-  type,
-  placeholder,
-  value,
-}: InputProps) {
+export default function Checkbox({ label, onChange, value }: InputProps) {
   return (
     <label className="flex flex-col gap-1">
       {label && (
@@ -23,11 +13,10 @@ export default function Input({
         </p>
       )}
       <input
-        type={type}
-        placeholder={placeholder}
+        type={"checkbox"}
         onChange={onChange}
+        checked={value}
         className="rounded-xl border border-slate-200 px-2 py-1 text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
-        value={value}
       />
     </label>
   );

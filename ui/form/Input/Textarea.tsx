@@ -14,7 +14,7 @@ export default function Input({ label, onChange, value }: InputProps) {
       )}
       <textarea
         onChange={onChange}
-        className="max-h-[15rem] min-h-[10rem] max-w-full rounded-xl border border-slate-200 px-2 py-1 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+        className="max-h-[15rem] min-h-[10rem] max-w-full rounded-xl border border-slate-200 px-2 py-1 text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
         value={value}
       />
     </label>

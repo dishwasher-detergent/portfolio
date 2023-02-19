@@ -35,18 +35,24 @@ export default function Login() {
     <Card
       type="form"
       title="Login"
+      className="max-w-md"
       onSubmit={(e: HTMLFormElement) => {
         e.preventDefault();
         Login();
       }}
     >
-      <div className="flex flex-col gap-2">
-        <Input label="Username" onChange={(e) => setUsername(e.target.value)} />
-        <Input
-          label="Password"
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          <Input
+            label="Username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            label="Password"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
         <button
           type="submit"
           className="flex w-full flex-row flex-nowrap items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white"

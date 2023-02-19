@@ -2,13 +2,14 @@
 
 import api from "#/utils/appwrite";
 import { motion } from "framer-motion";
-import { Trash } from "lucide-react";
+import { Edit, Trash } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import ProjectImages from "#/ui/layout/Admin/Project/Images";
+import EditProject from "#/ui/layout/Admin/Project/EditProject";
 
-interface ProjectProps {
+export interface ProjectProps {
   project: {
     $id: string;
     $collectionId: string;
@@ -18,6 +19,9 @@ interface ProjectProps {
     banner: string;
     images: string[];
     tags: string[];
+    showcase: boolean;
+    website: string;
+    github: string;
   };
 }
 
@@ -104,14 +108,20 @@ export default function Project({ project }: ProjectProps) {
       animate="initial"
       className="flex h-96 w-full flex-none flex-row flex-nowrap gap-2"
     >
-      <motion.button
-        variants={button}
-        className="grid h-full place-items-center overflow-hidden rounded-xl bg-rose-600 text-white"
-        onClick={() => deleteProject()}
+      <motion.div variants={button} className="flex flex-col gap-2">
+        <EditProject project={project} />
+        <button
+          className="grid h-full w-full place-items-center overflow-hidden rounded-xl bg-rose-600 text-white"
+          onClick={() => deleteProject()}
+        >
+          <Trash size={20} />
+        </button>
+      </motion.div>
+      <div
+        className={`h-full w-full rounded-xl border border-slate-200 bg-slate-50 p-4 text-slate-900 dark:border-slate-700 dark:bg-slate-800 dark:text-white ${
+          project.showcase ? "border-4 border-blue-500" : ""
+        }`}
       >
-        <Trash size={20} />
-      </motion.button>
-      <div className="h-full w-full rounded-xl border border-slate-200 bg-slate-50 p-4 text-white dark:border-slate-700 dark:bg-slate-800">
         <div className="grid h-full w-full grid-cols-1 gap-4 overflow-hidden md:grid-cols-2">
           <div className="flex h-full w-full flex-col gap-2 overflow-y-auto py-2">
             <h2 className="display w-full text-xl font-bold">
