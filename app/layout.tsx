@@ -4,7 +4,7 @@ import { Space_Grotesk, Oi } from "@next/font/google";
 import ToastWrapper from "#/ui/toast/ToastWrapper";
 
 const font = Space_Grotesk({ subsets: ["latin"], variable: "--main-font" });
-const displayFont = Oi({ subsets: ["latin"], variable: "--display-font", weight: ['400'] });
+const displayFont = Unbounded({ subsets: ["latin"], variable: "--display-font" });
 
 export default function RootLayout({
   children,
