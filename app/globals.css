@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.display {
+  font-family: var(--display-font)
+}
+
 *::-webkit-scrollbar {
   @apply h-1.5 w-1.5;
 }
