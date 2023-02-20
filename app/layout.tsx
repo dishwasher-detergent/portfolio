@@ -18,7 +18,7 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className={`bg-gradient-to-b from-white to-slate-400 dark:from-slate-900 dark:to-slate-400 ${font} ${displayFont}`}>
+      <body className={`bg-gradient-to-b from-white to-slate-400 dark:from-slate-900 dark:to-slate-400 ${font.className} ${displayFont.variable}`}>
         <Layout>{children}</Layout>
         <ToastWrapper />
       </body>
