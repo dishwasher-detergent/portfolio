@@ -1,6 +1,6 @@
 import Layout from "ui/layout";
 import "./globals.css";
-import { Space_Grotesk, Oi } from "@next/font/google";
+import { Space_Grotesk, Unbounded } from "@next/font/google";
 import ToastWrapper from "#/ui/toast/ToastWrapper";
 
 const font = Space_Grotesk({ subsets: ["latin"], variable: "--main-font" });
