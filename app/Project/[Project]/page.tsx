@@ -30,10 +30,14 @@ interface PageProps {
 }
 
 export default async function Project({ params: { Project } }: PageProps) {
-  console.log(Project);
   const project: Projects | null = await getProject(Project);
 
-  if (!project) return <div>Error</div>;
+  if (!project)
+    return (
+      <h2 className="text-6xl font-bold text-rose-600">
+        Error Loading Project: {Project}
+      </h2>
+    );
 
   return (
     <>

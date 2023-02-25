@@ -25,9 +25,8 @@ export default function Project({ content }: ProjectProps) {
     <motion.a
       className="h-auto cursor-pointer rounded-xl p-4 md:h-72"
       whileHover={{
-        backgroundColor: textColor(content.accent_color, true, 0.1).style[
-          "background-color"
-        ],
+        backgroundColor: textColor(content.accent_color, true, 0.1).style
+          .backgroundColor,
       }}
       href={`Project/${content.$id}`}
     >
