@@ -9,17 +9,18 @@ import { ExternalLink, Github } from "lucide-react";
 type Projects = ProjectTypes & Models.Document;
 
 async function getProject(Project: string) {
-  console.log(Project);
-
   const pattern = /^[a-zA-Z0-9][a-zA-Z0-9_]{0,35}$/;
 
-  if (pattern.test(Project) && Project.length <= 36) return null;
-  const document = await api.getDocument(
-    Project,
-    process.env.NEXT_PUBLIC_APP_COLLECTION_ID
-  );
+  if (pattern.test(Project) && Project.length <= 36) {
+    const document = await api.getDocument(
+      Project,
+      process.env.NEXT_PUBLIC_APP_COLLECTION_ID
+    );
 
-  return document as Projects;
+    return document as Projects;
+  }
+
+  return null;
 }
 
 interface PageProps {
@@ -29,6 +30,7 @@ interface PageProps {
 }
 
 export default async function Project({ params: { Project } }: PageProps) {
+  console.log(Project);
   const project: Projects | null = await getProject(Project);
 
   if (!project) return <div>Error</div>;

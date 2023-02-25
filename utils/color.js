@@ -17,13 +17,13 @@ export function textColor(
     ? {
         style: {
           color: darkColor,
-          "background-color": background ? bgColor : "",
+          backgroundColor: background ? bgColor : "",
         },
       }
     : {
         style: {
           color: lightColor,
-          "background-color": background ? bgColor : "",
+          backgroundColor: background ? bgColor : "",
         },
       };
 }
