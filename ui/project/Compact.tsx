@@ -6,6 +6,7 @@ import Image from "next/image";
 import { textColor } from "#/utils/color";
 import { ProjectProps } from "#/types/Project";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Project({ content }: ProjectProps) {
   const [banner, setBanner] = useState<URL | null>(null);
@@ -28,11 +29,13 @@ export default function Project({ content }: ProjectProps) {
         backgroundColor: textColor(content.accent_color, true, 0.1).style
           .backgroundColor,
       }}
-      href={`Project/${content.$id}`}
     >
-      <div className="flex h-full w-full flex-col-reverse flex-nowrap gap-4 md:flex-row">
+      <Link
+        className="flex h-full w-full flex-col-reverse flex-nowrap gap-4 md:flex-row"
+        href={`Project/${content.$id}`}
+      >
         <div className="relative flex w-full flex-1 flex-col justify-end overflow-hidden">
-          <p className="absolute top-0 left-0 text-xs font-semibold text-slate-600">
+          <p className="absolute top-0 left-0 text-xs font-semibold text-slate-600 dark:text-slate-100">
             {new Date(content.$createdAt).toLocaleDateString("en-us", {
               weekday: "long",
               year: "numeric",
@@ -40,7 +43,7 @@ export default function Project({ content }: ProjectProps) {
               day: "numeric",
             })}
           </p>
-          <h2 className="display w-full truncate py-4 text-4xl font-bold text-black">
+          <h2 className="display w-full truncate py-4 text-4xl font-bold text-slate-900 dark:text-white">
             {content.title}
           </h2>
           <div className="flex w-full flex-row gap-1 overflow-x-auto pb-2">
@@ -74,7 +77,7 @@ export default function Project({ content }: ProjectProps) {
             </>
           )}
         </div>
-      </div>
+      </Link>
     </motion.a>
   );
 }

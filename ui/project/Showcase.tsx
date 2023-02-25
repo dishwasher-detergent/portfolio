@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { textColor } from "#/utils/color";
 import { ProjectProps } from "#/types/Project";
+import Link from "next/link";
 
 export default function Showcase({ content }: ProjectProps) {
   const [banner, setBanner] = useState<URL | null>(null);
@@ -22,7 +23,10 @@ export default function Showcase({ content }: ProjectProps) {
   }, []);
 
   return (
-    <div className="relative z-40 h-auto w-full rounded-xl bg-slate-900 md:p-8">
+    <Link
+      className="relative z-40 block h-auto w-full rounded-xl bg-slate-900 dark:bg-slate-800 md:p-8"
+      href={`Project/${content.$id}`}
+    >
       <div
         className="relative h-96 w-full overflow-hidden rounded-xl md:aspect-[5/3] md:h-auto"
         {...textColor(content.accent_color, true)}
@@ -71,6 +75,6 @@ export default function Showcase({ content }: ProjectProps) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

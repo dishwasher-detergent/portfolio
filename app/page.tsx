@@ -35,7 +35,7 @@ export default async function Home() {
             <Header>Projects</Header>
           </div>
         </div>
-        <section className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <section className="grid grid-cols-1 gap-4 overflow-hidden rounded-xl bg-white/80 backdrop-blur-lg dark:bg-slate-900/80 md:grid-cols-2">
           {projects.map((item) => {
             return <Project key={item.$id} content={item} />;
           })}

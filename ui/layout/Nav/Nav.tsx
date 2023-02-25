@@ -1,9 +1,12 @@
 "use client";
 
-import { Github, Linkedin, Codepen } from "lucide-react";
+import { Github, Linkedin, Codepen, Moon } from "lucide-react";
 import Logo from "#/ui/layout/Nav/Logo";
+import { useTheme } from "next-themes";
 
 export default function Nav() {
+  const { theme, setTheme } = useTheme();
+
   return (
     <header className="sticky top-0 z-40 h-16 w-full flex-none border-b border-slate-200 bg-white/60 backdrop-blur-md dark:border-slate-700 dark:bg-slate-900/90 dark:text-white lg:z-50">
       <div className="mx-auto h-full w-full max-w-[90rem]">
@@ -39,7 +42,12 @@ export default function Nav() {
                 >
                   <Codepen size={20} />
                 </a>
-                {/* <DarkToggle /> */}
+                <button
+                  className={`block cursor-pointer rounded-xl p-2 hover:bg-slate-200 hover:dark:bg-slate-800`}
+                  onClick={() => setTheme(theme == "dark" ? "light" : "dark")}
+                >
+                  <Moon size={20} />
+                </button>
               </div>
             </div>
           </div>

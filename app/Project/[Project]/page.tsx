@@ -55,15 +55,17 @@ export default async function Project({ params: { Project } }: PageProps) {
               </span>
             ))}
           </div>
-          <p className="w-full md:w-1/2">{project.description}</p>
+          <p className="w-full dark:text-white md:w-1/2">
+            {project.description}
+          </p>
           <nav className="flex w-full flex-row flex-wrap gap-2">
             <a
               href={project.website}
               target="_blank"
               rel="noreferrer"
-              className="cursor-pointer rounded-xl bg-slate-200 p-2.5 hover:bg-slate-300"
+              className={`block cursor-pointer rounded-xl p-2 hover:bg-slate-200 hover:dark:bg-slate-800`}
             >
-              <ExternalLink size={16} />
+              <ExternalLink size={20} />
             </a>
             {project.github && (
               <a
