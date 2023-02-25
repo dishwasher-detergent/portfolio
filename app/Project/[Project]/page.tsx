@@ -9,7 +9,7 @@ import { ExternalLink, Github } from "lucide-react";
 type Projects = ProjectTypes & Models.Document;
 
 async function getProject(Project: string) {
-  if (!Project) return null;
+  if (Project.length > 36 || !Project) return null;
   const document = await api.getDocument(
     Project,
     process.env.NEXT_PUBLIC_APP_COLLECTION_ID
