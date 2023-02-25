@@ -9,7 +9,9 @@ import { ExternalLink, Github } from "lucide-react";
 type Projects = ProjectTypes & Models.Document;
 
 async function getProject(Project: string) {
-  if (Project.length > 36 || !Project) return null;
+  const pattern = /^[a-zA-Z0-9]+([_]?[a-zA-Z0-9]+)*$/;
+
+  if (pattern.test(Project) && Project[0] !== "_" && !Project) return null;
   const document = await api.getDocument(
     Project,
     process.env.NEXT_PUBLIC_APP_COLLECTION_ID
@@ -23,7 +25,7 @@ interface PageProps {
     Project: string;
   };
 }
-// 63e827f98a52fa19af15
+
 export default async function Project({ params: { Project } }: PageProps) {
   const project: Projects | null = await getProject(Project);
 
