@@ -8,15 +8,14 @@ import { ExternalLink, Github } from "lucide-react";
 
 type Projects = ProjectTypes & Models.Document;
 
-async function getProject(Project: string): Promise<Projects> {
-  const documents = await api.getDocument(
+async function getProject(Project: string) {
+  if (!Project) return null;
+  const document = await api.getDocument(
     Project,
     process.env.NEXT_PUBLIC_APP_COLLECTION_ID
   );
 
-  const projects = documents as Projects;
-
-  return projects;
+  return document as Projects;
 }
 
 interface PageProps {
@@ -26,7 +25,9 @@ interface PageProps {
 }
 // 63e827f98a52fa19af15
 export default async function Project({ params: { Project } }: PageProps) {
-  const project: Projects = await getProject(Project);
+  const project: Projects | null = await getProject(Project);
+
+  if (!project) return <div>Error</div>;
 
   return (
     <>
