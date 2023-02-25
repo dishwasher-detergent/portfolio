@@ -29,7 +29,7 @@ export default async function Home() {
       <div className="py-4 md:py-12">
         <div className="sticky top-16">
           <div className="w-3/5">
-            <p className="relative top-4 w-full text-center text-xl text-slate-900 md:top-20 md:text-left md:text-6xl">
+            <p className="relative top-4 w-full text-xl text-slate-900 dark:text-white md:top-20 md:text-6xl">
               All
             </p>
             <Header>Projects</Header>

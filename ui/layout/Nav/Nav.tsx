@@ -16,7 +16,7 @@ export default function Nav() {
               <span className="sr-only">Kenneth Bass</span>
               <Logo />
             </span>
-            <div className="relative ml-auto hidden items-center lg:flex">
+            <div className="relative ml-auto flex items-center">
               <div className="ml-4 flex items-center space-x-2">
                 <a
                   className={`block cursor-pointer rounded-xl p-2 hover:bg-slate-200 hover:dark:bg-slate-800`}
