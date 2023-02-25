@@ -1,10 +1,13 @@
 import Layout from "ui/layout";
 import "./globals.css";
-import { Space_Grotesk, Unbounded } from "@next/font/google";
+import { Space_Grotesk, Phudu } from "@next/font/google";
 import ToastWrapper from "#/ui/toast/ToastWrapper";
 
 const font = Space_Grotesk({ subsets: ["latin"], variable: "--main-font" });
-const displayFont = Unbounded({ subsets: ["latin"], variable: "--display-font" });
+const displayFont = Phudu({
+  subsets: ["latin"],
+  variable: "--display-font",
+});
 
 export default function RootLayout({
   children,
@@ -18,7 +21,7 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className={`bg-gradient-to-b from-white to-slate-400 dark:from-slate-900 dark:to-slate-400 ${font.className} ${displayFont.variable}`}>
+      <body className={`${font.className} ${displayFont.variable}`}>
         <Layout>{children}</Layout>
         <ToastWrapper />
       </body>

@@ -1,8 +1,8 @@
 "use client";
 
 import * as Dialog from "@radix-ui/react-dialog";
-import { Save, Trash, XIcon } from "lucide-react";
-import { ProjectProps } from "#/ui/layout/Admin/Project/Project";
+import { Edit, Save, Trash, X as XIcon } from "lucide-react";
+import { ProjectProps } from "#/types/Project";
 import Input from "#/ui/form/Input/Input";
 import Textarea from "#/ui/form/Input/Textarea";
 import TagInput from "#/ui/form/Input/Tags";
@@ -10,25 +10,27 @@ import Checkbox from "#/ui/form/Input/Checkbox";
 import { useState } from "react";
 import api from "#/utils/appwrite";
 import { toast } from "react-toastify";
+import Colorpicker from "#/ui/form/Input/ColorPicker";
 
-export default function EditProject({ project }: ProjectProps) {
-  const [tags, setTags] = useState<string[]>(project.tags);
+export default function EditProject({ content }: ProjectProps) {
+  const [tags, setTags] = useState<string[]>(content.tags);
   const [tag, setTag] = useState<string>("");
-  const [title, setTitle] = useState<string | null>(project.title);
+  const [title, setTitle] = useState<string | null>(content.title);
   const [shortDesc, setShortDesc] = useState<string | null>(
-    project.short_description
+    content.short_description
   );
-  const [desc, setDesc] = useState<string | null>(project.description);
-  const [website, setWebsite] = useState<string | null>(project.website);
-  const [github, setGithub] = useState<string | null>(project.github);
-  const [showcase, setShowcase] = useState<boolean>(project.showcase);
+  const [desc, setDesc] = useState<string | null>(content.description);
+  const [website, setWebsite] = useState<string | null>(content.website);
+  const [github, setGithub] = useState<string | null>(content.github);
+  const [showcase, setShowcase] = useState<boolean>(content.showcase);
+  const [color, setColor] = useState<string>("#7e22ce");
   const [open, setOpen] = useState(false);
 
   const EditProject = async () => {
     try {
       await api.updateDocument(
         process.env.NEXT_PUBLIC_APP_COLLECTION_ID,
-        project.$id,
+        content.$id,
         {
           title: title,
           short_description: shortDesc,
@@ -37,6 +39,7 @@ export default function EditProject({ project }: ProjectProps) {
           website: website,
           tags: tags,
           showcase: showcase,
+          accent_color: color,
         }
       );
     } catch (error: any) {
@@ -59,7 +62,7 @@ export default function EditProject({ project }: ProjectProps) {
           className="grid h-full w-full place-items-center overflow-hidden rounded-xl bg-blue-500 text-white"
           //   onClick={() => deleteProject()}
         >
-          <Trash size={20} />
+          <Edit size={20} />
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
@@ -73,7 +76,7 @@ export default function EditProject({ project }: ProjectProps) {
             className="flex h-full w-full flex-col"
           >
             <Dialog.Title className="display flex-none px-2 pb-4 text-2xl font-bold text-slate-900 dark:text-white">
-              Edit {project.title}
+              Edit {content.title}
             </Dialog.Title>
             <div className="flex w-full flex-1 flex-col gap-2 overflow-y-auto">
               <Input
@@ -110,7 +113,12 @@ export default function EditProject({ project }: ProjectProps) {
               <Checkbox
                 label="Showcase"
                 value={showcase}
-                onChange={(e) => setShowcase(e.target.checked)}
+                onChange={(e) => setShowcase(e)}
+              />
+              <Colorpicker
+                label="Accent Color"
+                value={color}
+                onChange={(e) => setColor(e.hex)}
               />
             </div>
             <div className="my-4 flex-none border-t border-slate-200 pt-4 dark:border-slate-700">

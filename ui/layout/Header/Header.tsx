@@ -8,8 +8,8 @@ interface HeaderProps {
 
 export default function Header({ children }: HeaderProps) {
   return (
-    <div className="sticky top-0 z-0 w-full py-10 font-bold text-slate-900 dark:text-white">
-      <AutoTextSize mode="oneline" as="h1" maxFontSizePx={1000}>
+    <div className="display sticky top-8 z-0 w-full font-bold text-slate-900 dark:text-white md:top-0">
+      <AutoTextSize mode="oneline" as="h1" maxFontSizePx={300}>
         {children}
       </AutoTextSize>
     </div>

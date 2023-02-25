@@ -38,7 +38,7 @@ export default function Admin() {
 
   return (
     <>
-      <div className="w-full flex-none md:sticky md:top-20 md:h-full md:w-96">
+      <div className="h-full">
         <CreateProject />
       </div>
       <ListProjects />

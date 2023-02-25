@@ -1,0 +1,82 @@
+import { ProjectTypes } from "#/types/Project";
+import Header from "#/ui/layout/Header/Header";
+import ProjectDisplay from "#/ui/project/Project";
+import api from "#/utils/appwrite";
+import { textColor } from "#/utils/color";
+import { Models } from "appwrite";
+import { ExternalLink, Github } from "lucide-react";
+
+type Projects = ProjectTypes & Models.Document;
+
+async function getProject(Project: string): Promise<Projects> {
+  const documents = await api.getDocument(
+    Project,
+    process.env.NEXT_PUBLIC_APP_COLLECTION_ID
+  );
+
+  const projects = documents as Projects;
+
+  return projects;
+}
+
+interface PageProps {
+  params: {
+    Project: string;
+  };
+}
+// 63e827f98a52fa19af15
+export default async function Project({ params: { Project } }: PageProps) {
+  const project: Projects = await getProject(Project);
+
+  return (
+    <>
+      <div className="sticky top-0">
+        <Header>{project.title}</Header>
+        <div className="relative z-10 -mt-12 flex w-full flex-col gap-2 pb-4">
+          <div className="flex w-full flex-row gap-1 overflow-x-auto pb-2">
+            {project.tags.map((tag: string) => (
+              <span
+                key={tag}
+                className="relative whitespace-nowrap rounded-full px-2 py-1 text-xs font-semibold"
+                {...textColor(project.accent_color, true)}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          <p className="w-full md:w-1/2">{project.description}</p>
+          <nav className="flex w-full flex-row flex-wrap gap-2">
+            <a
+              href={project.website}
+              target="_blank"
+              rel="noreferrer"
+              className="cursor-pointer rounded-xl bg-slate-200 p-2.5 hover:bg-slate-300"
+            >
+              <ExternalLink size={16} />
+            </a>
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noreferrer"
+                className="cursor-pointer rounded-xl bg-slate-200 p-3 hover:bg-slate-300"
+              >
+                <Github size={20} />
+              </a>
+            )}
+          </nav>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4">
+        {project.images.map((image) => (
+          <ProjectDisplay
+            key={image}
+            image={image}
+            title={project.title}
+            accent_color={project.accent_color}
+          />
+        ))}
+      </div>
+    </>
+  );
+}

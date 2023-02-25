@@ -1,5 +1,6 @@
 "use client";
 
+import { ProjectProps } from "#/types/Project";
 import api from "#/utils/appwrite";
 import { AnimatePresence, motion } from "framer-motion";
 import { ImagePlus, Trash } from "lucide-react";
@@ -12,21 +13,11 @@ type Image = {
   image: URL;
 };
 
-interface ProjectImagesProps {
+interface ProjectImagesProps extends ProjectProps {
   images: Image[];
-  project: {
-    $id: string;
-    $collectionId: string;
-    title: string;
-    short_description: string;
-    description: string;
-    banner: string;
-    images: string[];
-    tags: string[];
-  };
 }
 
-export default function ProjectImages({ images, project }: ProjectImagesProps) {
+export default function ProjectImages({ images, content }: ProjectImagesProps) {
   const [usedImages, setImages] = useState<Image[]>([]);
   const [banner, setBanner] = useState<string>("");
 
@@ -37,7 +28,7 @@ export default function ProjectImages({ images, project }: ProjectImagesProps) {
   useEffect(() => {
     if (!banner || banner == "") return;
     (async () => {
-      await api.updateDocument(project.$collectionId, project.$id, {
+      await api.updateDocument(content.$collectionId, content.$id, {
         banner: banner,
       });
     })();
@@ -70,7 +61,7 @@ export default function ProjectImages({ images, project }: ProjectImagesProps) {
     let doc;
 
     try {
-      doc = await api.updateDocument(project.$collectionId, project.$id, {
+      doc = await api.updateDocument(content.$collectionId, content.$id, {
         images: [
           ...usedImages.map((x) => x.name),
           ...submittedImages.map((x) => x.$id),
@@ -116,7 +107,7 @@ export default function ProjectImages({ images, project }: ProjectImagesProps) {
     }
 
     try {
-      await api.updateDocument(project.$collectionId, project.$id, {
+      await api.updateDocument(content.$collectionId, content.$id, {
         images: [...newImageArray.map((x) => x.name)],
       });
     } catch (error: any) {
@@ -158,8 +149,10 @@ export default function ProjectImages({ images, project }: ProjectImagesProps) {
               className="h-24"
             >
               <div
-                className={`group relative h-full w-full cursor-pointer overflow-hidden rounded-xl border border-slate-200 ${
-                  project.banner == image.name ? "border-4 border-blue-500" : ""
+                className={`group relative h-full w-full cursor-pointer overflow-hidden rounded-xl border  ${
+                  content.banner == image.name
+                    ? "border-4 border-blue-500"
+                    : "border-slate-200"
                 }`}
               >
                 <Image

@@ -2,6 +2,7 @@
 
 import Card from "#/ui/form/Card";
 import Checkbox from "#/ui/form/Input/Checkbox";
+import Colorpicker from "#/ui/form/Input/ColorPicker";
 import ImageInput from "#/ui/form/Input/Images";
 import Input from "#/ui/form/Input/Input";
 import TagInput from "#/ui/form/Input/Tags";
@@ -21,6 +22,7 @@ export default function CreateProject() {
   const [website, setWebsite] = useState<string | null>(null);
   const [github, setGithub] = useState<string | null>(null);
   const [showcase, setShowcase] = useState<boolean>(false);
+  const [color, setColor] = useState<string>("#7e22ce");
   const [banner, setBanner] = useState<HTMLInputElement | null>(null);
 
   const clearForm = () => {
@@ -31,6 +33,7 @@ export default function CreateProject() {
     setShortDesc(null);
     setDesc(null);
     setBanner(null);
+    setColor("#7e22ce");
   };
 
   const addProject = async () => {
@@ -57,6 +60,7 @@ export default function CreateProject() {
         website: website,
         tags: tags,
         showcase: showcase,
+        accent_color: color,
         images: submittedImages.map((x) => x.$id),
         banner: banner
           ? submittedImages.filter((x) => x.name == banner.value)[0].$id
@@ -78,62 +82,70 @@ export default function CreateProject() {
 
   return (
     <Card
-      type="form"
-      title="Create Project"
-      onSubmit={(e: HTMLFormElement) => {
-        e.preventDefault();
-        addProject();
-      }}
-      className="w-full flex-none rounded-xl border border-slate-200 bg-slate-50 p-4 text-white dark:border-slate-700 dark:bg-slate-800 md:w-96"
+      type="div"
+      className="sticky top-20 flex h-[50rem] max-h-full w-[30rem] max-w-full flex-none flex-col overflow-hidden rounded-xl border  border-slate-200 text-white dark:border-slate-700 md:w-96"
     >
-      <div className="flex w-full flex-col gap-2">
-        <Input
-          label="Project Name"
-          onChange={(e) => setTitle(e.target.value)}
-          value={title ? title : ""}
-        />
-        <Input
-          label="Short Description"
-          onChange={(e) => setShortDesc(e.target.value)}
-          value={shortDesc ? shortDesc : ""}
-        />
-        <Textarea
-          label="Description"
-          onChange={(e) => setDesc(e.target.value)}
-          value={desc ? desc : ""}
-        />
-        <Input
-          label="Website"
-          onChange={(e) => setWebsite(e.target.value)}
-          value={website ? website : ""}
-        />
-        <Input
-          label="GitHub"
-          onChange={(e) => setGithub(e.target.value)}
-          value={github ? github : ""}
-        />
-        <ImageInput
-          setImages={setImages}
-          images={images}
-          setBanner={setBanner}
-          banner={banner}
-        />
-        <TagInput setTag={setTag} tag={tag} setTags={setTags} tags={tags} />
-        <Checkbox
-          label="Showcase"
-          value={showcase}
-          onChange={(e) => setShowcase(e.target.checked)}
-        />
-      </div>
-      <div className="my-4 border-t border-slate-200 pt-4 dark:border-slate-700">
-        <button
-          type="submit"
-          className="flex w-full flex-row flex-nowrap items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white"
-        >
-          Add Project
-          <Send size={20} />
-        </button>
-      </div>
+      <form
+        onSubmit={(e: any) => {
+          e.preventDefault();
+          addProject();
+        }}
+        className="flex h-full flex-col"
+      >
+        <div className="flex w-full flex-1 flex-col gap-2 overflow-y-auto">
+          <Input
+            label="Project Name"
+            onChange={(e) => setTitle(e.target.value)}
+            value={title ? title : ""}
+          />
+          <Input
+            label="Short Description"
+            onChange={(e) => setShortDesc(e.target.value)}
+            value={shortDesc ? shortDesc : ""}
+          />
+          <Textarea
+            label="Description"
+            onChange={(e) => setDesc(e.target.value)}
+            value={desc ? desc : ""}
+          />
+          <Input
+            label="Website"
+            onChange={(e) => setWebsite(e.target.value)}
+            value={website ? website : ""}
+          />
+          <Input
+            label="GitHub"
+            onChange={(e) => setGithub(e.target.value)}
+            value={github ? github : ""}
+          />
+          <ImageInput
+            setImages={setImages}
+            images={images}
+            setBanner={setBanner}
+            banner={banner}
+          />
+          <TagInput setTag={setTag} tag={tag} setTags={setTags} tags={tags} />
+          <Checkbox
+            label="Showcase"
+            value={showcase}
+            onChange={(e) => setShowcase(e)}
+          />
+          <Colorpicker
+            label="Accent Color"
+            value={color}
+            onChange={(e) => setColor(e.hex)}
+          />
+        </div>
+        <div className="my-4 flex-none border-t border-slate-200 pt-4 dark:border-slate-700">
+          <button
+            type="submit"
+            className="flex w-full flex-row flex-nowrap items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white"
+          >
+            Add Project
+            <Send size={20} />
+          </button>
+        </div>
+      </form>
     </Card>
   );
 }

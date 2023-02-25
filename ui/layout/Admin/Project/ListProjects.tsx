@@ -37,7 +37,7 @@ export default function ListProjects() {
     <div className="flex flex-1 flex-col gap-4">
       {projects &&
         projects.documents.map((project: any, index: number) => (
-          <Project key={project.title + index} project={project} />
+          <Project key={project.title + index} content={project} />
         ))}
     </div>
   );
