@@ -3,8 +3,9 @@ import "./globals.css";
 import { Space_Grotesk, Phudu } from "next/font/google";
 import ToastWrapper from "#/ui/toast/ToastWrapper";
 import { ThemeProvider } from "#/ui/theme/ThemeProvider";
-import { Presence } from "#/ui/animate/Presence";
+import { PresenceWrapper } from "#/ui/animate/PresenceWrapper";
 import type { Metadata } from "next";
+import { ChildWrapper } from "#/ui/animate/ChildWrapper";
 
 export const metadata: Metadata = {
   title: "Kenneth's Portfolio",
@@ -28,7 +29,9 @@ export default function RootLayout({
       <body className={`${font.className} ${displayFont.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Layout>
-            <Presence>{children}</Presence>
+            <PresenceWrapper>
+              <ChildWrapper key={Math.random()}>{children}</ChildWrapper>
+            </PresenceWrapper>
           </Layout>
           <ToastWrapper />
         </ThemeProvider>

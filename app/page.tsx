@@ -1,4 +1,5 @@
-import { ProjectProps, ProjectTypes } from "#/types/Project";
+import { ProjectTypes } from "#/types/Project";
+import { ChildWrapper } from "#/ui/animate/ChildWrapper";
 import Header from "#/ui/layout/Header/Header";
 import Project from "#/ui/project/Compact";
 import Showcase from "#/ui/project/Showcase";
@@ -21,8 +22,8 @@ export default async function Home() {
   const projects: Projects[] = await getProjects();
 
   return (
-    <>
-      <div className="py-0 md:py-12">
+    <ChildWrapper>
+      <div className="py-0 md:pb-12">
         <Header>Kennethh</Header>
         <Showcase content={projects.filter((e) => e.showcase)[0]} />
       </div>
@@ -41,7 +42,7 @@ export default async function Home() {
           })}
         </section>
       </div>
-    </>
+    </ChildWrapper>
   );
 }
 
