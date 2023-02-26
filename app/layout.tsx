@@ -1,6 +1,6 @@
 import Layout from "ui/layout";
 import "./globals.css";
-import { Space_Grotesk, Phudu } from "@next/font/google";
+import { Space_Grotesk, Phudu } from "next/font/google";
 import ToastWrapper from "#/ui/toast/ToastWrapper";
 import { ThemeProvider } from "#/ui/theme/ThemeProvider";
 import { Presence } from "#/ui/animate/Presence";
