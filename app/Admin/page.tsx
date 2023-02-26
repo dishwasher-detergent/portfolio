@@ -1,46 +1,24 @@
-"use client";
-
 import CreateProject from "#/ui/layout/Admin/CreateProject";
 import ListProjects from "#/ui/layout/Admin/Project/ListProjects";
 import api from "#/utils/appwrite";
 import type { Metadata } from "next";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Admin",
   description: "Add a new project.",
 };
 
-export default function Admin() {
-  const router = useRouter();
-  const [logged, setLogged] = useState<boolean>(false);
+async function getLoggedStatus() {
+  const logged = await api.checkSessionStatus();
 
-  useEffect(() => {
-    (async () => {
-      if (!(await api.checkSessionStatus())) {
-        router.push("/Login");
-        return;
-      }
-      setLogged(true);
-    })();
-  });
+  return logged;
+}
 
-  useEffect(() => {
-    const unsubscribe = api
-      .provider()
-      .appwrite.subscribe("account", (response) => {
-        if (response.events.includes("users.*.sessions.*.delete")) {
-          router.push("/");
-        }
-      });
+export default async function Admin() {
+  const logged = await getLoggedStatus();
 
-    return function cleanup() {
-      unsubscribe();
-    };
-  }, []);
-
-  if (!logged) return <div>Loading</div>;
+  if (!logged) redirect("/Login");
 
   return (
     <>

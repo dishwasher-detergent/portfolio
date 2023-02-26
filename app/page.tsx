@@ -23,7 +23,7 @@ export default async function Home() {
   return (
     <>
       <div className="py-0 md:py-12">
-        <Header>Kenneth</Header>
+        <Header>Kennethh</Header>
         <Showcase content={projects.filter((e) => e.showcase)[0]} />
       </div>
       <div className="py-4 md:py-12">

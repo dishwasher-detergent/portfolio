@@ -1,3 +1,5 @@
+"use client";
+
 import api from "#/utils/appwrite";
 import Project from "#/ui/layout/Admin/Project/Project";
 import { useEffect, useState } from "react";
