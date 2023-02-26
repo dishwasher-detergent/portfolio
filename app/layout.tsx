@@ -3,6 +3,12 @@ import "./globals.css";
 import { Space_Grotesk, Phudu } from "@next/font/google";
 import ToastWrapper from "#/ui/toast/ToastWrapper";
 import { ThemeProvider } from "#/ui/theme/ThemeProvider";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Kenneth's Portfolio",
+  description: "Kenneth Bass' Portfolio of Projects!",
+};
 
 const font = Space_Grotesk({ subsets: ["latin"], variable: "--main-font" });
 const displayFont = Phudu({
@@ -15,17 +21,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  let dark = false;
-
-  const checkDarkmode = () => {};
-
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-      <head />
       <body className={`${font.className} ${displayFont.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Layout>{children}</Layout>

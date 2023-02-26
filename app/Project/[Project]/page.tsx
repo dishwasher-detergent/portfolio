@@ -5,8 +5,15 @@ import api from "#/utils/appwrite";
 import { textColor } from "#/utils/color";
 import { Models } from "appwrite";
 import { ExternalLink, Github } from "lucide-react";
+import { Metadata } from "next";
 
 type Projects = ProjectTypes & Models.Document;
+
+interface PageProps {
+  params: {
+    Project: string;
+  };
+}
 
 async function getProject(Project: string) {
   const pattern = /^[a-zA-Z0-9][a-zA-Z0-9_]{0,35}$/;
@@ -23,21 +30,45 @@ async function getProject(Project: string) {
   return null;
 }
 
-interface PageProps {
-  params: {
-    Project: string;
-  };
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const product = await getProject(params.Project);
+
+  if (product)
+    return {
+      title: `Project - ${product.title}`,
+      openGraph: {
+        type: "website",
+        url: product.website,
+        title: `Project - ${product.title}`,
+        description: product.short_description,
+        siteName: product.title,
+        images: [
+          {
+            url: api.getFilePreview(product.banner, {
+              height: 320,
+              quality: 100,
+              gravity: "center",
+            }).href,
+          },
+        ],
+      },
+    };
+
+  return { title: params.Project };
 }
 
-export default async function Project({ params: { Project } }: PageProps) {
-  const project: Projects | null = await getProject(Project);
+export default async function Project({ params }: PageProps) {
+  const project: Projects | null = await getProject(params.Project);
 
-  if (!project)
+  if (!project) {
     return (
       <h2 className="text-6xl font-bold text-rose-600">
-        Error Loading Project: {Project}
+        Error Loading Project: {params.Project}
       </h2>
     );
+  }
 
   return (
     <>
