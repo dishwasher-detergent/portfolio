@@ -7,8 +7,11 @@ import { useEffect, useState } from "react";
 import { textColor } from "#/utils/color";
 import { ProjectProps } from "#/types/Project";
 import Link from "next/link";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 
 export default function Showcase({ content }: ProjectProps) {
+  const { scrollYProgress } = useScroll();
+  const [scroll, setScroll] = useState<number>(0);
   const [banner, setBanner] = useState<URL | null>(null);
 
   useEffect(() => {
@@ -22,13 +25,24 @@ export default function Showcase({ content }: ProjectProps) {
     setBanner(img);
   }, []);
 
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const max = 1.1;
+    const min = 1;
+    let val = latest / 6 + 1;
+
+    if (val <= max && val >= min) {
+      setScroll(val);
+    }
+  });
+
   return (
-    <Link
-      className="relative z-40 block h-auto w-full rounded-xl bg-slate-900 dark:bg-slate-800 md:p-8"
-      href={`Project/${content.$id}`}
+    <motion.div
+      style={{ scaleX: scroll }}
+      className="relative z-40 h-auto w-full rounded-xl bg-slate-900 dark:bg-slate-800 md:p-8"
     >
-      <div
-        className="relative h-96 w-full overflow-hidden rounded-xl md:aspect-[5/3] md:h-auto"
+      <Link
+        href={`Project/${content.$id}`}
+        className="relative block h-96 w-full overflow-hidden rounded-xl md:aspect-[5/3] md:h-auto"
         {...textColor(content.accent_color, true)}
       >
         {banner && (
@@ -74,7 +88,7 @@ export default function Showcase({ content }: ProjectProps) {
             ))}
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </motion.div>
   );
 }

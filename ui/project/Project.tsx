@@ -26,7 +26,7 @@ export default function Showcase({ image, accent_color, title }: ProjectProps) {
   return (
     <div className="relative z-40 h-auto w-full rounded-xl bg-slate-900 dark:bg-slate-800 md:p-8">
       <div
-        className="relative h-full w-full overflow-hidden rounded-xl p-4 md:aspect-[5/3] md:h-auto"
+        className="relative aspect-square w-full overflow-hidden rounded-xl p-4 md:aspect-[5/3] md:h-auto"
         {...textColor(accent_color, true)}
       >
         {banner && (

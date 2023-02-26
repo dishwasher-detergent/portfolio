@@ -74,7 +74,7 @@ export default async function Project({ params }: PageProps) {
     <>
       <div className="sticky top-0">
         <Header>{project.title}</Header>
-        <div className="relative z-10 -mt-12 flex w-full flex-col gap-2 pb-4">
+        <div className="relative z-10 flex w-full flex-col gap-2 pb-4 md:-mt-12">
           <div className="flex w-full flex-row gap-1 overflow-x-auto pb-2">
             {project.tags.map((tag: string) => (
               <span
