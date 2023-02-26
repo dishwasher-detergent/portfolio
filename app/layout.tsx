@@ -3,6 +3,7 @@ import "./globals.css";
 import { Space_Grotesk, Phudu } from "@next/font/google";
 import ToastWrapper from "#/ui/toast/ToastWrapper";
 import { ThemeProvider } from "#/ui/theme/ThemeProvider";
+import { Presence } from "#/ui/animate/Presence";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -25,7 +26,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${font.className} ${displayFont.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Layout>{children}</Layout>
+          <Layout>
+            <Presence>{children}</Presence>
+          </Layout>
           <ToastWrapper />
         </ThemeProvider>
       </body>
