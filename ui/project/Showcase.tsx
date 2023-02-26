@@ -11,7 +11,7 @@ import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 
 export default function Showcase({ content }: ProjectProps) {
   const { scrollYProgress } = useScroll();
-  const [scroll, setScroll] = useState<number>(0);
+  const [scroll, setScroll] = useState<number>(1);
   const [banner, setBanner] = useState<URL | null>(null);
 
   useEffect(() => {
