@@ -19,28 +19,22 @@ async function checkLoggedInStatus() {
 
   const c = cookies();
 
-  console.log(c.get("a_session_63e17a1b54d5f6eec8ea"));
-  console.log(c.getAll());
+  let hash = c.get(sessionNames[0]) ?? c.get(sessionNames[1]) ?? "";
 
-  // let hash = c.get(sessionNames[0]) ? c.get(sessionNames[0]) : "";
+  api.setSession(hash);
 
-  // api.setSession(hash);
-
-  // let account: any;
-  // try {
-  //   account = await api.getAccount();
-  // } catch (err) {
-  //   console.error(err);
-  // }
-
-  // console.log("test");
-  // console.log(account);
+  let account: any;
+  try {
+    account = await api.getAccount();
+  } catch (err) {
+    console.error(err);
+  }
 
   // if (!account) redirect("/Login");
 }
 
 export default async function Admin() {
-  const serverAccount = await checkLoggedInStatus();
+  await checkLoggedInStatus();
 
   return (
     <>
