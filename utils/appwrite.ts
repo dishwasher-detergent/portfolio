@@ -28,7 +28,7 @@ type SdkType = {
   database: Databases;
   account: Account;
   storage: Storage;
-  appwrite: Appwrite;
+  client: Client;
 };
 
 type ApiType = {
@@ -72,14 +72,14 @@ let api: ApiType = {
     if (api.sdk) {
       return api.sdk;
     }
-    const appwrite = new Client().setEndpoint(Server.endpoint).setProject(Server.project);
-    const account = new Account(appwrite);
-    const database = new Databases(appwrite);
-    const storage = new Storage(appwrite);
+    const client = new Client().setEndpoint(Server.endpoint).setProject(Server.project);
+    const account = new Account(client);
+    const database = new Databases(client);
+    const storage = new Storage(client);
 
-    api.sdk = { database, account, storage, appwrite };
+    api.sdk = { database, account, storage, client };
 
-    return { database, account, storage, appwrite };
+    return { database, account, storage, client };
   },
 
   createAccount: async (email, password, name) => {
@@ -95,7 +95,7 @@ let api: ApiType = {
   setSession: (hash) => {
     const authCookies: any = {};
     authCookies["a_session_" + Server.project.toLocaleLowerCase()] = hash;
-    api.provider().appwrite.headers["X-Fallback-Cookies"] =
+    api.provider().appwclientrite.headers["X-Fallback-Cookies"] =
       JSON.stringify(authCookies);
 
     console.log(authCookies);
