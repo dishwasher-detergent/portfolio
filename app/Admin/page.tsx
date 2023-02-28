@@ -30,13 +30,12 @@ async function checkLoggedInStatus() {
     account = err;
   }
   
-  return account;
-  
-  if (!account) redirect("/Login");
+  return {account: account, hash: hash};
 }
 
 export default async function Admin() {
-  console.log(await checkLoggedInStatus());
+  const test = await checkLoggedInStatus();
+  console.log(test);
 
   return (
     <>
