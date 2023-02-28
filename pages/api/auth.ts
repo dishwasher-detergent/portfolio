@@ -35,6 +35,7 @@ export default async function handler(
     res.setHeader("set-cookie", cookie);
     res.status(200).json({
       ...response,
+      cookie,
     });
   } else {
     res.status(404);
