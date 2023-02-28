@@ -21,6 +21,8 @@ async function checkLoggedInStatus() {
 
   let hash = c.get(sessionNames[0]) ?? c.get(sessionNames[1]) ?? "";
 
+  return hash;
+  
   api.setSession(hash);
 
   let account: any;
