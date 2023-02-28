@@ -16,7 +16,7 @@ export default function ListProjects() {
 
     const unsubscribe = api
       .provider()
-      .appwrite.subscribe(
+      .client.subscribe(
         [
           `databases.${Server.databaseID}.collections.${Server.collectionID}.documents`,
           `buckets.${Server.bucketID}.files`,
