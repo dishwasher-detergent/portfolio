@@ -1,5 +1,4 @@
 import {
-  Client as Appwrite,
   Databases,
   Account,
   Storage,
@@ -73,8 +72,7 @@ let api: ApiType = {
     if (api.sdk) {
       return api.sdk;
     }
-    const appwrite = new Appwrite();
-    appwrite.setEndpoint(Server.endpoint).setProject(Server.project);
+    const appwrite = new Client().setEndpoint(Server.endpoint).setProject(Server.project);
     const account = new Account(appwrite);
     const database = new Databases(appwrite);
     const storage = new Storage(appwrite);
