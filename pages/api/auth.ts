@@ -33,10 +33,7 @@ export default async function handler(
       .join(newHostname);
 
     res.setHeader("set-cookie", cookie);
-    res.status(200).json({
-      ...response,
-      cookie,
-    });
+    res.status(200).json(cookie);
   } else {
     res.status(404);
   }
