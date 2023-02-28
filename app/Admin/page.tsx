@@ -38,6 +38,7 @@ async function checkLoggedInStatus() {
 export default async function Admin() {
   const test = await checkLoggedInStatus();
   console.log(test);
+  console.log("test");
 
   return (
     <>
