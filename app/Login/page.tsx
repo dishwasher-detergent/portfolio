@@ -2,7 +2,6 @@
 
 import Card from "#/ui/form/Card";
 import Input from "#/ui/form/Input/Input";
-import api from "#/utils/appwrite";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -13,22 +12,25 @@ export default function Login() {
   const router = useRouter();
 
   const Login = async () => {
-    if (!username) return;
-    if (!password) return;
+    // if (!username) return;
+    // if (!password) return;
 
     try {
-      await api.createSession(username, password);
+      await fetch("/api/auth", {
+        method: "POST",
+        headers: new Headers({ "Content-Type": "application/json" }),
+        body: JSON.stringify({ username: username, password: password }), // You could send email and password here
+      });
+
+      toast("Logged In", {
+        type: "success",
+      });
+      // router.push("/Admin");
     } catch (error: any) {
       toast(error.message, {
         type: "error",
       });
-      return;
     }
-
-    toast("Logged In", {
-      type: "success",
-    });
-    router.push("/Admin");
   };
 
   return (

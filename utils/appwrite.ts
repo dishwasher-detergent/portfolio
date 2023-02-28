@@ -5,6 +5,7 @@ import {
   Storage,
   ID,
   Models,
+  Client,
 } from "appwrite";
 import { Server } from "../utils/config";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
@@ -72,7 +73,7 @@ let api: ApiType = {
     if (api.sdk) {
       return api.sdk;
     }
-    let appwrite = new Appwrite();
+    const appwrite = new Appwrite();
     appwrite.setEndpoint(Server.endpoint).setProject(Server.project);
     const account = new Account(appwrite);
     const database = new Databases(appwrite);
@@ -83,35 +84,39 @@ let api: ApiType = {
     return { database, account, storage, appwrite };
   },
 
-  createAccount: (email, password, name) => {
-    return api.provider().account.create("unique()", email, password, name);
+  createAccount: async (email, password, name) => {
+    return await api
+      .provider()
+      .account.create("unique()", email, password, name);
   },
 
-  getAccount: () => {
-    return api.provider().account.get();
+  getAccount: async () => {
+    return await api.provider().account.get();
   },
 
   setSession: (hash) => {
     const authCookies: any = {};
-    authCookies["a_session_" + Server.project] = hash;
+    authCookies["a_session_" + Server.project.toLocaleLowerCase()] = hash;
     api.provider().appwrite.headers["X-Fallback-Cookies"] =
       JSON.stringify(authCookies);
+
+    console.log(authCookies);
   },
 
-  createSession: (email, password) => {
-    return api.provider().account.createEmailSession(email, password);
+  createSession: async (email, password) => {
+    return await api.provider().account.createEmailSession(email, password);
   },
 
-  getSession: () => {
-    return api.provider().account.getSession("current");
+  getSession: async () => {
+    return await api.provider().account.getSession("current");
   },
 
-  deleteCurrentSession: () => {
-    return api.provider().account.deleteSession("current");
+  deleteCurrentSession: async () => {
+    return await api.provider().account.deleteSession("current");
   },
 
-  createDocument: (collectionId, data) => {
-    return api
+  createDocument: async (collectionId, data) => {
+    return await api
       .provider()
       .database.createDocument(
         Server.databaseID,
@@ -121,20 +126,20 @@ let api: ApiType = {
       );
   },
 
-  listDocuments: (collectionId) => {
-    return api
+  listDocuments: async (collectionId) => {
+    return await api
       .provider()
       .database.listDocuments(Server.databaseID, collectionId);
   },
 
-  getDocument: (documentId, collectionId) => {
-    return api
+  getDocument: async (documentId, collectionId) => {
+    return await api
       .provider()
       .database.getDocument(Server.databaseID, collectionId, documentId);
   },
 
-  updateDocument: (collectionId, documentId, data) => {
-    return api
+  updateDocument: async (collectionId, documentId, data) => {
+    return await api
       .provider()
       .database.updateDocument(
         Server.databaseID,
@@ -144,20 +149,20 @@ let api: ApiType = {
       );
   },
 
-  deleteDocument: (collectionId, documentId) => {
-    return api
+  deleteDocument: async (collectionId, documentId) => {
+    return await api
       .provider()
       .database.deleteDocument(Server.databaseID, collectionId, documentId);
   },
 
-  createFile: (file) => {
-    return api
+  createFile: async (file) => {
+    return await api
       .provider()
       .storage.createFile(Server.bucketID, ID.unique(), file);
   },
 
-  getFile: (fileId) => {
-    return api.provider().storage.getFile(Server.bucketID, fileId);
+  getFile: async (fileId) => {
+    return await api.provider().storage.getFile(Server.bucketID, fileId);
   },
 
   getFilePreview: (fileId, option) => {
@@ -172,7 +177,7 @@ let api: ApiType = {
     return url;
   },
 
-  deleteFile: (fileID) => {
+  deleteFile: async (fileID) => {
     return api.provider().storage.deleteFile(Server.bucketID, fileID);
   },
 

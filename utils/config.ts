@@ -4,6 +4,8 @@ type ServerTypes = {
   collectionID: string;
   databaseID: string;
   bucketID: string;
+  hostname: string;
+  appwrite_hostname: string;
 };
 
 export const Server: ServerTypes = {
@@ -22,4 +24,10 @@ export const Server: ServerTypes = {
   bucketID: process.env.NEXT_PUBLIC_APP_BUCKET_ID
     ? process.env.NEXT_PUBLIC_APP_BUCKET_ID
     : "",
+  hostname: process.env.NEXT_PUBLIC_APP_HOSTNAME
+    ? process.env.NEXT_PUBLIC_APP_HOSTNAME
+    : "localhost",
+  appwrite_hostname: process.env.NEXT_PUBLIC_APP_APPWRITE_HOSTNAME
+    ? process.env.NEXT_PUBLIC_APP_APPWRITE_HOSTNAME
+    : "localhost",
 };
