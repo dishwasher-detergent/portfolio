@@ -27,14 +27,16 @@ async function checkLoggedInStatus() {
   try {
     account = await api.getAccount();
   } catch (err) {
-    console.error(err);
+    account = err;
   }
-
+  
+  return account;
+  
   if (!account) redirect("/Login");
 }
 
 export default async function Admin() {
-  await checkLoggedInStatus();
+  console.log(await checkLoggedInStatus());
 
   return (
     <>
