@@ -16,11 +16,13 @@ export default function Login() {
     // if (!password) return;
 
     try {
-      await fetch("/api/auth", {
+      const req = await fetch("/api/auth", {
         method: "POST",
         headers: new Headers({ "Content-Type": "application/json" }),
         body: JSON.stringify({ username: username, password: password }), // You could send email and password here
       });
+
+      console.log(req);
 
       toast("Logged In", {
         type: "success",
