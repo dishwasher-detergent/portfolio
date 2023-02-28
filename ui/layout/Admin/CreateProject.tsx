@@ -8,6 +8,7 @@ import Input from "#/ui/form/Input/Input";
 import TagInput from "#/ui/form/Input/Tags";
 import Textarea from "#/ui/form/Input/Textarea";
 import api from "#/utils/appwrite";
+import { Server } from "#/utils/config";
 import { Send } from "lucide-react";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -52,7 +53,7 @@ export default function CreateProject() {
     }
 
     try {
-      await api.createDocument(process.env.NEXT_PUBLIC_APP_COLLECTION_ID, {
+      await api.createDocument(Server.collectionID, {
         title: title,
         short_description: shortDesc,
         description: desc,

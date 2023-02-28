@@ -3,15 +3,14 @@
 import api from "#/utils/appwrite";
 import Project from "#/ui/layout/Admin/Project/Project";
 import { useEffect, useState } from "react";
+import { Server } from "#/utils/config";
 
 export default function ListProjects() {
   const [projects, setProjects] = useState<any>();
 
   useEffect(() => {
     (async () => {
-      const fetchProjects = await api.listDocuments(
-        process.env.NEXT_PUBLIC_APP_COLLECTION_ID
-      );
+      const fetchProjects = await api.listDocuments(Server.collectionID);
       setProjects(fetchProjects);
     })();
 
@@ -19,13 +18,11 @@ export default function ListProjects() {
       .provider()
       .appwrite.subscribe(
         [
-          `databases.${process.env.NEXT_PUBLIC_APP_DATABASE_ID}.collections.${process.env.NEXT_PUBLIC_APP_COLLECTION_ID}.documents`,
-          `buckets.${process.env.NEXT_PUBLIC_APP_BUCKET_ID}.files`,
+          `databases.${Server.databaseID}.collections.${Server.collectionID}.documents`,
+          `buckets.${Server.bucketID}.files`,
         ],
         async () => {
-          const fetchProjects = await api.listDocuments(
-            process.env.NEXT_PUBLIC_APP_COLLECTION_ID
-          );
+          const fetchProjects = await api.listDocuments(Server.collectionID);
           setProjects(fetchProjects);
         }
       );

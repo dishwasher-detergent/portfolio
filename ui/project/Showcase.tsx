@@ -18,8 +18,8 @@ export default function Showcase({ content }: ProjectProps) {
     if (!content.images) return;
 
     const img = api.getFilePreview(content.banner, {
-      height: 1080,
-      quality: 100,
+      height: "1080",
+      quality: "100",
       gravity: "center",
     });
     setBanner(img);

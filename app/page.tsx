@@ -4,14 +4,13 @@ import Header from "#/ui/layout/Header/Header";
 import Project from "#/ui/project/Compact";
 import Showcase from "#/ui/project/Showcase";
 import api from "#/utils/appwrite";
+import { Server } from "#/utils/config";
 import { Models } from "appwrite";
 
 type Projects = ProjectTypes & Models.Document;
 
 async function getProjects(): Promise<Projects[]> {
-  const documents = await api.listDocuments(
-    process.env.NEXT_PUBLIC_APP_COLLECTION_ID
-  );
+  const documents = await api.listDocuments(Server.collectionID);
 
   const projects = documents.documents as Projects[];
 

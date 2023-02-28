@@ -16,8 +16,8 @@ export default function Showcase({ image, accent_color, title }: ProjectProps) {
 
   useEffect(() => {
     const img = api.getFilePreview(image, {
-      height: 1080,
-      quality: 100,
+      height: "1080",
+      quality: "100",
       gravity: "center",
     });
     setBanner(img);

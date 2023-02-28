@@ -3,6 +3,7 @@ import Header from "#/ui/layout/Header/Header";
 import ProjectDisplay from "#/ui/project/Project";
 import api from "#/utils/appwrite";
 import { textColor } from "#/utils/color";
+import { Server } from "#/utils/config";
 import { Models } from "appwrite";
 import { ExternalLink, Github } from "lucide-react";
 import { Metadata } from "next";
@@ -19,10 +20,7 @@ async function getProject(Project: string) {
   const pattern = /^[a-zA-Z0-9][a-zA-Z0-9_]{0,35}$/;
 
   if (pattern.test(Project) && Project.length <= 36) {
-    const document = await api.getDocument(
-      Project,
-      process.env.NEXT_PUBLIC_APP_COLLECTION_ID
-    );
+    const document = await api.getDocument(Project, Server.collectionID);
 
     return document as Projects;
   }
@@ -47,8 +45,8 @@ export async function generateMetadata({
         images: [
           {
             url: api.getFilePreview(product.banner, {
-              height: 320,
-              quality: 100,
+              height: "320",
+              quality: "100",
               gravity: "center",
             }).href,
           },

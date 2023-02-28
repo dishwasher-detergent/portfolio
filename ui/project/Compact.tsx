@@ -15,8 +15,8 @@ export default function Project({ content }: ProjectProps) {
     if (!content.images) return;
 
     const img = api.getFilePreview(content.banner, {
-      height: 800,
-      quality: 80,
+      height: "800",
+      quality: "80",
       gravity: "center",
     });
     setBanner(img);

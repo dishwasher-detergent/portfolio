@@ -1,7 +1,71 @@
-import { Client as Appwrite, Databases, Account, Storage, ID } from "appwrite";
+import {
+  Client as Appwrite,
+  Databases,
+  Account,
+  Storage,
+  ID,
+  Models,
+} from "appwrite";
 import { Server } from "../utils/config";
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
-let api = {
+type PreviewFileType = {
+  project?: string;
+  width?: string;
+  height?: string;
+  gravity?: string;
+  quality?: string;
+  borderWidth?: string;
+  borderColor?: string;
+  borderRadius?: string;
+  opacity?: string;
+  rotation?: string;
+  background?: string;
+  output?: string;
+};
+
+type SdkType = {
+  database: Databases;
+  account: Account;
+  storage: Storage;
+  appwrite: Appwrite;
+};
+
+type ApiType = {
+  sdk: null | SdkType;
+  provider: () => SdkType;
+  createAccount: (
+    email: string,
+    password: string,
+    name: string
+  ) => Promise<Models.Account<Models.Preferences>>;
+  getAccount: () => Promise<Models.Account<Models.Preferences>>;
+  setSession: (hash: string | RequestCookie) => void;
+  createSession: (email: string, password: string) => Promise<Models.Session>;
+  getSession: () => Promise<Models.Session>;
+  deleteCurrentSession: () => Promise<{}>;
+  createDocument: (collectionId: string, data: any) => Promise<any>;
+  listDocuments: (
+    collectionId: string
+  ) => Promise<Models.DocumentList<Models.Document>>;
+  getDocument: (
+    documentId: string,
+    collectionId: string
+  ) => Promise<Models.Document>;
+  updateDocument: (
+    collectionId: string,
+    documentId: string,
+    data: any
+  ) => Promise<any>;
+  deleteDocument: (collectionId: string, documentId: string) => Promise<{}>;
+  createFile: (file: File) => Promise<Models.File>;
+  getFile: (fileId: string) => Promise<Models.File>;
+  getFilePreview: (fileId: string, option: PreviewFileType) => URL;
+  deleteFile: (fileID: string) => Promise<{}>;
+  checkSessionStatus: () => Promise<Models.Session | null>;
+};
+
+let api: ApiType = {
   sdk: null,
 
   provider: () => {
@@ -25,6 +89,13 @@ let api = {
 
   getAccount: () => {
     return api.provider().account.get();
+  },
+
+  setSession: (hash) => {
+    const authCookies: any = {};
+    authCookies["a_session_" + Server.project] = hash;
+    api.provider().appwrite.headers["X-Fallback-Cookies"] =
+      JSON.stringify(authCookies);
   },
 
   createSession: (email, password) => {
@@ -89,14 +160,14 @@ let api = {
     return api.provider().storage.getFile(Server.bucketID, fileId);
   },
 
-  getFilePreview: (fileId, option = {}) => {
+  getFilePreview: (fileId, option) => {
     const baseUrl =
       Server.endpoint +
       `/storage/buckets/${Server.bucketID}/files/${fileId}/preview`;
 
     const url = new URL(baseUrl);
     option.project = Server.project;
-    url.search = new URLSearchParams(option);
+    url.search = new URLSearchParams(option).toString();
 
     return url;
   },

@@ -35,8 +35,8 @@ export default function Project({ content }: ProjectProps) {
     for (let i = 0; i < content.images.length; i++) {
       if (content.images[i] == null) continue;
       const img = api.getFilePreview(content.images[i], {
-        height: 256,
-        quality: 100,
+        height: "256",
+        quality: "100",
         gravity: "center",
       });
       fetchImages.push({ name: content.images[i], image: img });

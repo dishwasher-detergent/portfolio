@@ -11,6 +11,7 @@ import { useState } from "react";
 import api from "#/utils/appwrite";
 import { toast } from "react-toastify";
 import Colorpicker from "#/ui/form/Input/ColorPicker";
+import { Server } from "#/utils/config";
 
 export default function EditProject({ content }: ProjectProps) {
   const [tags, setTags] = useState<string[]>(content.tags);
@@ -28,20 +29,16 @@ export default function EditProject({ content }: ProjectProps) {
 
   const EditProject = async () => {
     try {
-      await api.updateDocument(
-        process.env.NEXT_PUBLIC_APP_COLLECTION_ID,
-        content.$id,
-        {
-          title: title,
-          short_description: shortDesc,
-          description: desc,
-          github: github,
-          website: website,
-          tags: tags,
-          showcase: showcase,
-          accent_color: color,
-        }
-      );
+      await api.updateDocument(Server.collectionID, content.$id, {
+        title: title,
+        short_description: shortDesc,
+        description: desc,
+        github: github,
+        website: website,
+        tags: tags,
+        showcase: showcase,
+        accent_color: color,
+      });
     } catch (error: any) {
       toast(error.message, {
         type: "error",
