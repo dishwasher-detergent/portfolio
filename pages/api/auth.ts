@@ -8,20 +8,22 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     // You could get email and password here
-    // const { email, password } = req.body;
+    const { email, password } = req.body;
 
     // const request = await api.createSession(email, password);
 
     // TODO: Forward location headers
-    const request = await fetch(
-      Server.endpoint + "/account/sessions/anonymous",
-      {
-        method: "POST",
-        headers: {
-          "x-appwrite-project": Server.project,
-        },
-      }
-    );
+    const request = await fetch(Server.endpoint + "/account/sessions/email", {
+      method: "POST",
+      headers: {
+        "x-appwrite-project": Server.project,
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
 
     const response = await request.json();
 
@@ -33,7 +35,9 @@ export default async function handler(
       .join(newHostname);
 
     res.setHeader("set-cookie", cookie);
-    res.status(200).json(cookie);
+    res.status(200).json({
+      ...response,
+    });
   } else {
     res.status(404);
   }

@@ -12,14 +12,14 @@ export default function Login() {
   const router = useRouter();
 
   const Login = async () => {
-    // if (!username) return;
-    // if (!password) return;
+    if (!username) return;
+    if (!password) return;
 
     try {
       const req = await fetch("/api/auth", {
         method: "POST",
         headers: new Headers({ "Content-Type": "application/json" }),
-        body: JSON.stringify({ username: username, password: password }), // You could send email and password here
+        body: JSON.stringify({ email: username, password: password }), // You could send email and password here
       });
 
       console.log(req);
@@ -27,7 +27,7 @@ export default function Login() {
       toast("Logged In", {
         type: "success",
       });
-      // router.push("/Admin");
+      router.push("/Admin");
     } catch (error: any) {
       toast(error.message, {
         type: "error",
