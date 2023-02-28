@@ -95,7 +95,7 @@ let api: ApiType = {
   setSession: (hash) => {
     const authCookies: any = {};
     authCookies["a_session_" + Server.project.toLocaleLowerCase()] = hash;
-    api.provider().appwclientrite.headers["X-Fallback-Cookies"] =
+    api.provider().client.headers["X-Fallback-Cookies"] =
       JSON.stringify(authCookies);
 
     console.log(authCookies);
