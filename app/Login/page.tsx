@@ -22,8 +22,6 @@ export default function Login() {
         body: JSON.stringify({ email: username, password: password }), // You could send email and password here
       });
 
-      console.log(req);
-
       toast("Logged In", {
         type: "success",
       });
