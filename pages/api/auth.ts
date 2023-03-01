@@ -4,6 +4,7 @@ import {
   APPWRITE_HOSTNAME,
   APP_HOSTNAME,
 } from "#/utils/appwrite";
+import { Server } from "#/utils/config";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -16,10 +17,10 @@ export default async function handler(
     const { email, password } = req.body;
 
     // TODO: Forward location headers
-    const request = await fetch(APPWRITE_ENDPOINT + "/account/sessions/email", {
+    const request = await fetch(Server.endpoint + "/account/sessions/email", {
       method: "POST",
       headers: {
-        "x-appwrite-project": APPWRITE_PROJECT_ID,
+        "x-appwrite-project": Server.project,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
