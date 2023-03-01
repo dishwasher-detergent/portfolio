@@ -12,22 +12,9 @@ export const metadata: Metadata = {
 };
 
 async function checkLoggedInStatus() {
-  const sessionNames = [
-    "a_session_" + Server.project.toLowerCase(),
-    "a_session_" + Server.project.toLowerCase() + "_legacy",
-  ];
-
-  // const c = cookies();
-
-  // let hash = c.get(sessionNames[0]) ?? c.get(sessionNames[1]) ?? "";
-
-  // console.log(hash);
-
-  // AppwriteService.setSession(hash);
-
   let account: any;
   try {
-    account = await AppwriteService.getAccount();
+    account = await api.getAccount();
   } catch (err) {
     account = err;
   }
