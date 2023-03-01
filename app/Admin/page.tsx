@@ -33,9 +33,6 @@ async function checkLoggedInStatus() {
   }
 
   if (account.code == 401) {
-    toast(account.response.message, {
-      type: "error",
-    });
     redirect("/Login");
   }
 }
