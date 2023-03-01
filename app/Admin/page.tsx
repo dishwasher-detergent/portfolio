@@ -27,7 +27,7 @@ async function checkLoggedInStatus() {
   try {
     account = await AppwriteService.getAccount();
   } catch (err) {
-    console.error(err);
+    account = err;
   }
 
   return account;
