@@ -104,7 +104,7 @@ const api: ApiType = {
     // const authCookies: any = {};
     // authCookies["a_session_" + Server.project.toLocaleLowerCase()] = hash;
     // api.provider().client.headers["X-Fallback-Cookies"] = JSON.stringify(hash);
-    @ts-ignore
+    //@ts-ignore
     api.provider().client.setJWT(hash.value);
   },
 
