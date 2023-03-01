@@ -5,6 +5,7 @@ import { Server } from "#/utils/config";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 export const metadata: Metadata = {
   title: "Admin",
@@ -31,19 +32,23 @@ async function checkLoggedInStatus() {
     account = err;
   }
 
-  return account;
+  if (account.code == 401) {
+    toast(account.response.message, {
+      type: "error",
+    });
+    redirect("/Login");
+  }
 }
 
 export default async function Admin() {
-  const test = await checkLoggedInStatus();
+  await checkLoggedInStatus();
 
   return (
     <>
-      {JSON.stringify(test)}
-      {/* <div className="h-full">
+      <div className="h-full">
         <CreateProject />
       </div>
-      <ListProjects /> */}
+      <ListProjects />
     </>
   );
 }
