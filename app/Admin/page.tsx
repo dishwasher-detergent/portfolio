@@ -1,6 +1,6 @@
 import CreateProject from "#/ui/layout/Admin/CreateProject";
 import ListProjects from "#/ui/layout/Admin/Project/ListProjects";
-import api, { APPWRITE_PROJECT_ID } from "#/utils/appwrite";
+import { AppwriteService, APPWRITE_PROJECT_ID } from "#/utils/appwrite";
 import { Server } from "#/utils/config";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
@@ -22,11 +22,11 @@ async function checkLoggedInStatus() {
   let hash = c.get(sessionNames[0]) ?? c.get(sessionNames[1]) ?? "";
 
   //@ts-ignore
-  api.setSession(hash.value);
+  AppwriteService.setSession(hash.value);
 
   let account: any;
   try {
-    account = await api.getAccount();
+    account = await AppwriteService.getAccount();
   } catch (err) {
     account = err;
   }
