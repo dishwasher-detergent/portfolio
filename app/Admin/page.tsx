@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 
 async function checkLoggedInStatus() {
   const sessionNames = [
-    "a_session_" + APPWRITE_PROJECT_ID.toLowerCase(),
-    "a_session_" + APPWRITE_PROJECT_ID.toLowerCase() + "_legacy",
+    "a_session_" + Server.project.toLowerCase(),
+    "a_session_" + Server.project.toLowerCase() + "_legacy",
   ];
 
   const c = cookies();

@@ -109,7 +109,7 @@ const api: ApiType = {
 
   setSession: (hash) => {
     const authCookies: any = {};
-    authCookies["a_session_" + APPWRITE_PROJECT_ID] = hash;
+    authCookies["a_session_" + Server.project] = hash;
     api.provider().client.headers["X-Fallback-Cookies"] =
       JSON.stringify(authCookies);
   },
