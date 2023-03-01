@@ -31,9 +31,7 @@ async function checkLoggedInStatus() {
     console.error("Error: ", err);
   }
 
-  console.log(account);
-
-  // if(!account) redirect("/Login")
+  if (!account) redirect("/Login");
 }
 
 export default async function Admin() {
