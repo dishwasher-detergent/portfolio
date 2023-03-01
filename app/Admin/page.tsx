@@ -1,6 +1,6 @@
 import CreateProject from "#/ui/layout/Admin/CreateProject";
 import ListProjects from "#/ui/layout/Admin/Project/ListProjects";
-import api, { AppwriteService } from "#/utils/appwrite";
+import { AppwriteService, APPWRITE_PROJECT_ID } from "#/utils/appwrite";
 import { Server } from "#/utils/config";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
@@ -13,22 +13,23 @@ export const metadata: Metadata = {
 
 async function checkLoggedInStatus() {
   const sessionNames = [
-    "a_session_" + Server.project.toLowerCase(),
-    "a_session_" + Server.project.toLowerCase() + "_legacy",
+    "a_session_" + APPWRITE_PROJECT_ID.toLowerCase(),
+    "a_session_" + APPWRITE_PROJECT_ID.toLowerCase() + "_legacy",
   ];
 
   const c = cookies();
 
   let hash = c.get(sessionNames[0]) ?? c.get(sessionNames[1]) ?? "";
 
-  api.setSession(hash);
+  AppwriteService.setSession(hash);
 
   let account: any;
   try {
-    account = await api.getAccount();
+    account = await AppwriteService.getAccount();
   } catch (err) {
     account = err;
   }
+
 
   return account;
 }
