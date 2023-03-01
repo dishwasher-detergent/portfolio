@@ -70,11 +70,11 @@ type ApiType = {
 };
 
 export const APPWRITE_PROJECT_ID: string = "63e17a1b54d5f6eec8ea";
-export const APPWRITE_ENDPOINT: string = "https://data.kennybass.xyz/v1";
+export const APPWRITE_ENDPOINT: string = "https://data.kennethbass.com/v1";
 
 // Used by SSR
-export const APP_HOSTNAME: string = "kennybass.xyz";
-export const APPWRITE_HOSTNAME: string = "data.kennybass.xyz"; // Must be subdomain of APP_HOSTNAME
+export const APP_HOSTNAME: string = "kennethbass.com";
+export const APPWRITE_HOSTNAME: string = "data.kennethbass.com"; // Must be subdomain of APP_HOSTNAME
 
 const api: ApiType = {
   sdk: null,
