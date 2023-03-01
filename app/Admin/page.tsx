@@ -1,6 +1,6 @@
 import CreateProject from "#/ui/layout/Admin/CreateProject";
 import ListProjects from "#/ui/layout/Admin/Project/ListProjects";
-import api, { AppwriteService } from "#/utils/appwrite";
+import api from "#/utils/appwrite";
 import { Server } from "#/utils/config";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
@@ -30,15 +30,15 @@ async function checkLoggedInStatus() {
     console.error(err);
   }
 
-  if (!account) redirect("/Login");
+  return account;
 }
 
 export default async function Admin() {
-  await checkLoggedInStatus();
+  const test = await checkLoggedInStatus();
 
   return (
     <>
-      test
+      {JSON.stringify(test)}
       {/* <div className="h-full">
         <CreateProject />
       </div>
