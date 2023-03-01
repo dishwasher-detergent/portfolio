@@ -17,11 +17,13 @@ async function checkLoggedInStatus() {
     "a_session_" + Server.project.toLowerCase() + "_legacy",
   ];
 
-  const c = cookies();
+  // const c = cookies();
 
-  let hash = c.get(sessionNames[0]) ?? c.get(sessionNames[1]) ?? "";
+  // let hash = c.get(sessionNames[0]) ?? c.get(sessionNames[1]) ?? "";
 
-  AppwriteService.setSession(hash);
+  // console.log(hash);
+
+  // AppwriteService.setSession(hash);
 
   let account: any;
   try {
