@@ -20,6 +20,7 @@ export default async function handler(
       method: "POST",
       headers: {
         "x-appwrite-project": APPWRITE_PROJECT_ID,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email: email,
