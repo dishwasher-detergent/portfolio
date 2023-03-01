@@ -69,6 +69,13 @@ type ApiType = {
   checkSessionStatus: () => Promise<Models.Session | null>;
 };
 
+export const APPWRITE_PROJECT_ID: string = "63e17a1b54d5f6eec8ea";
+export const APPWRITE_ENDPOINT: string = "https://data.kennybass.xyz/v1";
+
+// Used by SSR
+export const APP_HOSTNAME: string = "kennybass.xyz";
+export const APPWRITE_HOSTNAME: string = "data.kennybass.xyz"; // Must be subdomain of APP_HOSTNAME
+
 const api: ApiType = {
   sdk: null,
 
@@ -101,11 +108,10 @@ const api: ApiType = {
   },
 
   setSession: (hash) => {
-    // const authCookies: any = {};
-    // authCookies["a_session_" + Server.project.toLocaleLowerCase()] = hash;
-    // api.provider().client.headers["X-Fallback-Cookies"] = JSON.stringify(hash);
-    //@ts-ignore
-    api.provider().client.setJWT(hash.value);
+    const authCookies: any = {};
+    authCookies["a_session_" + APPWRITE_PROJECT_ID] = hash;
+    api.provider().client.headers["X-Fallback-Cookies"] =
+      JSON.stringify(authCookies);
   },
 
   createSession: async (email, password) => {
@@ -196,34 +202,3 @@ const api: ApiType = {
 };
 
 export default api;
-
-// Temp Testing
-
-export const APPWRITE_PROJECT_ID: string = "63e17a1b54d5f6eec8ea";
-export const APPWRITE_ENDPOINT: string = "https://data.kennethbass.com/v1";
-
-// Used by SSR
-export const APP_HOSTNAME: string = "kennethbass.com"; 
-export const APPWRITE_HOSTNAME: string = "data.kennethbass.com"; // Must be subdomain of APP_HOSTNAME
-
-const client = new Client()
-  .setEndpoint(APPWRITE_ENDPOINT)
-  .setProject(APPWRITE_PROJECT_ID);
-
-const account = new Account(client);
-
-export const AppwriteService = {
-    setSession: (hash: string) => {
-      const authCookies: any = {};
-      authCookies['a_session_' + APPWRITE_PROJECT_ID] = hash;
-      client.headers['X-Fallback-Cookies'] = JSON.stringify(authCookies);
-    },
-    getAccount: async () => {
-        return await account.get();
-    },
-    deleteSession: async () => {
-        return await account.deleteSession('current');
-    }
-}
-
-

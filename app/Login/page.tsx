@@ -2,13 +2,14 @@
 
 import Card from "#/ui/form/Card";
 import Input from "#/ui/form/Input/Input";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const Login = async () => {
     if (!username) return;
@@ -24,7 +25,7 @@ export default function Login() {
       toast("Logged In", {
         type: "success",
       });
-      redirect("/Admin");
+      router.push("/Admin");
     } catch (error: any) {
       toast(error.message, {
         type: "error",

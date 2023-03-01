@@ -13,22 +13,24 @@ export default async function handler(
 ) {
   if (req.method === "POST") {
     // You could get email and password here
-    // const { email, password } = req.body;
+    const { email, password } = req.body;
 
     // TODO: Forward location headers
-    const request = await fetch(
-      APPWRITE_ENDPOINT + "/account/sessions/anonymous",
-      {
-        method: "POST",
-        headers: {
-          "x-appwrite-project": APPWRITE_PROJECT_ID,
-        },
-      }
-    );
+    const request = await fetch(APPWRITE_ENDPOINT + "/account/sessions/email", {
+      method: "POST",
+      headers: {
+        "x-appwrite-project": APPWRITE_PROJECT_ID,
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
 
     const response = await request.json();
 
-    const newHostname = APP_HOSTNAME === 'localhost' ? APP_HOSTNAME : '.' + APP_HOSTNAME;
+    const newHostname =
+      APP_HOSTNAME === "localhost" ? APP_HOSTNAME : "." + APP_HOSTNAME;
 
     const cookie = (request.headers.get("set-cookie") ?? "")
       .split("." + APPWRITE_HOSTNAME)
