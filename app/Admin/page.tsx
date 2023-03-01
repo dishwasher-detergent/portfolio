@@ -12,10 +12,7 @@ export const metadata: Metadata = {
 };
 
 async function checkLoggedInStatus() {
-  const sessionNames = [
-    "a_session_" + Server.project.toLowerCase(),
-    "a_session_" + Server.project.toLowerCase() + "_legacy",
-  ];
+  const sessionNames = ["a_session_" + Server.project.toLowerCase()];
 
   const c = cookies();
 
