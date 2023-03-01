@@ -3,7 +3,7 @@ import {
   APPWRITE_PROJECT_ID,
   APPWRITE_HOSTNAME,
   APP_HOSTNAME,
-} from "../../lib/appwrite";
+} from "#/utils/appwrite";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
