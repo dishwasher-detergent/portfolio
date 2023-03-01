@@ -1,6 +1,6 @@
 import CreateProject from "#/ui/layout/Admin/CreateProject";
 import ListProjects from "#/ui/layout/Admin/Project/ListProjects";
-import api from "#/utils/appwrite";
+import api, { AppwriteService } from "#/utils/appwrite";
 import { Server } from "#/utils/config";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
@@ -26,12 +26,11 @@ async function checkLoggedInStatus() {
   let account: any;
   try {
     account = await api.getAccount();
-    console.log(account);
   } catch (err) {
-    console.error("Error: ", err);
+    console.error(err);
   }
 
-  if (!account) redirect("/Login");
+  // if (!account) redirect("/Login");
 }
 
 export default async function Admin() {
