@@ -20,17 +20,20 @@ async function checkLoggedInStatus() {
   const c = cookies();
 
   let hash = c.get(sessionNames[0]) ?? c.get(sessionNames[1]) ?? "";
-  
+
   api.setSession(hash);
 
   let account: any;
   try {
     account = await api.getAccount();
+    console.log(account);
   } catch (err) {
-    console.error(err);
+    console.error("Error: ", err);
   }
-  
-  if(!account) redirect("/Login")
+
+  console.log(account);
+
+  // if(!account) redirect("/Login")
 }
 
 export default async function Admin() {

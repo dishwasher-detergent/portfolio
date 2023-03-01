@@ -5,6 +5,8 @@ import {
   ID,
   Models,
   Client,
+  Locale,
+  Avatars,
 } from "appwrite";
 import { Server } from "../utils/config";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
@@ -29,6 +31,8 @@ type SdkType = {
   account: Account;
   storage: Storage;
   client: Client;
+  locale: Locale;
+  avatar: Avatars;
 };
 
 type ApiType = {
@@ -65,21 +69,25 @@ type ApiType = {
   checkSessionStatus: () => Promise<Models.Session | null>;
 };
 
-let api: ApiType = {
+const api: ApiType = {
   sdk: null,
 
   provider: () => {
     if (api.sdk) {
       return api.sdk;
     }
-    const client = new Client().setEndpoint(Server.endpoint).setProject(Server.project);
+    const client = new Client()
+      .setEndpoint(Server.endpoint)
+      .setProject(Server.project);
     const account = new Account(client);
     const database = new Databases(client);
     const storage = new Storage(client);
+    const locale = new Locale(client);
+    const avatar = new Avatars(client);
 
-    api.sdk = { database, account, storage, client };
+    api.sdk = { database, account, storage, client, locale, avatar };
 
-    return { database, account, storage, client };
+    return api.sdk;
   },
 
   createAccount: async (email, password, name) => {
@@ -93,10 +101,7 @@ let api: ApiType = {
   },
 
   setSession: (hash) => {
-    const authCookies: any = {};
-    authCookies["a_session_" + Server.project.toLocaleLowerCase()] = hash;
-    api.provider().client.headers["X-Fallback-Cookies"] =
-      JSON.stringify(authCookies);
+    api.provider().client.headers["X-Fallback-Cookies"] = JSON.stringify(hash);
   },
 
   createSession: async (email, password) => {
@@ -187,3 +192,25 @@ let api: ApiType = {
 };
 
 export default api;
+
+// Temp Testing
+
+const client = new Client()
+  .setEndpoint(Server.endpoint)
+  .setProject(Server.project);
+
+const account = new Account(client);
+
+export const AppwriteService = {
+  setSession: (hash: string | RequestCookie) => {
+    const authCookies: any = {};
+    authCookies["a_session_" + Server.project] = hash;
+    client.headers["X-Fallback-Cookies"] = JSON.stringify(authCookies);
+  },
+  getAccount: async () => {
+    return await account.get();
+  },
+  deleteSession: async () => {
+    return await account.deleteSession("current");
+  },
+};
