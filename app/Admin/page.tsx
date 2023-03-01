@@ -19,9 +19,10 @@ async function checkLoggedInStatus() {
 
   const c = cookies();
 
-  let hash = c.get(sessionNames[0]) ?? c.get(sessionNames[1]) ?? "";
-
-  api.setSession(hash);
+  sessionNames.forEach((session: string) => {
+    let hash = c.get(session ? session : "");
+    if (hash) api.setSession(hash);
+  });
 
   let account: any;
   try {
