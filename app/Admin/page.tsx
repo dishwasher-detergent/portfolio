@@ -30,7 +30,7 @@ async function checkLoggedInStatus() {
     console.error(err);
   }
 
-  // if (!account) redirect("/Login");
+  if (!account) redirect("/Login");
 }
 
 export default async function Admin() {
