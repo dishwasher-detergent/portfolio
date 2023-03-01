@@ -101,7 +101,10 @@ const api: ApiType = {
   },
 
   setSession: (hash) => {
-    api.provider().client.headers["X-Fallback-Cookies"] = JSON.stringify(hash);
+    const authCookies: any = {};
+    authCookies["a_session_" + Server.project.toLocaleLowerCase()] = hash;
+    api.provider().client.headers["X-Fallback-Cookies"] =
+      JSON.stringify(authCookies);
   },
 
   createSession: async (email, password) => {

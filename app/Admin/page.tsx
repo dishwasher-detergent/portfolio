@@ -12,14 +12,16 @@ export const metadata: Metadata = {
 };
 
 async function checkLoggedInStatus() {
-  const sessionNames = ["a_session_" + Server.project.toLowerCase()];
+  const sessionNames = [
+    "a_session_" + Server.project.toLowerCase(),
+    "a_session_" + Server.project.toLowerCase() + "_legacy",
+  ];
 
   const c = cookies();
 
-  sessionNames.forEach((session: string) => {
-    let hash = c.get(session ? session : "");
-    if (hash) api.setSession(hash);
-  });
+  let hash = c.get(sessionNames[0]) ?? c.get(sessionNames[1]) ?? "";
+
+  api.setSession(hash);
 
   let account: any;
   try {

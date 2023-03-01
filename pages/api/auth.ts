@@ -77,7 +77,7 @@ export default async function handler(
       .split("." + Server.appwrite_hostname)
       .join(newHostname);
 
-    console.log(cookie);
+    console.log(request.headers.get("set-cookie"));
 
     res.setHeader("set-cookie", cookie);
     res.status(200).json({
