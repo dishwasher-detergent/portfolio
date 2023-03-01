@@ -26,8 +26,8 @@ export const Server: ServerTypes = {
     : "",
   hostname: process.env.NEXT_PUBLIC_APP_HOSTNAME
     ? process.env.NEXT_PUBLIC_APP_HOSTNAME
-    : "localhost",
+    : "",
   appwrite_hostname: process.env.NEXT_PUBLIC_APP_APPWRITE_HOSTNAME
     ? process.env.NEXT_PUBLIC_APP_APPWRITE_HOSTNAME
-    : "localhost",
+    : "",
 };
