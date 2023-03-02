@@ -29,12 +29,12 @@ async function checkLoggedInStatus() {
 }
 
 // This function can be marked `async` if using `await` inside
-export function middleware(
+export async function middleware(
   request: NextRequest,
   response: NextResponse,
   next: any
 ) {
-  const account = checkLoggedInStatus();
+  const account = await checkLoggedInStatus();
   //@ts-ignore
   if (account.code)
     return NextResponse.redirect(new URL("/Login", request.url));
