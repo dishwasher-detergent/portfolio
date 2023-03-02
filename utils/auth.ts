@@ -1,11 +1,8 @@
 import { Server } from "#/utils/config";
 import { cookies } from "next/headers";
 import api from "#/utils/appwrite";
-import { redirect } from "next/navigation";
 
 export async function checkLoggedInStatus() {
-  redirect("/Login");
-
   const sessionNames = [
     "a_session_" + Server.project.toLowerCase(),
     "a_session_" + Server.project.toLowerCase() + "_legacy",
@@ -25,9 +22,5 @@ export async function checkLoggedInStatus() {
     console.error(err);
   }
 
-  console.log(account);
-
-  if (account) return account;
-
-  redirect("/Login");
+  return account;
 }
