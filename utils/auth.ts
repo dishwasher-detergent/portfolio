@@ -23,5 +23,6 @@ export async function checkLoggedInStatus() {
     account = err;
   }
 
-  if (account.code) redirect("/Login");
+  //   if (account.code) redirect("/Login");
+  return account;
 }

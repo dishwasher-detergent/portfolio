@@ -10,14 +10,15 @@ export const metadata: Metadata = {
 };
 
 export default async function Admin() {
-  await checkLoggedInStatus();
+  const auth = await checkLoggedInStatus();
 
   return (
     <>
-      <div className="h-full">
+      {JSON.stringify(auth)}
+      {/* <div className="h-full">
         <CreateProject />
       </div>
-      <ListProjects />
+      <ListProjects /> */}
     </>
   );
 }
