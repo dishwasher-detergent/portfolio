@@ -23,7 +23,9 @@ export async function checkLoggedInStatus() {
     console.error(err);
   }
 
-  if (!account) redirect("/Login");
+  console.log(account);
 
-  return account;
+  if (account) return account;
+
+  redirect("/Login");
 }
