@@ -1,7 +1,7 @@
 "use client";
 
 import api from "#/utils/appwrite";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Trash } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -10,23 +10,17 @@ import ProjectImages from "#/ui/layout/Admin/Project/Images";
 import EditProject from "#/ui/layout/Admin/Project/EditProject";
 import { ProjectProps } from "#/types/Project";
 import { textColor } from "#/utils/color";
+import useWindowDimensions from "#/hooks/useWindowDimensions";
 
 type Image = {
   name: string;
   image: URL;
 };
 
-const button = {
-  initial: {
-    width: "0",
-  },
-  hover: {
-    width: "4rem",
-  },
-};
-
 export default function Project({ content }: ProjectProps) {
   const [images, setImages] = useState<Image[]>([]);
+  const [open, setOpen] = useState<boolean>(false);
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     if (!content) return;
@@ -92,17 +86,36 @@ export default function Project({ content }: ProjectProps) {
       initial="initial"
       whileHover="hover"
       animate="initial"
-      className="flex h-96 w-full flex-none flex-row flex-nowrap gap-2"
+      className="flex h-96 w-full flex-none flex-col-reverse flex-nowrap gap-2 md:flex-row"
+      onClick={() => setOpen(!open)}
     >
-      <motion.div variants={button} className="flex flex-col gap-2">
-        <EditProject content={content} />
-        <button
-          className="grid h-full w-full place-items-center overflow-hidden rounded-xl bg-rose-600 text-white"
-          onClick={() => deleteProject()}
-        >
-          <Trash size={20} />
-        </button>
-      </motion.div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{
+              height: width <= 768 ? 0 : "100%",
+              width: width >= 768 ? 0 : "100%",
+            }}
+            animate={{
+              height: width <= 768 ? "3rem" : "100%",
+              width: width >= 768 ? "4rem" : "100%",
+            }}
+            exit={{
+              height: width <= 768 ? 0 : "100%",
+              width: width >= 768 ? 0 : "100%",
+            }}
+            className="flex flex-none flex-row gap-2 md:flex-col"
+          >
+            <EditProject content={content} />
+            <button
+              className="grid h-full w-full place-items-center overflow-hidden rounded-xl bg-rose-600 text-white"
+              onClick={() => deleteProject()}
+            >
+              <Trash size={20} />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div
         className={`h-full w-full rounded-xl border  bg-slate-50 p-4 text-slate-900  dark:bg-slate-800 dark:text-white ${
           content.showcase

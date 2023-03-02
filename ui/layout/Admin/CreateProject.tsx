@@ -1,6 +1,8 @@
 "use client";
 
+import useWindowDimensions from "#/hooks/useWindowDimensions";
 import Card from "#/ui/form/Card";
+import FormDisplayWrapper from "#/ui/form/FormDisplayWrapper";
 import Checkbox from "#/ui/form/Input/Checkbox";
 import Colorpicker from "#/ui/form/Input/ColorPicker";
 import ImageInput from "#/ui/form/Input/Images";
@@ -25,6 +27,7 @@ export default function CreateProject() {
   const [showcase, setShowcase] = useState<boolean>(false);
   const [color, setColor] = useState<string>("#7e22ce");
   const [banner, setBanner] = useState<HTMLInputElement | null>(null);
+  const { width } = useWindowDimensions();
 
   const clearForm = () => {
     setImages([]);
@@ -82,10 +85,7 @@ export default function CreateProject() {
   };
 
   return (
-    <Card
-      type="div"
-      className="sticky top-20 flex h-[50rem] max-h-full w-[30rem] max-w-full flex-none flex-col overflow-hidden rounded-xl border  border-slate-200 text-white dark:border-slate-700 md:w-96"
-    >
+    <FormDisplayWrapper>
       <form
         onSubmit={(e: any) => {
           e.preventDefault();
@@ -147,6 +147,6 @@ export default function CreateProject() {
           </button>
         </div>
       </form>
-    </Card>
+    </FormDisplayWrapper>
   );
 }
