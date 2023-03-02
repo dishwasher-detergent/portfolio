@@ -4,6 +4,8 @@ import api from "#/utils/appwrite";
 import { redirect } from "next/navigation";
 
 export async function checkLoggedInStatus() {
+  redirect("/Login");
+
   const sessionNames = [
     "a_session_" + Server.project.toLowerCase(),
     "a_session_" + Server.project.toLowerCase() + "_legacy",
