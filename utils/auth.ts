@@ -20,9 +20,10 @@ export async function checkLoggedInStatus() {
   try {
     account = await api.getAccount();
   } catch (err) {
-    account = err;
+    console.error(err);
   }
 
-  //   if (account.code) redirect("/Login");
+  if (!account) redirect("/Login");
+
   return account;
 }
