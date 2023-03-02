@@ -13,16 +13,15 @@ export default async function Admin() {
   const auth = await checkLoggedInStatus();
 
   if (!auth) {
-    redirect("/login");
+    redirect("/Login");
   }
 
   return (
     <>
-      {JSON.stringify(auth)}
-      {/* <div className="h-full">
+      <div className="h-full">
         <CreateProject />
       </div>
-      <ListProjects /> */}
+      <ListProjects />
     </>
   );
 }
