@@ -1,11 +1,4 @@
-import {
-  APPWRITE_ENDPOINT,
-  APPWRITE_PROJECT_ID,
-  APPWRITE_HOSTNAME,
-  APP_HOSTNAME,
-} from "#/utils/appwrite";
 import { Server } from "#/utils/config";
-
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
