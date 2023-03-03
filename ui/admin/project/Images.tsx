@@ -165,6 +165,7 @@ export default function ProjectImages({ images, content }: ProjectImagesProps) {
                   alt={image.name}
                 />
                 <button
+                  type="button"
                   onClick={() => deleteImage(image.name)}
                   className="absolute top-1 right-1 z-20 h-6 w-6 cursor-pointer place-items-center rounded-full bg-rose-600 p-1 text-white opacity-0 transition-all group-hover:opacity-100"
                 >

@@ -1,7 +1,7 @@
 "use client";
 
 import Card from "#/ui/form/Card";
-import Input from "#/ui/form/Input/Input";
+import Input from "#/ui/form/input/Input";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";

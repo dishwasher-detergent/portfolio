@@ -1,17 +1,17 @@
 "use client";
 
-import * as Dialog from "@radix-ui/react-dialog";
-import { Edit, Save, Trash, X as XIcon } from "lucide-react";
 import { ProjectProps } from "#/types/Project";
-import Input from "#/ui/form/Input/Input";
-import Textarea from "#/ui/form/Input/Textarea";
-import TagInput from "#/ui/form/Input/Tags";
-import Checkbox from "#/ui/form/Input/Checkbox";
-import { useState } from "react";
+import Checkbox from "#/ui/form/input/Checkbox";
+import Colorpicker from "#/ui/form/input/ColorPicker";
+import Input from "#/ui/form/input/Input";
+import TagInput from "#/ui/form/input/Tags";
+import Textarea from "#/ui/form/input/Textarea";
 import api from "#/utils/appwrite";
-import { toast } from "react-toastify";
-import Colorpicker from "#/ui/form/Input/ColorPicker";
 import { Server } from "#/utils/config";
+import * as Dialog from "@radix-ui/react-dialog";
+import { Edit, Save, X as XIcon } from "lucide-react";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function EditProject({ content }: ProjectProps) {
   const [tags, setTags] = useState<string[]>(content.tags);
@@ -29,7 +29,7 @@ export default function EditProject({ content }: ProjectProps) {
 
   const EditProject = async () => {
     try {
-      await api.updateDocument(Server.collectionID, content.$id, {
+      await api.updateDocument("63e17a3b092917cea721", content.$id, {
         title: title,
         short_description: shortDesc,
         description: desc,
@@ -56,6 +56,7 @@ export default function EditProject({ content }: ProjectProps) {
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
         <button
+          type="button"
           className="grid h-full w-full place-items-center overflow-hidden rounded-xl bg-blue-500 text-white"
           //   onClick={() => deleteProject()}
         >
@@ -130,6 +131,7 @@ export default function EditProject({ content }: ProjectProps) {
           </form>
           <Dialog.Close asChild>
             <button
+              type="button"
               className="absolute top-6 right-6 hover:text-rose-600"
               aria-label="Close"
             >

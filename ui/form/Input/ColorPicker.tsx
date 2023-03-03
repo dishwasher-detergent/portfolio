@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { TwitterPicker } from "react-color";
 
 interface InputProps {

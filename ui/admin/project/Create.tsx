@@ -1,14 +1,13 @@
 "use client";
 
 import useWindowDimensions from "#/hooks/useWindowDimensions";
-import Card from "#/ui/form/Card";
-import FormDisplayWrapper from "#/ui/form/FormDisplayWrapper";
-import Checkbox from "#/ui/form/Input/Checkbox";
-import Colorpicker from "#/ui/form/Input/ColorPicker";
-import ImageInput from "#/ui/form/Input/Images";
-import Input from "#/ui/form/Input/Input";
-import TagInput from "#/ui/form/Input/Tags";
-import Textarea from "#/ui/form/Input/Textarea";
+import FormDisplayWrapper from "#/ui/form/Wrapper";
+import Checkbox from "#/ui/form/input/Checkbox";
+import Colorpicker from "#/ui/form/input/ColorPicker";
+import ImageInput from "#/ui/form/input/Images";
+import Input from "#/ui/form/input/Input";
+import TagInput from "#/ui/form/input/Tags";
+import Textarea from "#/ui/form/input/Textarea";
 import api from "#/utils/appwrite";
 import { Server } from "#/utils/config";
 import { Send } from "lucide-react";
@@ -56,7 +55,7 @@ export default function CreateProject() {
     }
 
     try {
-      await api.createDocument(Server.collectionID, {
+      await api.createDocument("63e17a3b092917cea721", {
         title: title,
         short_description: shortDesc,
         description: desc,

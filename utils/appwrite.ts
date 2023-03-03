@@ -7,6 +7,7 @@ import {
   Client,
   Locale,
   Avatars,
+  Query,
 } from "appwrite";
 import { Server } from "../utils/config";
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
@@ -50,7 +51,8 @@ type ApiType = {
   deleteCurrentSession: () => Promise<{}>;
   createDocument: (collectionId: string, data: any) => Promise<any>;
   listDocuments: (
-    collectionId: string
+    collectionId: string,
+    order?: string[]
   ) => Promise<Models.DocumentList<Models.Document>>;
   getDocument: (
     documentId: string,
@@ -130,10 +132,11 @@ const api: ApiType = {
       );
   },
 
-  listDocuments: async (collectionId) => {
+  listDocuments: async (collectionId, order) => {
+    let newOrder = order ? order : [Query.orderAsc("$id")];
     return await api
       .provider()
-      .database.listDocuments(Server.databaseID, collectionId);
+      .database.listDocuments(Server.databaseID, collectionId, newOrder);
   },
 
   getDocument: async (documentId, collectionId) => {

@@ -1,11 +1,11 @@
-import Layout from "ui/layout";
-import "./globals.css";
-import { Space_Grotesk, Phudu } from "next/font/google";
-import ToastWrapper from "#/ui/toast/ToastWrapper";
-import { ThemeProvider } from "#/ui/theme/ThemeProvider";
-import { PresenceWrapper } from "#/ui/animate/PresenceWrapper";
-import type { Metadata } from "next";
 import { ChildWrapper } from "#/ui/animate/ChildWrapper";
+import { PresenceWrapper } from "#/ui/animate/PresenceWrapper";
+import { ThemeProvider } from "#/ui/theme/ThemeProvider";
+import ToastWrapper from "#/ui/toast/ToastWrapper";
+import type { Metadata } from "next";
+import { Phudu, Space_Grotesk } from "next/font/google";
+import Layout from "ui/layout/Layout";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Kenneth's Portfolio",

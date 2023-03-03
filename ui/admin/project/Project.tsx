@@ -1,16 +1,16 @@
 "use client";
 
+import useWindowDimensions from "#/hooks/useWindowDimensions";
+import { ProjectProps } from "#/types/Project";
+import EditProject from "#/ui/admin/project/Edit";
+import ProjectImages from "#/ui/admin/project/Images";
 import api from "#/utils/appwrite";
+import { textColor } from "#/utils/color";
 import { AnimatePresence, motion } from "framer-motion";
 import { Trash } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import ProjectImages from "#/ui/layout/Admin/Project/Images";
-import EditProject from "#/ui/layout/Admin/Project/EditProject";
-import { ProjectProps } from "#/types/Project";
-import { textColor } from "#/utils/color";
-import useWindowDimensions from "#/hooks/useWindowDimensions";
 
 type Image = {
   name: string;
@@ -108,6 +108,7 @@ export default function Project({ content }: ProjectProps) {
           >
             <EditProject content={content} />
             <button
+              type="button"
               className="grid h-full w-full place-items-center overflow-hidden rounded-xl bg-rose-600 text-white"
               onClick={() => deleteProject()}
             >

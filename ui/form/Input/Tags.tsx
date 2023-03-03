@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Plus, Trash } from "lucide-react";
+import { Plus } from "lucide-react";
 
 interface TagInputProps {
   setTags: Function;

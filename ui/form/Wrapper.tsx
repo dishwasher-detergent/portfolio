@@ -1,11 +1,11 @@
 "use client";
 
-import * as Dialog from "@radix-ui/react-dialog";
-import { Plus, X as XIcon } from "lucide-react";
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import useWindowDimensions from "#/hooks/useWindowDimensions";
 import Card from "#/ui/form/Card";
+import * as Dialog from "@radix-ui/react-dialog";
+import { AnimatePresence, motion } from "framer-motion";
+import { Plus, X as XIcon } from "lucide-react";
+import { useState } from "react";
 
 export default function FormDisplayWrapper({
   children,
@@ -20,6 +20,7 @@ export default function FormDisplayWrapper({
       <Dialog.Root open={open} onOpenChange={setOpen}>
         <Dialog.Trigger asChild>
           <button
+            type="button"
             className="fixed bottom-4 right-4 grid place-items-center overflow-hidden rounded-full bg-blue-500 p-4 text-white"
             //   onClick={() => deleteProject()}
           >
@@ -40,6 +41,7 @@ export default function FormDisplayWrapper({
               {children}
               <Dialog.Close asChild>
                 <button
+                  type="button"
                   className="absolute top-6 right-6 hover:text-rose-600"
                   aria-label="Close"
                 >

@@ -1,5 +1,5 @@
-import CreateProject from "#/ui/layout/Admin/CreateProject";
-import ListProjects from "#/ui/layout/Admin/Project/ListProjects";
+import CreateProject from "#/ui/admin/project/Create";
+import ListProjects from "#/ui/admin/project/Wrapper";
 import { checkLoggedInStatus } from "#/utils/auth";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";

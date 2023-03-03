@@ -1,16 +1,16 @@
 "use client";
 
+import Project from "#/ui/admin/project/Project";
 import api from "#/utils/appwrite";
-import Project from "#/ui/layout/Admin/Project/Project";
-import { useEffect, useState } from "react";
 import { Server } from "#/utils/config";
+import { useEffect, useState } from "react";
 
 export default function ListProjects() {
   const [projects, setProjects] = useState<any>();
 
   useEffect(() => {
     (async () => {
-      const fetchProjects = await api.listDocuments(Server.collectionID);
+      const fetchProjects = await api.listDocuments("63e17a3b092917cea721");
       setProjects(fetchProjects);
     })();
 
@@ -18,11 +18,13 @@ export default function ListProjects() {
       .provider()
       .client.subscribe(
         [
-          `databases.${Server.databaseID}.collections.${Server.collectionID}.documents`,
+          `databases.${
+            Server.databaseID
+          }.collections.${"63e17a3b092917cea721"}.documents`,
           `buckets.${Server.bucketID}.files`,
         ],
         async () => {
-          const fetchProjects = await api.listDocuments(Server.collectionID);
+          const fetchProjects = await api.listDocuments("63e17a3b092917cea721");
           setProjects(fetchProjects);
         }
       );

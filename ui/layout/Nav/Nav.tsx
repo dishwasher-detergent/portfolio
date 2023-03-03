@@ -1,7 +1,7 @@
 "use client";
 
-import { Github, Linkedin, Codepen, Moon } from "lucide-react";
-import Logo from "#/ui/layout/Nav/Logo";
+import Logo from "#/ui/layout/nav/Logo";
+import { Codepen, Github, Linkedin, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
 
 export default function Nav() {
@@ -43,6 +43,7 @@ export default function Nav() {
                   <Codepen size={20} />
                 </a>
                 <button
+                  type="button"
                   className={`block cursor-pointer rounded-xl p-2 hover:bg-slate-200 hover:dark:bg-slate-800`}
                   onClick={() => setTheme(theme == "dark" ? "light" : "dark")}
                 >
