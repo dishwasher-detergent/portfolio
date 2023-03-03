@@ -1,5 +1,3 @@
-"use client";
-
 import { ProjectProps } from "#/types/Project";
 import api from "#/utils/appwrite";
 import { textColor } from "#/utils/color";
@@ -9,18 +7,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Project({ content }: ProjectProps) {
-  const [banner, setBanner] = useState<URL | null>(null);
-
-  useEffect(() => {
-    if (!content.images) return;
-
-    const img = api.getFilePreview(content.banner, {
+  const banner = content.banner ? api.getFilePreview(content.banner, {
       height: "800",
       quality: "80",
       gravity: "center",
-    });
-    setBanner(img);
-  }, [content]);
+    } : null;
 
   return (
     <motion.a
