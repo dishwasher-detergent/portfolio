@@ -1,23 +1,26 @@
+"use client";
+
 import { ProjectProps } from "#/types/Project";
 import api from "#/utils/appwrite";
 import { textColor } from "#/utils/color";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 export default function Project({ content }: ProjectProps) {
-  const banner = content.banner ? api.getFilePreview(content.banner, {
-      height: "800",
-      quality: "80",
-      gravity: "center",
-    }) : null;
+  const banner = content.banner
+    ? api.getFilePreview(content.banner, {
+        height: "800",
+        quality: "80",
+        gravity: "center",
+      })
+    : null;
 
   return (
-    <motion.a
+    <div
       className="h-auto cursor-pointer rounded-xl p-4 md:h-72"
-      whileHover={{
-        backgroundColor: textColor(content.accent_color, true, 0.1).style
+      style={{
+        backgroundColor: textColor(content.accent_color, true, 0.05).style
           .backgroundColor,
       }}
     >
@@ -69,6 +72,6 @@ export default function Project({ content }: ProjectProps) {
           )}
         </div>
       </Link>
-    </motion.a>
+    </div>
   );
 }
