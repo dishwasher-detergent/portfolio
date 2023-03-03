@@ -71,10 +71,10 @@ export default function Contact() {
             value={message ? message : ""}
           />
         </div>
-        <div className="flex items-center justify-start gap-2">
+        <div className="flex flex-col items-center justify-start gap-2 md:flex-row">
           <button
             type="submit"
-            className="flex w-64 max-w-full flex-row flex-nowrap items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white"
+            className="flex w-full flex-row flex-nowrap items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white md:w-64"
           >
             Send Message
             <Send size={20} />
