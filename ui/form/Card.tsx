@@ -5,7 +5,7 @@ export default function Card(props: any) {
     props.type ? props.type : "div",
     {
       ...props,
-      className: `w-full rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800 ${props.className}`,
+      className: `w-full rounded-xl border border-slate-300 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-800 ${props.className}`,
     },
     <>
       {props.title && (

@@ -1,6 +1,7 @@
 import { ExperienceTypes } from "#/types/Experience";
 import { ProjectTypes } from "#/types/Project";
 import { ChildWrapper } from "#/ui/animate/ChildWrapper";
+import Contact from "#/ui/contact/Contact";
 import Experience from "#/ui/experience/Experience";
 import ExperienceWrapper from "#/ui/experience/Wrapper";
 import Header from "#/ui/layout/header/Header";
@@ -56,6 +57,10 @@ export default async function Home() {
               return <Project key={item.$id} content={item} />;
             })}
           </ProjectWrapper>
+        </div>
+        <div className="py-4 md:py-12">
+          <Header width="75%">Contact</Header>
+          <Contact />
         </div>
       </Layout>
     </ChildWrapper>

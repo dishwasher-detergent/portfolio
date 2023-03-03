@@ -109,7 +109,7 @@ export default function EditProject({ content }: ProjectProps) {
             onChange={(e) => setColor(e.hex)}
           />
         </div>
-        <div className="my-4 flex-none border-t border-slate-200 pt-4 dark:border-slate-700">
+        <div className="my-4 flex-none border-t border-slate-300 pt-4 dark:border-slate-700">
           <button
             type="submit"
             className="flex w-full flex-row flex-nowrap items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white"

@@ -152,7 +152,7 @@ export default function ProjectImages({ images, content }: ProjectImagesProps) {
                 className={`group relative h-full w-full cursor-pointer overflow-hidden rounded-xl border  ${
                   content.banner == image.name
                     ? "border-4 border-blue-500"
-                    : "border-slate-200"
+                    : "border-slate-300"
                 }`}
               >
                 <Image
@@ -188,7 +188,7 @@ export default function ProjectImages({ images, content }: ProjectImagesProps) {
           ))}
         </AnimatePresence>
         <label
-          className={`relative grid h-24 w-full cursor-pointer place-items-center rounded-xl border border-slate-200 bg-slate-200 text-slate-400 dark:border-slate-700 dark:bg-slate-900 dark:text-white ${
+          className={`relative grid h-24 w-full cursor-pointer place-items-center rounded-xl border border-slate-300 bg-slate-200 text-slate-400 dark:border-slate-700 dark:bg-slate-900 dark:text-white ${
             images.length == 0 ? "col-span-3" : ""
           }`}
         >

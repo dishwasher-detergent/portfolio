@@ -18,7 +18,7 @@ export default function Checkbox({ label, onChange, value }: InputProps) {
         type={"checkbox"}
         onChange={onChange}
         checked={value}
-        className="rounded-xl border border-slate-200 px-2 py-1 text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+        className="rounded-xl border border-slate-300 px-2 py-1 text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
       /> */}
       <Switch.Root
         onCheckedChange={onChange}

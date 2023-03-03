@@ -26,7 +26,7 @@ export default function Input({
         type={type}
         placeholder={placeholder}
         onChange={onChange}
-        className="rounded-xl border border-slate-200 px-2 py-1 text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+        className="rounded-xl border border-slate-300 px-2 py-1 text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
         value={value}
       />
     </label>

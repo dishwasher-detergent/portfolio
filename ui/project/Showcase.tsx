@@ -24,7 +24,7 @@ export default function Showcase({ image, accent_color, title }: ProjectProps) {
   }, []);
 
   return (
-    <div className="relative z-40 h-auto w-full rounded-xl border border-slate-200 dark:border-slate-700">
+    <div className="relative z-40 h-auto w-full rounded-xl border border-slate-300 dark:border-slate-700">
       <div
         className="relative aspect-square w-full overflow-hidden rounded-xl p-4 md:aspect-[5/3] md:h-auto"
         {...textColor(accent_color, true)}

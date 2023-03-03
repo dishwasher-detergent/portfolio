@@ -120,7 +120,7 @@ export default function Project({ content }: ProjectProps) {
         className={`h-full w-full rounded-xl border  bg-slate-50 p-4 text-slate-900  dark:bg-slate-800 dark:text-white ${
           content.showcase
             ? "border-4 border-blue-500"
-            : "border-slate-200 dark:border-slate-700"
+            : "border-slate-300 dark:border-slate-700"
         }`}
         onClick={() => setOpen(!open)}
       >

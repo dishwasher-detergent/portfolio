@@ -60,7 +60,7 @@ export default function ImageInput({
               }}
               key={image.name}
             >
-              <div className="group relative h-24 w-full cursor-pointer overflow-hidden rounded-xl border border-slate-200">
+              <div className="group relative h-24 w-full cursor-pointer overflow-hidden rounded-xl border border-slate-300">
                 <Image
                   fill
                   style={{
@@ -94,7 +94,7 @@ export default function ImageInput({
           ))}
         </AnimatePresence>
         <label
-          className={`relative grid h-24 w-full cursor-pointer place-items-center rounded-xl border border-slate-200 bg-slate-200 text-slate-400 dark:border-slate-700 dark:bg-slate-900 dark:text-white ${
+          className={`relative grid h-24 w-full cursor-pointer place-items-center rounded-xl border border-slate-300 bg-slate-200 text-slate-400 dark:border-slate-700 dark:bg-slate-900 dark:text-white ${
             images.length == 0 ? "col-span-3" : ""
           }`}
         >

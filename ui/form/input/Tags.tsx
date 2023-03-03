@@ -64,7 +64,7 @@ export default function TagInput({
         <input
           type="text"
           placeholder="Add Tag"
-          className="h-9 w-full rounded-xl border border-slate-200 px-2 py-1 text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
+          className="h-9 w-full rounded-xl border border-slate-300 px-2 py-1 text-slate-900 dark:border-slate-700 dark:bg-slate-900 dark:text-white"
           maxLength={16}
           onChange={(e) => setTag(e.target.value)}
           value={tag}

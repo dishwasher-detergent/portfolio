@@ -8,7 +8,7 @@ export default function Nav() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-40 h-16 w-full flex-none border-b border-slate-200 bg-white/60 backdrop-blur-md dark:border-slate-700 dark:bg-slate-900/90 dark:text-white lg:z-50">
+    <header className="sticky top-0 z-40 h-16 w-full flex-none border-b border-slate-300 bg-white/60 backdrop-blur-md dark:border-slate-700 dark:bg-slate-900/90 dark:text-white lg:z-50">
       <div className="mx-auto h-full w-full max-w-[90rem]">
         <div className="mx-4 h-full lg:mx-0 lg:border-0 lg:px-8">
           <div className="relative flex h-full items-center">
