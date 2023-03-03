@@ -69,9 +69,9 @@ export default function EditProject({ content }: ProjectProps) {
           event.preventDefault();
           EditProject();
         }}
-        className="flex h-full w-full flex-col pr-2"
+        className="flex h-full w-full flex-col"
       >
-        <div className="flex w-full flex-1 flex-col gap-2 overflow-y-auto">
+        <div className="flex w-full flex-1 flex-col gap-2 overflow-y-auto pr-2">
           <Input
             label="Project Name"
             onChange={(e) => setTitle(e.target.value)}
