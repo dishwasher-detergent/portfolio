@@ -11,7 +11,7 @@ export default function Project({ content }: ProjectProps) {
       height: "800",
       quality: "80",
       gravity: "center",
-    } : null;
+    }) : null;
 
   return (
     <motion.a
