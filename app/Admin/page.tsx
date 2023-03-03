@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Admin() {
-  // const auth = await checkLoggedInStatus();
+  const auth = await checkLoggedInStatus();
 
-  // if (!auth) {
-  //   redirect("/Login");
-  // }
+  if (!auth) {
+    redirect("/Login");
+  }
 
   return (
     <>
