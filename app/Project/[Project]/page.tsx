@@ -3,7 +3,6 @@ import Header from "#/ui/layout/header/Header";
 import ProjectDisplay from "#/ui/project/Showcase";
 import api from "#/utils/appwrite";
 import { textColor } from "#/utils/color";
-import { Server } from "#/utils/config";
 import { Models } from "appwrite";
 import { ExternalLink, Github } from "lucide-react";
 import { Metadata } from "next";

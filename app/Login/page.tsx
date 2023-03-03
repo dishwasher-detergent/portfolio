@@ -2,6 +2,7 @@
 
 import Card from "#/ui/form/Card";
 import Input from "#/ui/form/input/Input";
+import Layout from "#/ui/layout/Layout";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -34,34 +35,36 @@ export default function Login() {
   };
 
   return (
-    <Card
-      type="form"
-      title="Login"
-      className="max-w-md"
-      onSubmit={(e: HTMLFormElement) => {
-        e.preventDefault();
-        Login();
-      }}
-    >
-      <div className="flex flex-col gap-6">
-        <div className="flex flex-col gap-2">
-          <Input
-            label="Username"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <Input
-            label="Password"
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+    <Layout>
+      <Card
+        type="form"
+        title="Login"
+        className="max-w-md"
+        onSubmit={(e: HTMLFormElement) => {
+          e.preventDefault();
+          Login();
+        }}
+      >
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <Input
+              label="Username"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <Input
+              label="Password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button
+            type="submit"
+            className="flex w-full flex-row flex-nowrap items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white"
+          >
+            Log In
+          </button>
         </div>
-        <button
-          type="submit"
-          className="flex w-full flex-row flex-nowrap items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white"
-        >
-          Log In
-        </button>
-      </div>
-    </Card>
+      </Card>
+    </Layout>
   );
 }

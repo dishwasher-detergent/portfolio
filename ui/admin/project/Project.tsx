@@ -87,7 +87,6 @@ export default function Project({ content }: ProjectProps) {
       whileHover="hover"
       animate="initial"
       className="flex h-96 w-full flex-none flex-col-reverse flex-nowrap gap-2 md:flex-row"
-      onClick={() => setOpen(!open)}
     >
       <AnimatePresence>
         {open && (
@@ -123,6 +122,7 @@ export default function Project({ content }: ProjectProps) {
             ? "border-4 border-blue-500"
             : "border-slate-200 dark:border-slate-700"
         }`}
+        onClick={() => setOpen(!open)}
       >
         <div className="grid h-full w-full grid-cols-1 gap-4 overflow-hidden md:grid-cols-2">
           <div className="flex h-full w-full flex-col gap-2 overflow-y-auto py-2">

@@ -4,10 +4,10 @@ import { ChildWrapper } from "#/ui/animate/ChildWrapper";
 import Experience from "#/ui/experience/Experience";
 import ExperienceWrapper from "#/ui/experience/Wrapper";
 import Header from "#/ui/layout/header/Header";
+import Layout from "#/ui/layout/Layout";
 import Project from "#/ui/project/Project";
 import ProjectWrapper from "#/ui/project/Wrapper";
 import api from "#/utils/appwrite";
-import { Server } from "#/utils/config";
 import { Models, Query } from "appwrite";
 
 type Projects = ProjectTypes & Models.Document;
@@ -37,25 +37,27 @@ export default async function Home() {
 
   return (
     <ChildWrapper>
-      <div className="py-0 md:pb-12">
-        <Header>Kenneth</Header>
-      </div>
-      <div className="py-4 md:py-12">
-        <Header width="75%">Experience</Header>
-        <ExperienceWrapper>
-          {experience.map((item, index) => (
-            <Experience content={item} key={index} />
-          ))}
-        </ExperienceWrapper>
-      </div>
-      <div className="py-4 md:py-12">
-        <Header width="75%">Projects</Header>
-        <ProjectWrapper>
-          {projects.map((item) => {
-            return <Project key={item.$id} content={item} />;
-          })}
-        </ProjectWrapper>
-      </div>
+      <Layout>
+        <div className="py-0 md:pb-12">
+          <Header>Kenneth</Header>
+        </div>
+        <div className="py-4 md:py-12">
+          <Header width="75%">Experience</Header>
+          <ExperienceWrapper>
+            {experience.map((item, index) => (
+              <Experience content={item} key={index} />
+            ))}
+          </ExperienceWrapper>
+        </div>
+        <div className="py-4 md:py-12">
+          <Header width="75%">Projects</Header>
+          <ProjectWrapper>
+            {projects.map((item) => {
+              return <Project key={item.$id} content={item} />;
+            })}
+          </ProjectWrapper>
+        </div>
+      </Layout>
     </ChildWrapper>
   );
 }

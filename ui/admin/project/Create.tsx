@@ -10,7 +10,7 @@ import TagInput from "#/ui/form/input/Tags";
 import Textarea from "#/ui/form/input/Textarea";
 import api from "#/utils/appwrite";
 import { Server } from "#/utils/config";
-import { Send } from "lucide-react";
+import { Plus, Send } from "lucide-react";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -55,7 +55,7 @@ export default function CreateProject() {
     }
 
     try {
-      await api.createDocument("63e17a3b092917cea721", {
+      await api.createDocument(Server.collectionID, {
         title: title,
         short_description: shortDesc,
         description: desc,
@@ -84,15 +84,25 @@ export default function CreateProject() {
   };
 
   return (
-    <FormDisplayWrapper>
+    <FormDisplayWrapper
+      trigger={
+        <button
+          type="button"
+          className="fixed bottom-4 right-4 grid place-items-center overflow-hidden rounded-full bg-blue-500 p-4 text-white"
+          //   onClick={() => deleteProject()}
+        >
+          <Plus size={24} />
+        </button>
+      }
+    >
       <form
         onSubmit={(e: any) => {
           e.preventDefault();
           addProject();
         }}
-        className="flex h-full flex-col"
+        className="flex h-full flex-col md:w-[30rem] md:p-8 md:pr-6"
       >
-        <div className="flex w-full flex-1 flex-col gap-2 overflow-y-auto">
+        <div className="flex w-full flex-1 flex-col gap-2 overflow-y-auto pr-2">
           <Input
             label="Project Name"
             onChange={(e) => setTitle(e.target.value)}

@@ -28,11 +28,9 @@ export default function RootLayout({
       <head></head>
       <body className={`${font.className} ${displayFont.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Layout>
-            <PresenceWrapper>
-              <ChildWrapper key={Math.random()}>{children}</ChildWrapper>
-            </PresenceWrapper>
-          </Layout>
+          <PresenceWrapper>
+            <ChildWrapper key={Math.random()}>{children}</ChildWrapper>
+          </PresenceWrapper>
           <ToastWrapper />
         </ThemeProvider>
       </body>

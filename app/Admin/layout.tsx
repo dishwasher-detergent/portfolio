@@ -7,9 +7,9 @@ export default function AdminLayout({
 }) {
   return (
     <ChildWrapper>
-      <section className="flex h-full w-full flex-col gap-4 py-4 md:flex-row">
+      <div className="flex h-screen w-screen flex-row flex-nowrap overflow-hidden">
         {children}
-      </section>
+      </div>
     </ChildWrapper>
   );
 }

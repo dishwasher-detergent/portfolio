@@ -4,29 +4,49 @@ import useWindowDimensions from "#/hooks/useWindowDimensions";
 import Card from "#/ui/form/Card";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AnimatePresence, motion } from "framer-motion";
-import { Plus, X as XIcon } from "lucide-react";
+import { X as XIcon } from "lucide-react";
 import { useState } from "react";
+
+interface FormDisplayWrapperProps {
+  children: React.ReactElement;
+  trigger: React.ReactElement;
+  modal?: boolean;
+}
 
 export default function FormDisplayWrapper({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+  trigger,
+  modal = false,
+}: FormDisplayWrapperProps) {
   const [open, setOpen] = useState(false);
   const { width } = useWindowDimensions();
+
+  if (modal && width > 768)
+    return (
+      <Dialog.Root open={open} onOpenChange={setOpen}>
+        <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
+        <Dialog.Portal>
+          <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/10" />
+          <Dialog.Content className="fixed top-1/2 left-1/2 z-50 h-3/5 max-h-full w-[30rem] max-w-full -translate-y-1/2 -translate-x-1/2 overflow-hidden rounded-xl bg-white p-6 dark:bg-slate-900">
+            {children}
+            <Dialog.Close asChild>
+              <button
+                type="button"
+                className="absolute top-6 right-6 hover:text-rose-600"
+                aria-label="Close"
+              >
+                <XIcon size={20} />
+              </button>
+            </Dialog.Close>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
+    );
 
   return width <= 768 ? (
     <AnimatePresence>
       <Dialog.Root open={open} onOpenChange={setOpen}>
-        <Dialog.Trigger asChild>
-          <button
-            type="button"
-            className="fixed bottom-4 right-4 grid place-items-center overflow-hidden rounded-full bg-blue-500 p-4 text-white"
-            //   onClick={() => deleteProject()}
-          >
-            <Plus size={24} />
-          </button>
-        </Dialog.Trigger>
+        <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
         <Dialog.Portal>
           <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-900/10" />
           <Dialog.Content asChild>
@@ -54,11 +74,6 @@ export default function FormDisplayWrapper({
       </Dialog.Root>
     </AnimatePresence>
   ) : (
-    <Card
-      type="div"
-      className="sticky top-20 flex h-[50rem] max-h-full w-[30rem] max-w-full flex-none flex-col overflow-hidden rounded-xl border  border-slate-200 text-white dark:border-slate-700 md:w-96"
-    >
-      {children}
-    </Card>
+    <>{children}</>
   );
 }
