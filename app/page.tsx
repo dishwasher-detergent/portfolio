@@ -15,7 +15,9 @@ type Projects = ProjectTypes & Models.Document;
 type Experiences = ExperienceTypes & Models.Document;
 
 async function getProjects(): Promise<Projects[]> {
-  const documents = await api.listDocuments("63e17a3b092917cea721");
+  const documents = await api.listDocuments("63e17a3b092917cea721",[
+    Query.orderDesc("$createdAt"),
+  ]);
 
   const projects = documents.documents as Projects[];
 
