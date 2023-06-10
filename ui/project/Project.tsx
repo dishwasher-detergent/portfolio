@@ -2,7 +2,6 @@ import { ProjectProps } from "#/types/Project";
 import api from "#/utils/appwrite";
 import { textColor } from "#/utils/color";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Project({ content }: ProjectProps) {
   const banner = content.banner
@@ -14,27 +13,16 @@ export default function Project({ content }: ProjectProps) {
     : null;
 
   return (
-    <div
-      className="h-auto cursor-pointer rounded-xl p-4 md:h-72"
+    <article
+      className="rounded-xl p-4"
       style={{
         backgroundColor: textColor(content.accent_color, true, 0.05).style
           .backgroundColor,
       }}
     >
-      <Link
-        className="flex h-full w-full flex-col-reverse flex-nowrap gap-4 md:flex-row"
-        href={`Project/${content.$id}`}
-      >
-        <div className="relative flex w-full flex-1 flex-col justify-end overflow-hidden">
-          <p className="absolute top-0 left-0 text-xs font-semibold text-slate-600 dark:text-slate-100">
-            {new Date(content.$createdAt).toLocaleDateString("en-us", {
-              weekday: "long",
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
-          </p>
-          <h2 className="display w-full truncate py-4 text-4xl font-bold text-slate-900 dark:text-white">
+      <div className="flex h-full w-full flex-col-reverse flex-nowrap gap-4 md:flex-row">
+        <div className="relative flex w-full flex-1 flex-col overflow-hidden">
+          <h2 className="display w-full truncate pb-4 text-4xl font-bold text-slate-900 dark:text-white md:text-6xl">
             {content.title}
           </h2>
           <div className="flex w-full flex-row gap-1 overflow-x-auto pb-2">
@@ -48,9 +36,10 @@ export default function Project({ content }: ProjectProps) {
               </span>
             ))}
           </div>
+          <p>{content.description}</p>
         </div>
         <div
-          className="relative h-60 w-full overflow-hidden rounded-xl md:h-full md:w-80"
+          className="relative h-60 w-60 overflow-hidden rounded-xl md:h-96 md:w-96"
           {...textColor(content.accent_color, true)}
         >
           {banner && (
@@ -68,7 +57,7 @@ export default function Project({ content }: ProjectProps) {
             </>
           )}
         </div>
-      </Link>
-    </div>
+      </div>
+    </article>
   );
 }

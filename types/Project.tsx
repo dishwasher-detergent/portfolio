@@ -11,6 +11,7 @@ export type ProjectTypes = {
   website: string;
   showcase: boolean;
   accent_color: string;
+  order: number;
 };
 
 export interface ProjectProps {
