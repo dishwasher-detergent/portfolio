@@ -21,7 +21,7 @@ export default function Experience({ content }: ExperienceProps) {
               day: "numeric",
             })}{" "}
             -{" "}
-            {content.end_date
+            {!content.current && content.end_date
               ? new Date(content.end_date).toLocaleDateString("en-us", {
                   weekday: "long",
                   year: "numeric",

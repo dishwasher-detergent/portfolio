@@ -5,6 +5,7 @@ export type ExperienceTypes = {
   employer: string;
   start_date: Date;
   end_date?: Date;
+  current: boolean;
 };
 
 export interface ExperienceProps {

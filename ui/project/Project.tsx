@@ -1,6 +1,7 @@
 import { ProjectProps } from "#/types/Project";
 import api from "#/utils/appwrite";
 import { textColor } from "#/utils/color";
+import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 
 export default function Project({ content }: ProjectProps) {
@@ -36,6 +37,30 @@ export default function Project({ content }: ProjectProps) {
               </span>
             ))}
           </div>
+          <nav className="flex w-full flex-row flex-wrap gap-2 pb-2">
+            {content.website && (
+              <a
+                href={content.website}
+                target="_blank"
+                rel="noreferrer"
+                className="flex cursor-pointer flex-row gap-2 rounded-xl p-2 hover:bg-slate-200 hover:dark:bg-slate-800"
+              >
+                Visit
+                <ExternalLink size={20} />
+              </a>
+            )}
+            {content.github && (
+              <a
+                href={content.github}
+                target="_blank"
+                rel="noreferrer"
+                className="flex cursor-pointer flex-row gap-2 rounded-xl p-2 hover:bg-slate-200 hover:dark:bg-slate-800"
+              >
+                Code
+                <Github size={20} />
+              </a>
+            )}
+          </nav>
           <p>{content.description}</p>
         </div>
         <div
