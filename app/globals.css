@@ -2,27 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.display {
-  font-family: var(--display-font)
+@font-face {
+  font-family: "Loster";
+  src: url("../assets/Lostar.otf");
+  src: url("../assets/Lostar.otf");
+  font-weight: 900;
+  font-style: normal;
 }
 
-*::-webkit-scrollbar {
-  @apply h-1.5 w-1.5;
-}
-
-*::-webkit-scrollbar-track {
-  @apply bg-transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-  @apply rounded-full bg-slate-400 dark:bg-slate-600;
-}
-
-.project-grid > *:last-child,
-.project-grid > *:nth-child(even):nth-last-child(2) {
-  @apply overflow-hidden rounded-br-xl;
-}
-
-.project-grid > *:last-child:first-child {
-  @apply overflow-hidden rounded-xl;
+.transition-ring {
+  transition: 0.2s ease-out;
 }

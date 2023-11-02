@@ -1,72 +1,37 @@
-import { ExperienceTypes } from "#/types/Experience";
-import { ProjectTypes } from "#/types/Project";
-import { ChildWrapper } from "#/ui/animate/ChildWrapper";
-import Contact from "#/ui/contact/Contact";
-import Experience from "#/ui/experience/Experience";
-import ExperienceWrapper from "#/ui/experience/Wrapper";
-import Header from "#/ui/layout/header/Header";
-import Layout from "#/ui/layout/Layout";
-import Project from "#/ui/project/Project";
-import ProjectWrapper from "#/ui/project/Wrapper";
-import api from "#/utils/appwrite";
-import { Models, Query } from "appwrite";
+import { Corners } from "@/components/corners";
+import { Project } from "@/components/project";
+import { ChevronDown } from "lucide-react";
 
-type Projects = ProjectTypes & Models.Document;
-type Experiences = ExperienceTypes & Models.Document;
-
-async function getProjects(): Promise<Projects[]> {
-  const documents = await api.listDocuments("63e17a3b092917cea721", [
-    Query.orderAsc("order"),
-  ]);
-
-  const projects = documents.documents as Projects[];
-
-  return projects;
-}
-
-async function getExperience(): Promise<Experiences[]> {
-  const documents = await api.listDocuments("640133e70053b55f3fed", [
-    Query.orderDesc("start_date"),
-  ]);
-
-  const projects = documents.documents as Experiences[];
-
-  return projects;
-}
-
-export default async function Home() {
-  const projects: Projects[] = await getProjects();
-  const experience: Experiences[] = await getExperience();
-
+export default function Home() {
   return (
-    <ChildWrapper>
-      <Layout>
-        <div className="py-0 md:pb-12">
-          <Header>Kenneth</Header>
+    <main className="flex min-h-screen flex-col">
+      <div className="w-full h-screen p-12 relative">
+        <div className="w-full h-full flex flex-col justify-center items-center bg-gradient-to-br from-white/50 to-transparent rounded-[3rem] md:rounded-[6rem] text-white relative z-10">
+          <h1 className="font-display lg:text-8xl md:text-7xl sm:text-6xl text-4xl x">
+            <span>Building Web Apps</span>
+            <br />
+            <span className="flex flex-row items-center gap-12">
+              <span className="flex-none">For Fun.</span>
+              <span className="h-2 flex-1 bg-white rounded-full" />
+            </span>
+          </h1>
+          <div className="absolute bottom-0 w-full flex items-center justify-center">
+            <a className="animate-bounce cursor-pointer">
+              <ChevronDown className="w-12 h-12" strokeWidth={3} />
+            </a>
+          </div>
         </div>
-        <div className="py-4 md:py-12">
-          <Header width="75%">Experience</Header>
-          <ExperienceWrapper>
-            {experience.map((item, index) => (
-              <Experience content={item} key={index} />
-            ))}
-          </ExperienceWrapper>
-        </div>
-        <div className="py-4 md:py-12">
-          <Header width="75%">Projects</Header>
-          <ProjectWrapper>
-            {projects.map((item) => {
-              return <Project key={item.$id} content={item} />;
-            })}
-          </ProjectWrapper>
-        </div>
-        <div className="py-4 md:py-12">
-          <Header width="75%">Contact</Header>
-          <Contact />
-        </div>
-      </Layout>
-    </ChildWrapper>
+        <Corners className="p-10" />
+      </div>
+      <div className="flex flex-col -space-y-1 p-10">
+        <Project />
+        <Project />
+        <Project />
+        <Project />
+        <Project />
+        <Project />
+        <Project />
+      </div>
+    </main>
   );
 }
-
-export const revalidate = 60;
