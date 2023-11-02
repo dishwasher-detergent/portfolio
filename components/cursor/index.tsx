@@ -3,13 +3,16 @@
 import { useEffect, useRef } from "react";
 
 export function Cursor() {
+  const innerWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+  const innerHeight = typeof window !== "undefined" ? window.innerHeight : 0;
+  
   const cursorEnlarged = useRef(false);
   const cursorVisible = useRef(true);
 
   const dot = useRef(null);
 
-  const endX = useRef(window.innerWidth / 2);
-  const endY = useRef(window.innerHeight / 2);
+  const endX = useRef(innerWidth / 2);
+  const endY = useRef(innerHeight / 2);
 
   const toggleCursorSize = () => {
     if (dot.current) {
