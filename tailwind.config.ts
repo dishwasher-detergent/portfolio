@@ -14,6 +14,9 @@ const config: Config = {
       fontFamily: {
         display: ["Loster", "sans-serif"],
       },
+      animation: {
+        "spin-slow": "spin 3s linear infinite",
+      },
     },
   },
   plugins: [],

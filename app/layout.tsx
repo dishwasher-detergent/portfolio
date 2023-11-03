@@ -1,6 +1,6 @@
-import { Cursor } from "@/components/cursor";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import AnimatedCursor from "react-animated-cursor";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,7 +18,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-primary text-white`}>
-        <Cursor />
+        <AnimatedCursor
+          color="255,255,255"
+          innerSize={8}
+          outerSize={32}
+          innerScale={1.5}
+          outerScale={2}
+          clickables={[
+            "a",
+            'input[type="text"]',
+            'input[type="email"]',
+            'input[type="number"]',
+            'input[type="submit"]',
+            'input[type="image"]',
+            "label[for]",
+            "select",
+            "textarea",
+            "button",
+            ".link",
+          ]}
+        />
         {children}
       </body>
     </html>
