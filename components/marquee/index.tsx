@@ -4,14 +4,23 @@ interface MarqueeProps {
 
 export function Marquee({ text }: MarqueeProps) {
   return (
-    <div className="w-full overflow-hidden relative h-16 flex items-center bg-white/20">
-      <div className="block w-[200%] absolute overflow-hidden marquee font-black text-3xl">
-        {[...Array(10)].map((index: number) => (
-          <span key={index} className="float-left w-[10%]">
-            {text}
-          </span>
-        ))}
+    <section>
+      <div className="relative flex overflow-hidden select-none gap-4 text-3xl font-black bg-slate-900/20 py-4">
+        <ul className="flex-shrink-0 flex justify-around gap-4 min-w-full marquee">
+          {[...Array(10)].map((index: number) => (
+            <li key={index}>{text}</li>
+          ))}
+        </ul>
+
+        <ul
+          aria-hidden="true"
+          className="flex-shrink-0 flex justify-around gap-4 min-w-full marquee"
+        >
+          {[...Array(10)].map((index: number) => (
+            <li key={index}>{text}</li>
+          ))}
+        </ul>
       </div>
-    </div>
+    </section>
   );
 }

@@ -21,15 +21,15 @@ export function Project({
   tags,
 }: ProjectProps) {
   return (
-    <a className="relative w-full h-60 flex flex-row items-center group cursor-pointer p-4">
-      <div className="flex-none h-full w-0 bg-white/20 rounded-3xl group-hover:w-80 group-hover:mr-6 transition-all overflow-hidden">
+    <a className="relative w-full md:h-60 flex flex-col md:flex-row md:items-center group cursor-pointer p-4">
+      <div className="flex-none md:h-full w-full aspect-square md:aspect-auto md:w-0 bg-white/20 rounded-3xl md:group-hover:w-80 md:group-hover:mr-6 transition-all overflow-hidden">
         <img
           src={`https://cloud.appwrite.io/v1/storage/buckets/${AW_PROJECT_BUCKET_ID}/files/${images[0]}/view?project=${AW_PROJECT_ID}`}
-          className="h-full w-full object-fill"
+          className="h-full w-full object-cover object-left-top"
         />
       </div>
-      <div className="flex-1 overflow-hidden">
-        <p className="text-8xl font-display truncate">{title}</p>
+      <div className="flex-1 overflow-hidden space-y-2 py-2 md:py-0 md:space-y-0">
+        <p className="text-5xl md:text-8xl font-display truncate">{title}</p>
         <div className="flex flex-row flex-wrap gap-2">
           {tags.map((tag) => (
             <span

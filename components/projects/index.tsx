@@ -10,11 +10,11 @@ export async function Projects() {
   return (
     <>
       <Marquee text="Projects" />
-      <div className="flex flex-col -space-y-1 p-10">
+      <section className="flex flex-col -space-y-1 p-4 md:p-10">
         {projects.documents.map((project) => (
           <Project key={project.$id} {...project} />
         ))}
-      </div>
+      </section>
     </>
   );
 }

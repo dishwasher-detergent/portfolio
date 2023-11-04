@@ -15,14 +15,14 @@
 }
 
 .marquee {
-  animation: marquee 15s linear infinite;
+  animation: scroll 10s linear infinite;
 }
 
-@keyframes marquee {
-  0% {
-    left: 0;
+@keyframes scroll {
+  from {
+    transform: translateX(0);
   }
-  100% {
-    left: -100%;
+  to {
+    transform: translateX(calc(-100% - 1rem));
   }
 }
