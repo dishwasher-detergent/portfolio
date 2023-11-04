@@ -1,8 +1,8 @@
 export function Logo() {
   return (
-    <div className="relative w-32 h-32 grid place-items-center p-2">
+    <div className="relative w-24 h-24 md:w-32 md:h-32 grid place-items-center p-2 m-2">
       <div className="absolute inset-0 grid place-items-center">
-        <h1 className="font-display text-5xl">KB</h1>
+        <h1 className="font-display text-3xl md:text-5xl">KB</h1>
       </div>
       <svg
         className="w-full h-full font-bold animate-spin-slow duration-1000"

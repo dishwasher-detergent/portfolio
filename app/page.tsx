@@ -11,12 +11,16 @@ export default function Home() {
           <div className="absolute top-0 w-full flex items-center justify-center">
             <Logo />
           </div>
-          <h1 className="font-display lg:text-8xl md:text-7xl sm:text-6xl text-4xl">
-            <span>Building Web Apps</span>
+          <h1 className="font-display lg:text-8xl md:text-7xl text-6xl">
+            <span className="md:space-x-3">
+              <span>Building</span>
+              <br className="md:hidden" />
+              <span>Web Apps</span>
+            </span>
             <br />
             <span className="flex flex-row items-center gap-12">
               <span className="flex-none">For Fun.</span>
-              <span className="h-2 flex-1 bg-white rounded-full" />
+              <span className="hidden md:inline-block h-2 flex-1 bg-white rounded-full" />
             </span>
           </h1>
           <div className="absolute bottom-0 w-full flex items-center justify-center">
