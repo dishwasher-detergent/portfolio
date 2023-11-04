@@ -11,7 +11,7 @@ export default function Home() {
           <div className="absolute top-0 w-full flex items-center justify-center">
             <Logo />
           </div>
-          <h1 className="font-display lg:text-8xl md:text-7xl sm:text-6xl text-4xl x">
+          <h1 className="font-display lg:text-8xl md:text-7xl sm:text-6xl text-4xl">
             <span>Building Web Apps</span>
             <br />
             <span className="flex flex-row items-center gap-12">
