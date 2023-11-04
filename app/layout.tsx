@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import AnimatedCursor from "react-animated-cursor";
 import "./globals.css";
 
-const font = Nunito({ subsets: ["latin"] });
+const font = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",

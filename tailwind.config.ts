@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#FF4897",
+        primary: "#f72585",
       },
       fontFamily: {
         display: ["Loster", "sans-serif"],
