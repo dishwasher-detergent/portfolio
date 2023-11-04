@@ -13,3 +13,16 @@
 .transition-ring {
   transition: 0.2s ease-out;
 }
+
+.marquee {
+  animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: -100%;
+  }
+}

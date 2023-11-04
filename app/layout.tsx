@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Nunito } from "next/font/google";
 import AnimatedCursor from "react-animated-cursor";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-primary text-white`}>
+      <body className={`${font.className} bg-primary text-white`}>
         <AnimatedCursor
           color="255,255,255"
           innerSize={8}

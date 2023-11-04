@@ -32,7 +32,10 @@ export function Project({
         <p className="text-8xl font-display truncate">{title}</p>
         <div className="flex flex-row flex-wrap gap-2">
           {tags.map((tag) => (
-            <span className="bg-white/20 rounded-full px-2 py-1 text-sm">
+            <span
+              key={tag}
+              className="bg-white/20 rounded-full px-2 py-1 text-sm"
+            >
               {tag}
             </span>
           ))}
