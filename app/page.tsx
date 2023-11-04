@@ -11,7 +11,7 @@ export default function Home() {
           <div className="md:absolute md:top-0 w-full flex items-center justify-center">
             <Logo />
           </div>
-          <h1 className="font-display lg:text-8xl md:text-7xl text-6xl py-24">
+          <h1 className="font-display lg:text-8xl md:text-7xl text-6xl py-16">
             <span className="md:space-x-3">
               <span>Building</span>
               <br className="md:hidden" />
