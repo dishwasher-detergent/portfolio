@@ -5,8 +5,6 @@ import { AppwriteService } from "@/utils/appwrite";
 export async function Projects() {
   const projects = await AppwriteService.listProjects();
 
-  console.log(projects);
-
   return (
     <>
       <Marquee text="Projects" />
