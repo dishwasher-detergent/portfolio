@@ -13,26 +13,26 @@ export default async function Home() {
   const projects = await fetchProjects();
   return (
     <main className="flex min-h-screen flex-col relative p-4 space-y-4">
-      <section className="p-4 h-[50vh] flex flex-col justify-end text-white background rounded-3xl">
-        <p className="text-9xl font-display">Hello!</p>
-        <h1 className="text-9xl font-display">I&apos;m Kenneth Bass</h1>
+      <section className="p-4 h-[33vh] md:h-[50vh] flex flex-col justify-end text-white background rounded-3xl">
+        <p className="text-5xl md:text-9xl font-display">Hello!</p>
+        <h1 className="text-5xl md:text-9xl font-display">
+          I&apos;m Kenneth Bass
+        </h1>
       </section>
       <section>
         <h2 className="text-6xl font-bold py-4">Explore My Work</h2>
-        <div className="grid grid-cols-2 overflow-hidden rounded-3xl projects">
+        <div className="grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-3xl projects">
           {projects.documents.map((x, i) => (
             <div
               key={x.$id}
-              className="p-2 bg-slate-950"
-              style={{
-                borderBottomRightRadius:
-                  i + 1 === projects.documents.length ||
-                  i + 2 === projects.documents.length
-                    ? "1.5rem"
-                    : 0,
-              }}
+              className={`p-2 bg-slate-950 ${
+                i + 1 === projects.documents.length ||
+                i + 2 === projects.documents.length
+                  ? "md:border-br-3xl"
+                  : ""
+              }`}
             >
-              <div className="w-full aspect-video bg-slate-950/10 relative overflow-hidden rounded-3xl">
+              <div className="w-full aspect-square md:aspect-video bg-slate-950/10 relative overflow-hidden rounded-3xl">
                 <img
                   src={`https://cloud.appwrite.io/v1/storage/buckets/${AW_PROJECT_BUCKET_ID}/files/${x.images[0]}/view?project=${AW_PROJECT_ID}`}
                   className="absolute inset-0 h-full w-full object-cover object-left-top"
