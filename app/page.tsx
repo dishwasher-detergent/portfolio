@@ -28,7 +28,7 @@ export default async function Home() {
               className={`p-2 bg-slate-950 ${
                 i + 1 === projects.documents.length ||
                 i + 2 === projects.documents.length
-                  ? "md:border-br-3xl"
+                  ? "md:rounded-br-3xl"
                   : ""
               }`}
             >
@@ -74,7 +74,7 @@ export default async function Home() {
             </div>
           ))}
           {projects.documents.length % 2 === 1 && (
-            <div className="relative filler">
+            <div className="relative filler hidden md:block">
               <div className="absolute top-0 left-0 h-24 w-24 bg-slate-950" />
               <div className="absolute top-0 left-0 h-24 w-24 bg-white rounded-tl-3xl" />
             </div>
