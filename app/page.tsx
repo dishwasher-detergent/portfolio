@@ -15,7 +15,7 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col relative p-4 space-y-4">
       <section className="p-4 h-[50vh] flex flex-col justify-end text-white background rounded-3xl">
         <p className="text-9xl font-display">Hello!</p>
-        <h1 className="text-9xl font-display">I'm Kenneth Bass</h1>
+        <h1 className="text-9xl font-display">I&apos;m Kenneth Bass</h1>
       </section>
       <section>
         <h2 className="text-6xl font-bold py-4">Explore My Work</h2>
