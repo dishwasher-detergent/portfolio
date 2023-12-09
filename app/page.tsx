@@ -22,6 +22,7 @@ export default async function Home() {
         <div className="grid grid-cols-2 overflow-hidden rounded-3xl projects">
           {projects.documents.map((x, i) => (
             <div
+              key={x.$id}
               className="p-2 bg-slate-950"
               style={{
                 borderBottomRightRadius:
@@ -31,10 +32,7 @@ export default async function Home() {
                     : 0,
               }}
             >
-              <div
-                key={x.$id}
-                className="w-full aspect-video bg-slate-950/10 relative overflow-hidden rounded-3xl"
-              >
+              <div className="w-full aspect-video bg-slate-950/10 relative overflow-hidden rounded-3xl">
                 <img
                   src={`https://cloud.appwrite.io/v1/storage/buckets/${AW_PROJECT_BUCKET_ID}/files/${x.images[0]}/view?project=${AW_PROJECT_ID}`}
                   className="absolute inset-0 h-full w-full object-cover object-left-top"
