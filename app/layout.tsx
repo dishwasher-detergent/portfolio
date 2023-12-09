@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
-import AnimatedCursor from "react-animated-cursor";
+import { Karla } from "next/font/google";
 import "./globals.css";
 
-const font = Open_Sans({ subsets: ["latin"] });
+const font = Karla({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Kenneth Bass",
@@ -17,29 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${font.className} bg-primary text-white`}>
-        <AnimatedCursor
-          color="255,255,255"
-          innerSize={8}
-          outerSize={32}
-          innerScale={1.5}
-          outerScale={2}
-          clickables={[
-            "a",
-            'input[type="text"]',
-            'input[type="email"]',
-            'input[type="number"]',
-            'input[type="submit"]',
-            'input[type="image"]',
-            "label[for]",
-            "select",
-            "textarea",
-            "button",
-            ".link",
-          ]}
-        />
-        {children}
-      </body>
+      <body className={`${font.className}`}>{children}</body>
     </html>
   );
 }
