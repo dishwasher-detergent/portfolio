@@ -22,6 +22,37 @@ const fetchPortfolio = async () => {
   };
 };
 
+export async function generateMetadata() {
+  const { information } = await fetchPortfolio();
+
+  return {
+    title: information.title,
+    description: information.description,
+    image: `${BASE_URL}/image?width=256&height=256&quality=60`,
+    openGraph: {
+      title: information.title,
+      description: information.description,
+      url: "https://kennethbass.com",
+      siteName: "kennethbass.com",
+      locale: "en_US",
+      type: "website",
+      images: [
+        {
+          url: `${BASE_URL}/image?width=256&height=256&quality=60`,
+          width: 800,
+          height: 800,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_small_image",
+      title: information.title,
+      description: information.description,
+      images: [`${BASE_URL}/image?width=256&height=256&quality=60`],
+    },
+  };
+}
+
 export default async function Home() {
   const { information, projects } = await fetchPortfolio();
 
