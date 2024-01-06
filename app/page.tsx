@@ -6,7 +6,8 @@ import { Information, Projects } from "@/types/types";
 
 const fetchPortfolio = async () => {
   const response = await fetch(
-    "https://65859d577192b501841c.appwrite.global/portfolios/kenny"
+    "https://65859d577192b501841c.appwrite.global/portfolios/kenny",
+    { next: { revalidate: 0 } }
   );
 
   const data = await response.json();
