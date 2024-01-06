@@ -1,8 +1,6 @@
+import { fontClass } from "@/lib/font";
 import type { Metadata } from "next";
-import { Karla } from "next/font/google";
 import "./globals.css";
-
-const font = Karla({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Kenneth Bass",
@@ -16,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${font.className}`}>{children}</body>
+      <body className={`${fontClass} w-full`}>{children}</body>
     </html>
   );
 }

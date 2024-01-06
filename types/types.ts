@@ -1,11 +1,28 @@
-import { Models } from "appwrite";
+export interface Projects {
+  title: string;
+  slug: string;
+  short_description: string;
+  description: string;
+  images: string[];
+  position: number;
+  tags: string[];
+  color: string;
+  links: string[];
+}
 
-export type ProjectType = {
+export interface Information {
   title: string;
   description: string;
-  short_description: string;
-  images: string[];
-  website: string;
-  github: string;
-  tags: string[];
-} & Models.Document;
+  icon: string;
+  social: {
+    url: string;
+    value: string;
+  }[];
+}
+
+export interface Portfolios {
+  title: string;
+  slug: string;
+  information: Information;
+  projects: Projects[];
+}

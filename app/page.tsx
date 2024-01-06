@@ -1,85 +1,65 @@
-import {
-  AW_PROJECT_BUCKET_ID,
-  AW_PROJECT_ID,
-  AppwriteService,
-} from "@/utils/appwrite";
-import { LucideExternalLink, LucideGithub } from "lucide-react";
+import { HueLoop } from "@/components/hueLoop";
+import { Links } from "@/components/links";
+import { Tags } from "@/components/tags";
+import { displayClass } from "@/lib/font";
+import { Information, Projects } from "@/types/types";
 
-const fetchProjects = async () => {
-  return AppwriteService.listProjects();
+const fetchPortfolio = async () => {
+  const response = await fetch(
+    "https://65859d577192b501841c.appwrite.global/portfolios/kenny"
+  );
+
+  const data = await response.json();
+
+  const information = data.information as Information;
+  const projects = data.projects as Projects[];
+
+  return {
+    information,
+    projects,
+  };
 };
 
 export default async function Home() {
-  const projects = await fetchProjects();
+  const { information, projects } = await fetchPortfolio();
+
   return (
-    <main className="flex min-h-screen flex-col relative p-4 space-y-4">
-      <section className="p-4 h-[33vh] md:h-[50vh] flex flex-col justify-end text-white background rounded-3xl">
-        <p className="text-5xl md:text-9xl font-display">Hello!</p>
-        <h1 className="text-5xl md:text-9xl font-display">
-          I&apos;m Kenneth Bass
-        </h1>
-      </section>
-      <section>
-        <h2 className="text-6xl font-bold py-4">Explore My Work</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-3xl projects">
-          {projects.documents.map((x, i) => (
-            <div
-              key={x.$id}
-              className={`p-2 bg-slate-950 ${
-                i + 1 === projects.documents.length ||
-                i + 2 === projects.documents.length
-                  ? "md:rounded-br-3xl"
-                  : ""
-              }`}
-            >
-              <div className="w-full aspect-square md:aspect-video bg-slate-950/10 relative overflow-hidden rounded-3xl">
-                <img
-                  src={`https://cloud.appwrite.io/v1/storage/buckets/${AW_PROJECT_BUCKET_ID}/files/${x.images[0]}/view?project=${AW_PROJECT_ID}`}
-                  className="absolute inset-0 h-full w-full object-cover object-left-top"
-                />
-                <div className="p-4 bg-gradient-to-t from-slate-950/60 text-white to-transparent h-2/3 absolute bottom-0 w-full flex flex-col justify-end gap-2">
-                  <h3 className="font-bold text-3xl">{x.title}</h3>
-                  <div className="flex flex-row flex-wrap gap-2">
-                    {x.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="bg-white/20 rounded-full px-2 py-1 text-sm"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex flex-row flex-wrap gap-2">
-                    {x.website && (
-                      <a
-                        href={x.website}
-                        target="_blank"
-                        className="p-2 rounded-xl hover:bg-white/20"
-                      >
-                        <LucideExternalLink size={24} />
-                      </a>
-                    )}
-                    {x.github && (
-                      <a
-                        href={x.github}
-                        target="_blank"
-                        className="p-2 rounded-xl hover:bg-white/20"
-                      >
-                        <LucideGithub size={24} />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-          {projects.documents.length % 2 === 1 && (
-            <div className="relative filler hidden md:block">
-              <div className="absolute top-0 left-0 h-24 w-24 bg-slate-950" />
-              <div className="absolute top-0 left-0 h-24 w-24 bg-white rounded-tl-3xl" />
-            </div>
-          )}
+    <main className="flex min-h-screen w-full flex-col relative overflow-hidden">
+      <HueLoop />
+      <section className="w-full px-4 py-24 overflow-hidden">
+        <div className="max-w-5xl mx-auto mix-blend-luminosity">
+          <h1 className={`text-6xl font-bold ${displayClass}`}>
+            {information.title}
+          </h1>
+          <p className="text-xl font-semibold text-slate-600 pb-4">
+            {information.description}
+          </p>
+          <Links links={information.social.map((x) => x.url + x.value)} />
         </div>
+      </section>
+      <section className="p-4 space-y-8 md:space-y-4 max-w-5xl mx-auto w-full">
+        {projects.map((project) => (
+          <article className="flex flex-col md:flex-row gap-4">
+            <div className="flex-none w-full aspect-square md:w-64 md:h-64 overflow-hidden rounded-lg">
+              <img
+                src={`https://65859d577192b501841c.appwrite.global/portfolios/kenny/projects/${project.slug}/image/${project.images[0]}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="flex-1 space-y-2">
+              <h3
+                className={`text-3xl font-bold flex flex-row gap-4 items-center ${displayClass}`}
+              >
+                {project.title}
+                <Links links={project.links} />
+              </h3>
+              <Tags tags={project.tags} />
+              <p className="font-semibold text-slate-600">
+                {project.description}
+              </p>
+            </div>
+          </article>
+        ))}
       </section>
     </main>
   );
