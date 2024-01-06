@@ -3,6 +3,7 @@ import { Links } from "@/components/links";
 import { Tags } from "@/components/tags";
 import { displayClass } from "@/lib/font";
 import { Information, Projects } from "@/types/types";
+import Image from "next/image";
 
 const fetchPortfolio = async () => {
   const response = await fetch(
@@ -42,8 +43,9 @@ export default async function Home() {
         {projects.map((project, index) => (
           <article key={index} className="flex flex-col md:flex-row gap-4">
             <div className="flex-none w-full aspect-square md:w-64 md:h-64 overflow-hidden rounded-lg">
-              <img
+              <Image
                 src={`https://65859d577192b501841c.appwrite.global/portfolios/kenny/projects/${project.slug}/image/${project.images[0]}`}
+                alt={project.title}
                 className="w-full h-full object-cover"
               />
             </div>
