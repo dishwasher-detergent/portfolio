@@ -15,7 +15,7 @@ export const Links = ({ links }: LinksProps) => {
           const Icon = renderSiteIcon(extractWebsiteName(link.toLowerCase()));
 
           return (
-            <a target="_blank" href={link}>
+            <a key={index} target="_blank" href={link}>
               {<Icon className="h-5 w-5" />}
             </a>
           );
