@@ -39,8 +39,8 @@ export async function generateMetadata() {
       images: [
         {
           url: `${BASE_URL}/image?width=256&height=256&quality=60`,
-          width: 800,
-          height: 800,
+          width: 256,
+          height: 256,
         },
       ],
     },
