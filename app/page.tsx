@@ -45,7 +45,7 @@ export async function generateMetadata() {
       ],
     },
     twitter: {
-      card: "summary_small_image",
+      card: "summary",
       title: information.title,
       description: information.description,
       images: [`${BASE_URL}/image?width=256&height=256&quality=60`],
