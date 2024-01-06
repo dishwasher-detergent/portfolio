@@ -3,13 +3,12 @@ import { Links } from "@/components/links";
 import { Tags } from "@/components/tags";
 import { displayClass } from "@/lib/font";
 import { Information, Projects } from "@/types/types";
-import Image from "next/image";
+
+const BASE_URL =
+  "https://65859d577192b501841c.appwrite.global/portfolios/kenny";
 
 const fetchPortfolio = async () => {
-  const response = await fetch(
-    "https://65859d577192b501841c.appwrite.global/portfolios/kenny",
-    { next: { revalidate: 0 } }
-  );
+  const response = await fetch(BASE_URL, { next: { revalidate: 0 } });
 
   const data = await response.json();
 
@@ -33,19 +32,21 @@ export default async function Home() {
           <h1 className={`text-6xl font-bold ${displayClass}`}>
             {information.title}
           </h1>
-          <p className="text-xl font-semibold text-slate-600 pb-4">
+          <p className="text-xl font-semibold pb-4">
             {information.description}
           </p>
           <Links links={information.social.map((x) => x.url + x.value)} />
         </div>
       </section>
-      <section className="p-4 space-y-8 md:space-y-4 max-w-5xl mx-auto w-full">
+      <section className="p-4 space-y-8 max-w-5xl mx-auto w-full">
         {projects.map((project, index) => (
           <article key={index} className="flex flex-col md:flex-row gap-4">
-            <div className="flex-none w-full aspect-square md:w-64 md:h-64 overflow-hidden rounded-lg">
-              <Image
-                src={`https://65859d577192b501841c.appwrite.global/portfolios/kenny/projects/${project.slug}/image/${project.images[0]}`}
-                alt={project.title}
+            <div
+              className="flex-none w-full aspect-square md:w-64 md:h-64 overflow-hidden rounded-lg"
+              style={{ backgroundColor: project.color + "50" }}
+            >
+              <img
+                src={`${BASE_URL}/projects/${project.slug}/image/${project.images[0]}?width=256&height=256&quality=60`}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -57,7 +58,7 @@ export default async function Home() {
                 <Links links={project.links} />
               </h3>
               <Tags tags={project.tags} />
-              <p className="font-semibold text-slate-600">
+              <p className="font-semibold text-slate-600 dark:text-slate-100">
                 {project.description}
               </p>
             </div>
