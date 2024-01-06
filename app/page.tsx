@@ -38,8 +38,8 @@ export default async function Home() {
         </div>
       </section>
       <section className="p-4 space-y-8 md:space-y-4 max-w-5xl mx-auto w-full">
-        {projects.map((project) => (
-          <article className="flex flex-col md:flex-row gap-4">
+        {projects.map((project, index) => (
+          <article key={index} className="flex flex-col md:flex-row gap-4">
             <div className="flex-none w-full aspect-square md:w-64 md:h-64 overflow-hidden rounded-lg">
               <img
                 src={`https://65859d577192b501841c.appwrite.global/portfolios/kenny/projects/${project.slug}/image/${project.images[0]}`}
