@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@/context/theme-provider";
 import { fontClass } from "@/lib/font";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -13,9 +14,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <body className={`${fontClass} w-full dark:bg-slate-950 dark:text-white`}>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

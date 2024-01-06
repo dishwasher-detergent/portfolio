@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/components/dark-mode-toggle";
 import { HueLoop } from "@/components/hueLoop";
 import { Links } from "@/components/links";
 import { Tags } from "@/components/tags";
@@ -27,16 +28,19 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen w-full flex-col relative overflow-hidden">
       <HueLoop />
-      <section className="w-full px-4 py-24 overflow-hidden">
-        <div className="max-w-5xl mx-auto mix-blend-luminosity">
+      <section className="w-full px-4  overflow-hidden">
+        <nav className="max-w-5xl mx-auto flex justify-end p-4">
+          <ThemeToggle />
+        </nav>
+        <header className="py-24 max-w-5xl mx-auto mix-blend-luminosity">
           <h1 className={`text-6xl font-bold ${displayClass}`}>
             {information.title}
           </h1>
-          <p className="text-xl font-semibold pb-4">
+          <p className="text-xl font-semibold pb-2">
             {information.description}
           </p>
           <Links links={information.social.map((x) => x.url + x.value)} />
-        </div>
+        </header>
       </section>
       <section className="p-4 space-y-8 max-w-5xl mx-auto w-full">
         {projects.map((project, index) => (
@@ -65,6 +69,18 @@ export default async function Home() {
           </article>
         ))}
       </section>
+      <footer>
+        <div className="max-w-5xl mx-auto p-4 flex flex-col items-center">
+          <p>
+            Made with
+            <span role="img" aria-label="heart">
+              ❤️
+            </span>
+            by Kenny
+          </p>
+          <Links links={information.social.map((x) => x.url + x.value)} />
+        </div>
+      </footer>
     </main>
   );
 }
