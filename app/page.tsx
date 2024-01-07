@@ -3,7 +3,7 @@ import { HueLoop } from "@/components/hueLoop";
 import { Links } from "@/components/links";
 import { Tags } from "@/components/tags";
 import { displayClass } from "@/lib/font";
-import { Information, Projects } from "@/types/types";
+import { Experience, Information, Projects } from "@/types/types";
 
 const BASE_URL =
   "https://65859d577192b501841c.appwrite.global/portfolios/kenny";
@@ -15,10 +15,12 @@ const fetchPortfolio = async () => {
 
   const information = data.information as Information;
   const projects = data.projects as Projects[];
+  const experience = data.experience as Experience[];
 
   return {
     information,
     projects,
+    experience,
   };
 };
 
@@ -54,7 +56,7 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-  const { information, projects } = await fetchPortfolio();
+  const { information, projects, experience } = await fetchPortfolio();
 
   return (
     <main className="flex min-h-screen w-full flex-col relative overflow-hidden">
@@ -73,32 +75,78 @@ export default async function Home() {
           <Links links={information.social.map((x) => x.url + x.value)} />
         </header>
       </section>
-      <section className="p-4 space-y-8 max-w-5xl mx-auto w-full">
-        {projects.map((project, index) => (
-          <article key={index} className="flex flex-col md:flex-row gap-4">
-            <div
-              className="flex-none w-full aspect-square md:w-64 md:h-64 overflow-hidden rounded-lg"
-              style={{ backgroundColor: project.color + "50" }}
-            >
-              <img
-                src={`${BASE_URL}/projects/${project.slug}/image/${project.images[0]}?width=256&height=256&quality=60`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex-1 space-y-2">
-              <h3
-                className={`text-3xl font-bold flex flex-row gap-4 items-center ${displayClass}`}
+      <section className="p-4 max-w-5xl mx-auto w-full pb-12">
+        <h2 className="font-semibold pb-4 text-xl">Experience</h2>
+        <ul className="space-y-8">
+          {experience
+            .sort(
+              (a, b) =>
+                new Date(b.start).getTime() - new Date(a.start).getTime()
+            )
+            .map((experience, index) => (
+              <li key={index}>
+                <p>{experience.company}</p>
+                <h3
+                  className={`text-3xl font-bold flex flex-row gap-4 items-center ${displayClass}`}
+                >
+                  {experience.title}
+                </h3>
+                {experience.description && <p>{experience.description}</p>}
+                <div className="flex flex-row gap-2">
+                  <p>
+                    {new Date(experience.start).toLocaleDateString(undefined, {
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </p>
+                  {experience.end && (
+                    <>
+                      <p>-</p>
+                      <p>
+                        {new Date(experience.end).toLocaleDateString(
+                          undefined,
+                          {
+                            month: "long",
+                            day: "numeric",
+                          }
+                        )}
+                      </p>
+                    </>
+                  )}
+                </div>
+              </li>
+            ))}
+        </ul>
+      </section>
+      <section className="p-4 max-w-5xl mx-auto w-full pb-12">
+        <h2 className="font-semibold pb-4 text-xl">Projects</h2>
+        <div className="space-y-8">
+          {projects.map((project, index) => (
+            <article key={index} className="flex flex-col md:flex-row gap-4">
+              <div
+                className="flex-none w-full aspect-square md:w-64 md:h-64 overflow-hidden rounded-lg"
+                style={{ backgroundColor: project.color + "50" }}
               >
-                {project.title}
-                <Links links={project.links} />
-              </h3>
-              <Tags tags={project.tags} />
-              <p className="font-semibold text-slate-600 dark:text-slate-100">
-                {project.description}
-              </p>
-            </div>
-          </article>
-        ))}
+                <img
+                  src={`${BASE_URL}/projects/${project.slug}/image/${project.images[0]}?width=256&height=256&quality=60`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-1 space-y-2">
+                <h3
+                  className={`text-3xl font-bold flex flex-row gap-4 items-center ${displayClass}`}
+                >
+                  {project.title}
+                  <Links links={project.links} />
+                </h3>
+                <Tags tags={project.tags} />
+                <p className="font-semibold text-slate-600 dark:text-slate-100">
+                  {project.description}
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
       <footer>
         <div className="max-w-5xl mx-auto p-4 flex flex-col items-center">

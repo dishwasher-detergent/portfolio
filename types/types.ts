@@ -26,3 +26,11 @@ export interface Portfolios {
   information: Information;
   projects: Projects[];
 }
+
+export interface Experience {
+  company: string;
+  title: string;
+  description: string;
+  start: Date;
+  end: Date;
+}
