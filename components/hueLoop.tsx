@@ -7,7 +7,7 @@ export const HueLoop = () => {
 
   return (
     <div
-      className="absolute top-0 left-0 w-80 scale-[200%] gap-15 pointer-events-none flex -rotate-45 justify-center opacity-50"
+      className="gap-15 pointer-events-none absolute left-0 top-0 flex w-80 -rotate-45 scale-[200%] justify-center opacity-50"
       style={{ filter: `hue-rotate(${hueRotate}deg) saturate(7) blur(30px)` }}
     >
       <div className="h-48 w-8 bg-pink-500"></div>

@@ -59,35 +59,35 @@ export default async function Home() {
   const { information, projects, experience } = await fetchPortfolio();
 
   return (
-    <main className="flex min-h-screen w-full flex-col relative overflow-hidden">
+    <main className="relative flex min-h-screen w-full flex-col overflow-hidden">
       <HueLoop />
-      <section className="w-full px-4  overflow-hidden">
-        <nav className="max-w-5xl mx-auto flex justify-end p-4">
+      <section className="mx-auto w-full max-w-5xl overflow-hidden  px-4">
+        <nav className="flex justify-end p-4">
           <ThemeToggle />
         </nav>
-        <header className="py-24 max-w-5xl mx-auto mix-blend-luminosity">
+        <header className="py-24 mix-blend-luminosity">
           <h1 className={`text-6xl font-bold ${displayClass}`}>
             {information.title}
           </h1>
-          <p className="text-xl font-semibold pb-2">
+          <p className="pb-2 text-xl font-semibold">
             {information.description}
           </p>
           <Links links={information.social.map((x) => x.url + x.value)} />
         </header>
       </section>
-      <section className="p-4 max-w-5xl mx-auto w-full pb-12">
-        <h2 className="font-semibold pb-4 text-xl">Experience</h2>
+      <section className="mx-auto w-full max-w-5xl p-4 pb-12">
+        <h2 className="pb-4 text-xl font-semibold">Experience</h2>
         <ul className="space-y-8">
           {experience
             .sort(
               (a, b) =>
-                new Date(b.start).getTime() - new Date(a.start).getTime()
+                new Date(b.start).getTime() - new Date(a.start).getTime(),
             )
             .map((experience, index) => (
               <li key={index}>
                 <p>{experience.company}</p>
                 <h3
-                  className={`text-3xl font-bold flex flex-row gap-4 items-center ${displayClass}`}
+                  className={`flex flex-row items-center gap-4 text-3xl font-bold ${displayClass}`}
                 >
                   {experience.title}
                 </h3>
@@ -108,7 +108,7 @@ export default async function Home() {
                           {
                             month: "long",
                             day: "numeric",
-                          }
+                          },
                         )}
                       </p>
                     </>
@@ -118,23 +118,23 @@ export default async function Home() {
             ))}
         </ul>
       </section>
-      <section className="p-4 max-w-5xl mx-auto w-full pb-12">
-        <h2 className="font-semibold pb-4 text-xl">Projects</h2>
+      <section className="mx-auto w-full max-w-5xl p-4 pb-12">
+        <h2 className="pb-4 text-xl font-semibold">Projects</h2>
         <div className="space-y-8">
           {projects.map((project, index) => (
-            <article key={index} className="flex flex-col md:flex-row gap-4">
+            <article key={index} className="flex flex-col gap-4 md:flex-row">
               <div
-                className="flex-none w-full aspect-square md:w-64 md:h-64 overflow-hidden rounded-lg"
+                className="aspect-square w-full flex-none overflow-hidden rounded-lg md:h-64 md:w-64"
                 style={{ backgroundColor: project.color + "50" }}
               >
                 <img
                   src={`${BASE_URL}/projects/${project.slug}/image/${project.images[0]}?width=256&height=256&quality=60`}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                 />
               </div>
               <div className="flex-1 space-y-2">
                 <h3
-                  className={`text-3xl font-bold flex flex-row gap-4 items-center ${displayClass}`}
+                  className={`flex flex-row items-center gap-4 text-3xl font-bold ${displayClass}`}
                 >
                   {project.title}
                   <Links links={project.links} />
@@ -149,7 +149,7 @@ export default async function Home() {
         </div>
       </section>
       <footer>
-        <div className="max-w-5xl mx-auto p-4 flex flex-col items-center">
+        <div className="mx-auto flex max-w-5xl flex-col items-center p-4">
           <p>
             Made with
             <span role="img" aria-label="heart">
