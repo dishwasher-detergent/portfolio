@@ -1,5 +1,3 @@
-import { ThemeToggle } from "@/components/dark-mode-toggle";
-import { HueLoop } from "@/components/hueLoop";
 import { Links } from "@/components/links";
 import { Tags } from "@/components/tags";
 import { displayClass } from "@/lib/font";
@@ -60,12 +58,8 @@ export default async function Home() {
 
   return (
     <main className="relative flex min-h-screen w-full flex-col overflow-hidden">
-      <HueLoop />
       <section className="mx-auto w-full max-w-5xl overflow-hidden  px-4">
-        <nav className="flex justify-end p-4">
-          <ThemeToggle />
-        </nav>
-        <header className="py-24 mix-blend-luminosity">
+        <header className="py-24">
           <h1 className={`text-6xl font-bold ${displayClass}`}>
             {information.title}
           </h1>
