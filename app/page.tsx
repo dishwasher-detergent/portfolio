@@ -2,6 +2,7 @@ import { Links } from "@/components/links";
 import { Tags } from "@/components/tags";
 import { displayClass } from "@/lib/font";
 import { Experience, Information, Projects } from "@/types/types";
+import { Metadata } from "next";
 
 const BASE_URL =
   "https://65859d577192b501841c.appwrite.global/portfolios/kenny";
@@ -22,13 +23,19 @@ const fetchPortfolio = async () => {
   };
 };
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
   const { information } = await fetchPortfolio();
 
   return {
     title: information.title,
     description: information.description,
-    image: `${BASE_URL}/image?width=256&height=256&quality=60`,
+    icons: {
+      icon: [
+        {
+          url: `${BASE_URL}/favicon?width=64&height=64&quality=100`,
+        },
+      ],
+    },
     openGraph: {
       title: information.title,
       description: information.description,
@@ -38,7 +45,7 @@ export async function generateMetadata() {
       type: "website",
       images: [
         {
-          url: `${BASE_URL}/image?width=256&height=256&quality=60`,
+          url: `${BASE_URL}/favicon?width=256&height=256&quality=60`,
           width: 256,
           height: 256,
         },
@@ -48,7 +55,7 @@ export async function generateMetadata() {
       card: "summary",
       title: information.title,
       description: information.description,
-      images: [`${BASE_URL}/image?width=256&height=256&quality=60`],
+      images: [`${BASE_URL}/favicon?width=256&height=256&quality=60`],
     },
   };
 }
