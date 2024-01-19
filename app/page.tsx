@@ -87,9 +87,7 @@ export default async function Home() {
             .map((experience, index) => (
               <li key={index}>
                 <p>{experience.company}</p>
-                <h3
-                  className={`flex flex-row items-center gap-4 text-3xl font-bold ${displayClass}`}
-                >
+                <h3 className="flex flex-row items-center gap-4 text-3xl font-bold">
                   {experience.title}
                 </h3>
                 {experience.description && <p>{experience.description}</p>}
@@ -134,16 +132,12 @@ export default async function Home() {
                 />
               </div>
               <div className="flex-1 space-y-2">
-                <h3
-                  className={`flex flex-row items-center gap-4 text-3xl font-bold ${displayClass}`}
-                >
+                <h3 className="flex flex-row items-center gap-4 text-3xl font-bold">
                   {project.title}
                   <Links links={project.links} />
                 </h3>
                 <Tags tags={project.tags} />
-                <p className="font-semibold text-slate-600 dark:text-slate-100">
-                  {project.description}
-                </p>
+                <p>{project.description}</p>
               </div>
             </article>
           ))}

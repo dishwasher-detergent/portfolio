@@ -1,7 +1,11 @@
-import { Karla, Unbounded } from "next/font/google";
+import { Outfit as BaseFont } from "next/font/google";
+import localFont from "next/font/local";
 
-export const display = Unbounded({ subsets: ["latin"] });
-export const font = Karla({ subsets: ["latin"] });
+const display = localFont({
+  src: "../public/Carena-Regular.otf",
+});
+
+export const font = BaseFont({ subsets: ["latin"] });
 
 export const fontClass = font.className;
 export const displayClass = display.className;
