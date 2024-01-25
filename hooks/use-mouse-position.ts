@@ -11,17 +11,31 @@ const useMousePosition = () => {
     y: 0,
   });
 
+  const [mouseOut, setMouseOut] = useState<boolean>(false);
+
   useEffect(() => {
     const updateMousePosition = (ev: MouseEvent) => {
       setMousePosition({ x: ev.pageX, y: ev.pageY });
     };
+
+    const updateMouseOut = (ev: MouseEvent) => {
+      if (ev.relatedTarget === null || ev.relatedTarget === undefined) {
+        console.log("test2");
+        setMouseOut(true);
+      } else {
+        setMouseOut(false);
+      }
+    };
+
     window.addEventListener("mousemove", updateMousePosition);
+    window.addEventListener("mouseout", updateMouseOut);
     return () => {
       window.removeEventListener("mousemove", updateMousePosition);
+      window.removeEventListener("mouseout", updateMouseOut);
     };
   }, []);
 
-  return mousePosition;
+  return { mousePosition, mouseOut };
 };
 
 export default useMousePosition;

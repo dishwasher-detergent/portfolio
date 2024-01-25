@@ -5,15 +5,26 @@ import useMouseHover from "@/hooks/use-mouse-hover";
 import useMousePosition from "@/hooks/use-mouse-position";
 
 export const Hue = () => {
+  const DEFAULT_X = 256;
+  const DEFAULT_Y = 100;
+
   const hueRotate = useHueLoop(0, 360, 100);
-  const { x, y } = useMousePosition();
+  const {
+    mousePosition: { x, y },
+    mouseOut,
+  } = useMousePosition();
   const hovered = useMouseHover();
 
-  const height = hovered ? 320 : 256;
-  const width = hovered ? 320 : 256;
+  const calcHoveredSize = hovered ? 320 : 256;
 
-  const xPos = x ? x - width / 2 : 256;
-  const yPos = y ? y - height / 2 : 100;
+  const height = mouseOut ? 320 : calcHoveredSize;
+  const width = mouseOut ? 640 : calcHoveredSize;
+
+  const calcXPos = x ? x - width / 2 : DEFAULT_X;
+  const calcYPos = y ? y - height / 2 : DEFAULT_Y;
+
+  const xPos = mouseOut ? DEFAULT_X : calcXPos;
+  const yPos = mouseOut ? DEFAULT_Y : calcYPos;
 
   return (
     <div
