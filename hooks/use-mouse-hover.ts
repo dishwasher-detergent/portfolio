@@ -7,7 +7,7 @@ const useMouseHover = (
 
   useEffect(() => {
     const updateMouseHover = (ev: MouseEvent) => {
-      let target = ev.target as Element;
+      let target = ev.target as Element | null;
 
       // Traverse up the DOM tree to check if the target or its parent is one of the specified elements
       while (target) {
