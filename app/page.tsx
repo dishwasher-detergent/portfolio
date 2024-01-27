@@ -5,8 +5,7 @@ import { Experience, Information, Projects } from "@/types/types";
 import { LucideExternalLink } from "lucide-react";
 import { Metadata } from "next";
 
-const BASE_URL =
-  "https://65859d577192b501841c.appwrite.global/portfolios/kenny";
+const BASE_URL = "https://cdn.kennybass.xyz/portfolios/kenny";
 
 const fetchPortfolio = async () => {
   const response = await fetch(BASE_URL);
