@@ -2,7 +2,6 @@
 
 import { Links } from "@/components/links";
 import { HueContext } from "@/context/hue-provider";
-import { displayClass } from "@/lib/font";
 import { useContext, useEffect, useRef } from "react";
 
 interface HeaderProps {
@@ -31,7 +30,7 @@ export const Header = ({ title, description, socials }: HeaderProps) => {
 
   return (
     <header className="py-24">
-      <h1 ref={ref} className={`text-6xl font-bold ${displayClass}`}>
+      <h1 ref={ref} className={`text-5xl font-bold md:text-7xl`}>
         {title}
       </h1>
       <p className="pb-2 text-xl font-semibold">{description}</p>
