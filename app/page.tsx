@@ -156,12 +156,8 @@ export default async function Home() {
       </section>
       <footer className="py-12">
         <div className="mx-auto flex max-w-5xl flex-col items-center">
-          <p>
-            Made with
-            <span role="img" aria-label="heart">
-              ❤️
-            </span>
-            by Kenny
+          <p className="font-bold">
+            Made by the most rootin tootin cowboy in Oklahoma
           </p>
           <Links links={information.social.map((x) => x.url + x.value)} />
         </div>
