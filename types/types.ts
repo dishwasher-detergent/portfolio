@@ -33,4 +33,6 @@ export interface Experience {
   description: string;
   start: Date;
   end: Date;
+  website: string;
+  languages: string[];
 }

@@ -68,7 +68,7 @@ export const Hue = () => {
             }}
           >
             <div
-              className="gap-15 pointer-events-none flex w-80 origin-center -rotate-45 scale-[200%] justify-center opacity-50"
+              className="gap-15 pointer-events-none flex w-80 origin-center -rotate-45 scale-[200%] justify-center opacity-30"
               style={{
                 filter: `hue-rotate(${rotate}deg) saturate(8) blur(30px)`,
               }}
@@ -85,7 +85,7 @@ export const Hue = () => {
       <MobileView>
         <div className="absolute left-0 top-0 z-[-10] h-full w-full overflow-hidden">
           <div
-            className="gap-15 pointer-events-none flex w-80 origin-center -rotate-45 scale-[200%] justify-center opacity-50"
+            className="gap-15 pointer-events-none flex w-80 origin-center -rotate-45 scale-[200%] justify-center opacity-30"
             style={{
               filter: `hue-rotate(${rotate}deg) saturate(8) blur(30px)`,
             }}

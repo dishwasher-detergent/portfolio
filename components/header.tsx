@@ -29,11 +29,11 @@ export const Header = ({ title, description, socials }: HeaderProps) => {
   }, [ref.current, width]);
 
   return (
-    <header className="py-24">
-      <h1 ref={ref} className={`text-5xl font-bold md:text-7xl`}>
+    <header className="flex flex-col items-center py-12">
+      <h1 ref={ref} className={`text-center text-5xl font-bold md:text-7xl`}>
         {title}
       </h1>
-      <p className="pb-2 text-xl font-semibold">{description}</p>
+      <p className="pb-4 text-center">{description}</p>
       <Links links={socials.map((x) => x.url + x.value)} />
     </header>
   );
