@@ -9,7 +9,7 @@ const BASE_URL =
   "https://65859d577192b501841c.appwrite.global/portfolios/kenny";
 
 const fetchPortfolio = async () => {
-  const response = await fetch(BASE_URL, { next: { revalidate: 0 } });
+  const response = await fetch(BASE_URL);
 
   try {
     const data = await response.json();
