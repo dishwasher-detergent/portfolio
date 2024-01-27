@@ -11,23 +11,30 @@ const BASE_URL =
 const fetchPortfolio = async () => {
   const response = await fetch(BASE_URL, { next: { revalidate: 0 } });
 
-  const data = await response.json();
+  try {
+    const data = await response.json();
 
-  const information = data.information as Information;
-  const projects = data.projects as Projects[];
-  const experience = data.experience as Experience[];
+    const information = data.information as Information;
+    const projects = data.projects as Projects[];
+    const experience = data.experience as Experience[];
 
-  return {
-    information,
-    projects,
-    experience,
-  };
+    return {
+      information,
+      projects,
+      experience,
+    };
+  } catch (err) {
+    const error = err as Error;
+
+    throw new Error(error.message);
+  }
 };
 
 export async function generateMetadata(): Promise<Metadata> {
   const { information } = await fetchPortfolio();
 
   return {
+    metadataBase: new URL("https://kennethbass.com"),
     title: information.title,
     description: information.description,
     icons: {
