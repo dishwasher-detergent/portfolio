@@ -1,6 +1,6 @@
+import { Header } from "@/components/header";
 import { Links } from "@/components/links";
 import { Tags } from "@/components/tags";
-import { displayClass } from "@/lib/font";
 import { Experience, Information, Projects } from "@/types/types";
 import { Metadata } from "next";
 
@@ -66,15 +66,11 @@ export default async function Home() {
   return (
     <main className="relative flex min-h-screen w-full flex-col overflow-hidden">
       <section className="mx-auto w-full max-w-5xl overflow-hidden  px-4">
-        <header className="py-24">
-          <h1 className={`text-6xl font-bold ${displayClass}`}>
-            {information.title}
-          </h1>
-          <p className="pb-2 text-xl font-semibold">
-            {information.description}
-          </p>
-          <Links links={information.social.map((x) => x.url + x.value)} />
-        </header>
+        <Header
+          title={information.title}
+          description={information.description}
+          socials={information.social}
+        />
       </section>
       <section className="mx-auto w-full max-w-5xl p-4 pb-12">
         <h2 className="pb-4 text-xl font-semibold">Experience</h2>
