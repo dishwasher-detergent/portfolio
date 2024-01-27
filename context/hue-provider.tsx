@@ -54,6 +54,9 @@ const HueProvider = ({ children }: ProviderProps) => {
   } = useMousePosition();
   const hovered = useMouseHover();
 
+  const windowPosX = typeof window !== "undefined" ? window.scrollX : 0;
+  const windowPosY = typeof window !== "undefined" ? window.scrollY : 0;
+
   const calcHoveredSize = hovered ? 320 : 256;
 
   let height = mouseOut ? 320 : calcHoveredSize;
@@ -62,8 +65,8 @@ const HueProvider = ({ children }: ProviderProps) => {
   const calcXPos = original_x ? original_x - width / 2 : DEFAULT_X;
   const calcYPos = original_y ? original_y - height / 2 : DEFAULT_Y;
 
-  let x = (mouseOut ? DEFAULT_X : calcXPos) - window.scrollX;
-  let y = (mouseOut ? DEFAULT_Y : calcYPos) - window.scrollY;
+  let x = (mouseOut ? DEFAULT_X : calcXPos) - windowPosX;
+  let y = (mouseOut ? DEFAULT_Y : calcYPos) - windowPosY;
 
   if (isMobile) {
     x = DEFAULT_X;

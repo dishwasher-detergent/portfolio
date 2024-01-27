@@ -27,8 +27,9 @@ export const Hue = () => {
           height: height,
           width: width,
           filter: `blur(${hovered ? "30px" : "45px"})`,
+          opacity: x > 0 || y > 0 ? 1 : 0,
           transition:
-            "transform 200ms ease-out, filter 200ms linear, height 200ms linear, width 200ms linear",
+            "transform 200ms ease-out, filter 200ms linear, height 200ms linear, width 200ms linear, opacity 200ms linear",
         }}
       >
         <div

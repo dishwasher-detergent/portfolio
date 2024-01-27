@@ -12,7 +12,7 @@ const useMousePosition = () => {
     y: 0,
   });
 
-  const [mouseOut, setMouseOut] = useState<boolean>(false);
+  const [mouseOut, setMouseOut] = useState<boolean>(true);
 
   useEffect(() => {
     if (!isMobile) {
