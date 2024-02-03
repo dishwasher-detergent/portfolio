@@ -137,7 +137,7 @@ export default async function Home() {
       <section className="mx-auto w-full max-w-5xl">
         <h2 className="pb-4 text-xl font-semibold">Projects</h2>
         <div className="space-y-8">
-          {projects.map((project, index) => (
+          {projects.sort((a, b) => b.position - a.position).map((project, index) => (
             <article key={index} className="flex flex-col gap-4 md:flex-row">
               <div
                 className="aspect-video w-full flex-none overflow-hidden rounded-lg md:w-64"
