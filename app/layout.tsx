@@ -3,6 +3,7 @@ import { Hue } from "@/components/hue";
 import { HueProvider } from "@/context/hue-provider";
 import { ThemeProvider } from "@/context/theme-provider";
 import { fontClass } from "@/lib/font";
+import { Analytics } from "@vercel/analytics/react";
 import Link from "next/link";
 import "./globals.css";
 
@@ -35,6 +36,7 @@ export default function RootLayout({
             <Hue />
           </HueProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
