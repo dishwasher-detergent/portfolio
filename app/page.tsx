@@ -144,7 +144,7 @@ export default async function Home() {
                 style={{ backgroundColor: project.color + "50" }}
               >
                 <img
-                  src={`${BASE_URL}/projects/${project.slug}/image/${project.images[0]}?width=256&height=256&quality=60`}
+                  src={`${BASE_URL}/projects/${project.slug}/images/${project.images[0]}?width=256&height=256&quality=60`}
                   className="h-full w-full object-cover"
                 />
               </div>
