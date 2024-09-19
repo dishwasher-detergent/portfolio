@@ -8,7 +8,11 @@ import { Metadata } from "next";
 const BASE_URL = "https://cdn.kennybass.xyz/portfolios/kenny";
 
 const fetchPortfolio = async () => {
-  const response = await fetch(BASE_URL);
+  const response = await fetch(BASE_URL, { 
+    next: { 
+      revalidate: 1000 
+    } 
+  });
 
   try {
     const data = await response.json();
