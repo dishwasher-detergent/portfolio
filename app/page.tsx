@@ -149,7 +149,7 @@ export default async function Home() {
               >
                 <img
                   src={`${BASE_URL}/projects/${project.slug}/images/${project.images[0]}?width=256&height=256&quality=60`}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover object-left-top"
                 />
               </div>
               <div className="flex-1 space-y-4">
