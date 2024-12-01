@@ -4,7 +4,7 @@ interface TagsProps {
 
 export const Tags = ({ tags }: TagsProps) => {
   return (
-    <div className="flex flex-row flex-wrap gap-2">
+    <div className="my-4 flex flex-row flex-wrap gap-2">
       {tags.map((tag, index) => (
         <span
           key={index}

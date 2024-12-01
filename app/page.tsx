@@ -8,10 +8,10 @@ import { Metadata } from "next";
 const BASE_URL = "https://cdn.kennybass.xyz/portfolios/kenny";
 
 const fetchPortfolio = async () => {
-  const response = await fetch(BASE_URL, { 
-    next: { 
-      revalidate: 1000 
-    } 
+  const response = await fetch(BASE_URL, {
+    next: {
+      revalidate: 1000,
+    },
   });
 
   try {
@@ -93,47 +93,45 @@ export default async function Home() {
             )
             .map((experience, index) => (
               <li key={index}>
-                <div className="flex flex-row gap-2">
-                  <p>
+                <p className="flex flex-row gap-2">
+                  <span>
                     {new Date(experience.start).toLocaleDateString(undefined, {
                       month: "long",
                       year: "numeric",
                     })}
-                  </p>
-                  <p>-</p>
+                  </span>
+                  <span>-</span>
                   {experience.end ? (
-                    <p>
+                    <span>
                       {new Date(experience.end).toLocaleDateString(undefined, {
                         month: "long",
                         year: "numeric",
                       })}
-                    </p>
+                    </span>
                   ) : (
-                    <p>Present</p>
+                    <span>Present</span>
                   )}
-                </div>
-                <div className="space-y-4">
-                  <div>
-                    <p className="flex flex-row items-center gap-2">
-                      {experience.company}
-                      {experience.website && (
-                        <a
-                          key={index}
-                          target="_blank"
-                          href={experience.website}
-                          className="rounded-xl p-2 hover:bg-slate-600/20 hover:dark:bg-slate-200/20"
-                        >
-                          {<LucideExternalLink className="h-4 w-4" />}
-                        </a>
-                      )}
-                    </p>
-                    <h3 className="text-3xl font-bold">{experience.title}</h3>
-                  </div>
-                  <Tags tags={experience.languages} />
-                  {experience.description && (
-                    <p className="max-w-2xl">{experience.description}</p>
+                </p>
+                <h3 className="my-0.5 text-3xl font-bold">
+                  {experience.title}
+                </h3>
+                <p className="flex flex-row items-center gap-2">
+                  {experience.company}
+                  {experience.website && (
+                    <a
+                      key={index}
+                      target="_blank"
+                      href={experience.website}
+                      className="rounded-xl p-2 hover:bg-slate-600/20 hover:dark:bg-slate-200/20"
+                    >
+                      {<LucideExternalLink className="h-4 w-4" />}
+                    </a>
                   )}
-                </div>
+                </p>
+                <Tags tags={experience.languages} />
+                {experience.description && (
+                  <p className="max-w-2xl">{experience.description}</p>
+                )}
               </li>
             ))}
         </ul>
@@ -141,27 +139,32 @@ export default async function Home() {
       <section className="mx-auto w-full max-w-5xl">
         <h2 className="pb-4 text-xl font-semibold">Projects</h2>
         <div className="space-y-8">
-          {projects.sort((a, b) => b.position - a.position).map((project, index) => (
-            <article key={index} className="flex flex-col gap-4 md:flex-row">
-              <div
-                className="aspect-video w-full flex-none overflow-hidden rounded-lg md:w-64"
-                style={{ backgroundColor: project.color + "50" }}
+          {projects
+            .sort((a, b) => b.position - a.position)
+            .map((project, index) => (
+              <article
+                key={index}
+                className="flex flex-col items-start gap-4 md:flex-row"
               >
-                <img
-                  src={`${BASE_URL}/projects/${project.slug}/images/${project.images[0]}?width=256&height=256&quality=60`}
-                  className="h-full w-full object-cover object-left-top"
-                />
-              </div>
-              <div className="flex-1 space-y-4">
-                <h3 className="flex flex-row items-center gap-2 text-3xl font-bold">
-                  {project.title}
-                  <Links links={project.links} />
-                </h3>
-                <Tags tags={project.tags} />
-                <p className="max-w-2xl">{project.description}</p>
-              </div>
-            </article>
-          ))}
+                <div
+                  className="aspect-video w-full flex-none overflow-hidden rounded-lg md:aspect-square md:w-64"
+                  style={{ backgroundColor: project.color + "50" }}
+                >
+                  <img
+                    src={`${BASE_URL}/projects/${project.slug}/images/${project.images[0]}?width=512&height=512&quality=60`}
+                    className="h-full w-full object-cover object-left-top"
+                  />
+                </div>
+                <div className="flex-1 space-y-4">
+                  <h3 className="flex flex-row items-center gap-2 text-3xl font-bold">
+                    {project.title}
+                    <Links links={project.links} />
+                  </h3>
+                  <Tags tags={project.tags} />
+                  <p className="max-w-2xl">{project.description}</p>
+                </div>
+              </article>
+            ))}
         </div>
       </section>
       <footer className="py-12">
