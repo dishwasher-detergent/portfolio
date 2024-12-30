@@ -155,7 +155,7 @@ export default async function Home() {
               {project?.image_ids?.length > 0 && (
                 <div className="aspect-video w-full flex-none overflow-hidden rounded-lg md:aspect-square md:w-64">
                   <img
-                    src={`${BASE_URL}/organizations/${project.slug}/images/${project.image_ids[0]}?width=512&height=512&quality=60`}
+                    src={`${BASE_URL}/projects/${project.id}/images/${project.image_ids[0]}?width=512&height=512&quality=60`}
                     className="h-full w-full object-cover object-left-top"
                   />
                 </div>
