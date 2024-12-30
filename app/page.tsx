@@ -6,7 +6,7 @@ import { LucideExternalLink } from "lucide-react";
 import { Metadata } from "next";
 
 const BASE_URL =
-  "http://67719ec5a84833a99973.appwrite.global/organizations/6771fb5e00156e3c9638";
+  "https://67719ec5a84833a99973.appwrite.global/organizations/6771fb5e00156e3c9638";
 
 const fetchPortfolio = async () => {
   const response = await fetch(BASE_URL, {
