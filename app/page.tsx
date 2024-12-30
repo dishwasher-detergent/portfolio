@@ -5,7 +5,8 @@ import { Experience, Information, Projects } from "@/types/types";
 import { LucideExternalLink } from "lucide-react";
 import { Metadata } from "next";
 
-const BASE_URL = "https://cdn.kennybass.xyz/portfolios/kenny";
+const BASE_URL =
+  "http://67719ec5a84833a99973.appwrite.global/organizations/6771fb5e00156e3c9638";
 
 const fetchPortfolio = async () => {
   const response = await fetch(BASE_URL, {
@@ -80,7 +81,7 @@ export default async function Home() {
         <Header
           title={information.title}
           description={information.description}
-          socials={information.social}
+          socials={information.socials}
         />
       </section>
       <section className="mx-auto w-full max-w-5xl">
@@ -89,24 +90,31 @@ export default async function Home() {
           {experience
             .sort(
               (a, b) =>
-                new Date(b.start).getTime() - new Date(a.start).getTime(),
+                new Date(b.start_date).getTime() -
+                new Date(a.start_date).getTime(),
             )
             .map((experience, index) => (
               <li key={index}>
                 <p className="flex flex-row gap-2">
                   <span>
-                    {new Date(experience.start).toLocaleDateString(undefined, {
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </span>
-                  <span>-</span>
-                  {experience.end ? (
-                    <span>
-                      {new Date(experience.end).toLocaleDateString(undefined, {
+                    {new Date(experience.start_date).toLocaleDateString(
+                      undefined,
+                      {
                         month: "long",
                         year: "numeric",
-                      })}
+                      },
+                    )}
+                  </span>
+                  <span>-</span>
+                  {experience.end_date ? (
+                    <span>
+                      {new Date(experience.end_date).toLocaleDateString(
+                        undefined,
+                        {
+                          month: "long",
+                          year: "numeric",
+                        },
+                      )}
                     </span>
                   ) : (
                     <span>Present</span>
@@ -121,14 +129,14 @@ export default async function Home() {
                     <a
                       key={index}
                       target="_blank"
-                      href={experience.website}
+                      href={experience.website.toString()}
                       className="rounded-xl p-2 hover:bg-slate-600/20 hover:dark:bg-slate-200/20"
                     >
                       {<LucideExternalLink className="h-4 w-4" />}
                     </a>
                   )}
                 </p>
-                <Tags tags={experience.languages} />
+                <Tags tags={experience.skills} />
                 {experience.description && (
                   <p className="max-w-2xl">{experience.description}</p>
                 )}
@@ -139,32 +147,29 @@ export default async function Home() {
       <section className="mx-auto w-full max-w-5xl">
         <h2 className="pb-4 text-xl font-semibold">Projects</h2>
         <div className="space-y-8">
-          {projects
-            .sort((a, b) => b.position - a.position)
-            .map((project, index) => (
-              <article
-                key={index}
-                className="flex flex-col items-start gap-4 md:flex-row"
-              >
-                <div
-                  className="aspect-video w-full flex-none overflow-hidden rounded-lg md:aspect-square md:w-64"
-                  style={{ backgroundColor: project.color + "50" }}
-                >
+          {projects.map((project, index) => (
+            <article
+              key={index}
+              className="flex flex-col items-start gap-4 md:flex-row"
+            >
+              {project?.image_ids?.length > 0 && (
+                <div className="aspect-video w-full flex-none overflow-hidden rounded-lg md:aspect-square md:w-64">
                   <img
-                    src={`${BASE_URL}/projects/${project.slug}/images/${project.images[0]}?width=512&height=512&quality=60`}
+                    src={`${BASE_URL}/organizations/${project.slug}/images/${project.image_ids[0]}?width=512&height=512&quality=60`}
                     className="h-full w-full object-cover object-left-top"
                   />
                 </div>
-                <div className="flex-1 space-y-4">
-                  <h3 className="flex flex-row items-center gap-2 text-3xl font-bold">
-                    {project.title}
-                    <Links links={project.links} />
-                  </h3>
-                  <Tags tags={project.tags} />
-                  <p className="max-w-2xl">{project.description}</p>
-                </div>
-              </article>
-            ))}
+              )}
+              <div className="flex-1 space-y-4">
+                <h3 className="flex flex-row items-center gap-2 text-3xl font-bold">
+                  {project.title}
+                  <Links links={project.links} />
+                </h3>
+                <Tags tags={project.tags} />
+                <p className="max-w-2xl">{project.description}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
       <footer className="py-12">
@@ -172,7 +177,7 @@ export default async function Home() {
           <p className="font-bold">
             Made by the most rootin tootin cowboy in Oklahoma
           </p>
-          <Links links={information.social.map((x) => x.url + x.value)} />
+          <Links links={information.socials} />
         </div>
       </footer>
     </main>

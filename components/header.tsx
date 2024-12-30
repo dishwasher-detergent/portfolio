@@ -7,10 +7,7 @@ import { useContext, useEffect, useRef } from "react";
 interface HeaderProps {
   title: string;
   description: string;
-  socials: {
-    url: string;
-    value: string;
-  }[];
+  socials: string[];
 }
 
 export const Header = ({ title, description, socials }: HeaderProps) => {
@@ -34,7 +31,7 @@ export const Header = ({ title, description, socials }: HeaderProps) => {
         {title}
       </h1>
       <p className="pb-4 text-center">{description}</p>
-      <Links links={socials.map((x) => x.url + x.value)} />
+      <Links links={socials} />
     </header>
   );
 };

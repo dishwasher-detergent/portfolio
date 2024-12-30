@@ -1,38 +1,44 @@
 export interface Projects {
+  id: string;
   title: string;
-  slug: string;
   short_description: string;
   description: string;
-  images: string[];
-  position: number;
+  image_ids: string[];
   tags: string[];
-  color: string;
   links: string[];
+  slug: string;
+  organization_id: string;
 }
 
 export interface Information {
+  id: string;
   title: string;
   description: string;
-  icon: string;
-  social: {
-    url: string;
-    value: string;
-  }[];
+  image_id: string;
+  socials: string[];
+  organization_id: string;
+  createdBy: string;
 }
 
-export interface Portfolios {
+export interface Organizations {
+  id: string;
   title: string;
   slug: string;
-  information: Information;
-  projects: Projects[];
+  information_id: string;
+  project_ids: string[];
+  experience_id: string | null;
+  createdBy: string;
 }
 
 export interface Experience {
-  company: string;
+  id: string;
   title: string;
   description: string;
-  start: Date;
-  end: Date;
-  website: string;
-  languages: string[];
+  start_date: Date;
+  end_date: Date;
+  company: string;
+  website: URL;
+  skills: string[];
+  createdBy: string;
+  organization_id: string;
 }
