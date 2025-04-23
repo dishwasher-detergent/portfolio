@@ -9,11 +9,7 @@ const BASE_URL =
   "https://67719ec5a84833a99973.appwrite.global/organizations/6771fb5e00156e3c9638";
 
 const fetchPortfolio = async () => {
-  const response = await fetch(BASE_URL, {
-    next: {
-      revalidate: 1000,
-    },
-  });
+  const response = await fetch(BASE_URL, { next: { revalidate: 1000 } });
 
   try {
     const data = await response.json();
@@ -22,11 +18,7 @@ const fetchPortfolio = async () => {
     const projects = data.projects as Projects[];
     const experience = data.experience as Experience[];
 
-    return {
-      information,
-      projects,
-      experience,
-    };
+    return { information, projects, experience };
   } catch (err) {
     const error = err as Error;
 
@@ -42,11 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: information.title,
     description: information.description,
     icons: {
-      icon: [
-        {
-          url: `${BASE_URL}/favicon?width=64&height=64&quality=100`,
-        },
-      ],
+      icon: [{ url: `${BASE_URL}/favicon?width=64&height=64&quality=100` }],
     },
     openGraph: {
       title: information.title,
@@ -99,10 +87,7 @@ export default async function Home() {
                   <span>
                     {new Date(experience.start_date).toLocaleDateString(
                       undefined,
-                      {
-                        month: "long",
-                        year: "numeric",
-                      },
+                      { month: "long", year: "numeric" },
                     )}
                   </span>
                   <span>-</span>
@@ -110,10 +95,7 @@ export default async function Home() {
                     <span>
                       {new Date(experience.end_date).toLocaleDateString(
                         undefined,
-                        {
-                          month: "long",
-                          year: "numeric",
-                        },
+                        { month: "long", year: "numeric" },
                       )}
                     </span>
                   ) : (
@@ -152,7 +134,7 @@ export default async function Home() {
               key={index}
               className="flex flex-col items-start gap-4 md:flex-row"
             >
-              {project?.image_ids?.length > 0 && (
+              {project.image_ids?.length > 0 && (
                 <div className="aspect-video w-full flex-none overflow-hidden rounded-lg md:aspect-square md:w-64">
                   <img
                     src={`${BASE_URL}/projects/${project.id}/images/${project.image_ids[0]}?width=512&height=512&quality=60`}

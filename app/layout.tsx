@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fontClass} relative w-full bg-white text-slate-900 dark:bg-slate-950 dark:text-white`}
+        className={`${fontClass} relative w-full bg-white pb-16 text-slate-900 dark:bg-slate-950 dark:text-white`}
       >
         <ThemeProvider
           attribute="class"
