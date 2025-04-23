@@ -1,4 +1,4 @@
-export interface Projects {
+export interface Project {
   id: string;
   title: string;
   short_description: string;
@@ -20,7 +20,7 @@ export interface Information {
   createdBy: string;
 }
 
-export interface Organizations {
+export interface Organization {
   id: string;
   title: string;
   slug: string;

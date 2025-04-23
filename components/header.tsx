@@ -67,7 +67,7 @@ export const Header = ({ title, description, socials }: HeaderProps) => {
             exit={{ y: 100, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
-            <div className="flex flex-row items-center gap-2 rounded-xl bg-black/15 px-6 py-3 backdrop-blur-md dark:bg-white/10">
+            <div className="flex flex-row items-center gap-2 rounded-xl bg-slate-900/10 p-3 px-6 backdrop-blur-md dark:bg-slate-50/10">
               <Links links={socials} />
               <LucideDot className="size-6" />
               <ThemeToggle />

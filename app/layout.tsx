@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fontClass} relative w-full bg-white pb-16 text-slate-900 dark:bg-slate-950 dark:text-white`}
+        className={`${fontClass} relative w-full bg-slate-50 pb-16 text-slate-900 dark:bg-slate-950 dark:text-slate-50`}
       >
         <ThemeProvider
           attribute="class"
@@ -24,7 +24,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <HueProvider>
-            <nav className="sticky top-0 z-50 bg-white/10 backdrop-blur-md dark:bg-slate-950/10">
+            <nav className="sticky top-0 z-50 bg-slate-50/10 backdrop-blur-md dark:bg-slate-950/10">
               <div className="mx-auto flex max-w-5xl items-center justify-between p-4">
                 <Link href="/" className={`font-bold`}>
                   KB
