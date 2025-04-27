@@ -7,20 +7,20 @@ export function ExperienceCard({ experience }: { experience: Experience }) {
     <li className="experience-item">
       <header>
         <time
-          dateTime={experience.start_date.toString()}
+          dateTime={experience.startDate.toString()}
           className="flex flex-row gap-2"
         >
           <span>
-            {new Date(experience.start_date).toLocaleDateString(undefined, {
+            {new Date(experience.startDate).toLocaleDateString(undefined, {
               month: "long",
               year: "numeric",
             })}
           </span>
           <span aria-hidden="true">-</span>
-          {experience.end_date ? (
+          {experience.endDate ? (
             <span>
-              <time dateTime={experience.end_date.toString()}>
-                {new Date(experience.end_date).toLocaleDateString(undefined, {
+              <time dateTime={experience.endDate.toString()}>
+                {new Date(experience.endDate).toLocaleDateString(undefined, {
                   month: "long",
                   year: "numeric",
                 })}

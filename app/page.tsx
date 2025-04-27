@@ -3,11 +3,7 @@ import { Header } from "@/components/header";
 import { Links } from "@/components/links";
 import { ProjectCard } from "@/components/project-card";
 import { BASE_URL } from "@/constants/base.constants";
-import {
-  Experience as ExperienceType,
-  Information,
-  Project,
-} from "@/types/types";
+import { Experience as ExperienceType, Project } from "@/types/types";
 import { Metadata } from "next";
 
 const fetchPortfolio = async () => {
@@ -16,11 +12,10 @@ const fetchPortfolio = async () => {
   try {
     const data = await response.json();
 
-    const information = data.information as Information;
     const projects = data.projects as Project[];
     const experience = data.experience as ExperienceType[];
 
-    return { information, projects, experience };
+    return { data, projects, experience };
   } catch (err) {
     const error = err as Error;
 
@@ -29,18 +24,18 @@ const fetchPortfolio = async () => {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { information } = await fetchPortfolio();
+  const { data } = await fetchPortfolio();
 
   return {
     metadataBase: new URL("https://kennethbass.com"),
-    title: information.title,
-    description: information.description,
+    title: data.title,
+    description: data.description,
     icons: {
       icon: [{ url: `${BASE_URL}/favicon?width=64&height=64&quality=100` }],
     },
     openGraph: {
-      title: information.title,
-      description: information.description,
+      title: data.title,
+      description: data.description,
       url: "https://kennethbass.com",
       siteName: "kennethbass.com",
       locale: "en_US",
@@ -55,23 +50,23 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary",
-      title: information.title,
-      description: information.description,
+      title: data.title,
+      description: data.description,
       images: [`${BASE_URL}/favicon?width=256&height=256&quality=60`],
     },
   };
 }
 
 export default async function Home() {
-  const { information, projects, experience } = await fetchPortfolio();
+  const { data, projects, experience } = await fetchPortfolio();
 
   return (
     <main className="relative flex min-h-screen w-full flex-col gap-16 overflow-hidden px-4">
       <section className="mx-auto w-full max-w-5xl overflow-hidden pt-12">
         <Header
-          title={information.title}
-          description={information.description}
-          socials={information.socials}
+          title={data.title}
+          description={data.description}
+          socials={data.socials}
         />
       </section>
       <section className="mx-auto w-full max-w-5xl">
@@ -91,7 +86,7 @@ export default async function Home() {
           <p className="font-bold">
             Made by the most rootin tootin cowboy in Oklahoma
           </p>
-          <Links links={information.socials} />
+          <Links links={data.socials} />
         </div>
       </footer>
     </main>

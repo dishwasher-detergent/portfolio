@@ -20,16 +20,16 @@ export function ProjectCard({ project }: { project: Project }) {
   const navigateImages = (direction: "next" | "prev") => {
     if (direction === "next") {
       setCurrentImageIndex(
-        (prev) => (prev + 1) % (project.image_ids?.length || 1),
+        (prev) => (prev + 1) % (project.images?.length || 1),
       );
     } else {
       setCurrentImageIndex((prev) =>
-        prev === 0 ? (project.image_ids?.length || 1) - 1 : prev - 1,
+        prev === 0 ? (project.images?.length || 1) - 1 : prev - 1,
       );
     }
   };
 
-  const imageUrl = `${BASE_URL}/projects/${project.id}/images/${project.image_ids[currentImageIndex]}?width=1024&height=1024&quality=80`;
+  const imageUrl = `${BASE_URL}/projects/${project.id}/images/${project.images[currentImageIndex]}?width=1024&height=1024&quality=80`;
 
   return (
     <LayoutGroup id={`project-${project.id}`}>
@@ -87,7 +87,7 @@ export function ProjectCard({ project }: { project: Project }) {
                       : `image-${currentImageIndex}`
                   }
                   src={imageUrl}
-                  alt={`${project.title} project image ${currentImageIndex + 1} of ${project.image_ids.length}`}
+                  alt={`${project.title} project image ${currentImageIndex + 1} of ${project.images.length}`}
                   className={
                     isExpanded
                       ? "h-full w-full object-contain"
@@ -111,7 +111,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 )}
               </motion.figure>
 
-              {isExpanded && project.image_ids.length > 1 && (
+              {isExpanded && project.images.length > 1 && (
                 <motion.div
                   className="mt-4 flex w-full items-center justify-between rounded-xl bg-slate-900/30 p-3 backdrop-blur-md dark:bg-slate-50/10"
                   initial={{ opacity: 0, y: 10 }}
@@ -128,7 +128,7 @@ export function ProjectCard({ project }: { project: Project }) {
                     <ChevronLeft size={20} />
                   </button>
                   <div className="rounded-xl bg-slate-900/50 px-3 py-1 text-sm font-semibold text-slate-50 dark:bg-slate-50/10">
-                    {currentImageIndex + 1} / {project.image_ids.length}
+                    {currentImageIndex + 1} / {project.images.length}
                   </div>
                   <button
                     className="rounded-xl p-2 text-slate-900 hover:bg-slate-600/20 dark:text-slate-50"
