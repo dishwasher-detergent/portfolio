@@ -1,12 +1,13 @@
 "use client";
 
-import { Links } from "@/components/links";
-import { Tags } from "@/components/tags";
-import { BASE_URL } from "@/constants/base.constants";
-import { Project } from "@/types/types";
+import { Project } from "@kurioh/client/interfaces";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useState } from "react";
+
+import { Links } from "@/components/links";
+import { Tags } from "@/components/tags";
+import { BASE_URL, TEAM_ID } from "@/constants/base.constants";
 
 export function ProjectCard({ project }: { project: Project }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -29,7 +30,7 @@ export function ProjectCard({ project }: { project: Project }) {
     }
   };
 
-  const imageUrl = `${BASE_URL}/projects/${project.id}/images/${project.images[currentImageIndex]}?width=1024&height=1024&quality=80`;
+  const imageUrl = `${BASE_URL}/teams/${TEAM_ID}/projects/${project.id}/images/${project.images[currentImageIndex]}?width=1024&height=1024&quality=80`;
 
   return (
     <LayoutGroup id={`project-${project.id}`}>

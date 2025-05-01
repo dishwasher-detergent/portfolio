@@ -1,2 +1,2 @@
-export const BASE_URL =
-  "https://6808275830d4efb30a3f.nyc.appwrite.run/teams/6771fb5e00156e3c9638";
+export const BASE_URL = "https://api.kurioh.com";
+export const TEAM_ID = "6771fb5e00156e3c9638";

@@ -1,7 +1,8 @@
 "use client"; // Error components must be Client Components
 
-import { HueContext } from "@/context/hue-provider";
 import { useContext, useEffect, useRef } from "react";
+
+import { HueContext } from "@/context/hue-provider";
 
 export default function Error({ reset }: { reset: () => void }) {
   const { setAnchor, width } = useContext(HueContext);

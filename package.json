@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@kurioh/client": "^1.0.0",
     "@vercel/analytics": "^1.2.2",
     "appwrite": "^13.0.0",
     "framer-motion": "^12.7.4",

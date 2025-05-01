@@ -1,8 +1,9 @@
 "use client";
 
-import { HueContext, HueContextProps } from "@/context/hue-provider";
 import { useContext } from "react";
 import { BrowserView, MobileView, isMobile } from "react-device-detect";
+
+import { HueContext, HueContextProps } from "@/context/hue-provider";
 
 export const Hue = () => {
   const {

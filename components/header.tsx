@@ -1,11 +1,12 @@
 "use client";
 
-import { Links } from "@/components/links";
-import { HueContext } from "@/context/hue-provider";
 import { AnimatePresence, motion } from "framer-motion";
 import { LucideDot } from "lucide-react";
 import { useContext, useEffect, useRef, useState } from "react";
-import { ThemeToggle } from "./dark-mode-toggle";
+
+import { ThemeToggle } from "@/components/dark-mode-toggle";
+import { Links } from "@/components/links";
+import { HueContext } from "@/context/hue-provider";
 
 interface HeaderProps {
   title: string;

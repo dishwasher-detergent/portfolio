@@ -1,19 +1,25 @@
+import { Metadata } from "next";
+
 import { Experience } from "@/components/experience";
 import { Header } from "@/components/header";
 import { Links } from "@/components/links";
 import { ProjectCard } from "@/components/project-card";
-import { BASE_URL } from "@/constants/base.constants";
-import { Experience as ExperienceType, Project } from "@/types/types";
-import { Metadata } from "next";
+import { BASE_URL, TEAM_ID } from "@/constants/base.constants";
+
+import { Client } from "@kurioh/client";
 
 const fetchPortfolio = async () => {
-  const response = await fetch(BASE_URL, { next: { revalidate: 1000 } });
+  const client = new Client(BASE_URL, TEAM_ID);
 
   try {
-    const data = await response.json();
+    const { data, isError, error } = await client.team.get();
 
-    const projects = data.projects as Project[];
-    const experience = data.experience as ExperienceType[];
+    if (isError || !data) {
+      throw new Error(error?.message || "Failed to fetch portfolio data");
+    }
+
+    const projects = data.projects;
+    const experience = data.experience;
 
     return { data, projects, experience };
   } catch (err) {

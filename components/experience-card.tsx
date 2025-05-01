@@ -1,6 +1,7 @@
-import { Tags } from "@/components/tags";
-import { Experience } from "@/types/types";
+import { Experience } from "@kurioh/client/interfaces";
 import { LucideExternalLink } from "lucide-react";
+
+import { Tags } from "@/components/tags";
 
 export function ExperienceCard({ experience }: { experience: Experience }) {
   return (
