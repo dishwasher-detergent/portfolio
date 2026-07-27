@@ -66,9 +66,9 @@ export const Header = ({ title, description, socials }: HeaderProps) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="mx-auto flex h-full max-w-3xl items-start justify-end px-4 pt-24">
-              <div className="pointer-events-auto flex flex-row items-center rounded-xl bg-slate-50/70 p-2 backdrop-blur-md dark:bg-slate-950/70">
-                <Links links={socials} />
+            <div className="mx-auto flex h-full max-w-4xl items-start justify-end px-4 pt-24">
+              <div className="pointer-events-auto flex flex-col items-center rounded-xl bg-slate-50/70 p-2 backdrop-blur-md dark:bg-slate-950/70">
+                <Links links={socials} orientation="col" />
               </div>
             </div>
           </motion.div>

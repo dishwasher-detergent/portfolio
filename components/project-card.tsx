@@ -3,20 +3,35 @@
 import { Project } from "@kurioh/client/interfaces";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Links } from "@/components/links";
 import { Tags } from "@/components/tags";
 import { BASE_URL, TEAM_ID } from "@/constants/base.constants";
 
+const imageTransition = { layout: { duration: 0.35, ease: [0.32, 0.72, 0, 1] } };
+
 export function ProjectCard({ project }: { project: Project }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [hasSettled, setHasSettled] = useState(false);
 
   const handleToggleExpand = () => {
+    setHasSettled(false);
     setIsExpanded(!isExpanded);
     document.body.style.overflow = isExpanded ? "auto" : "hidden";
   };
+
+  useEffect(() => {
+    if (!isExpanded) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") handleToggleExpand();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isExpanded]);
 
   const navigateImages = (direction: "next" | "prev") => {
     if (direction === "next") {
@@ -46,16 +61,16 @@ export function ProjectCard({ project }: { project: Project }) {
           <AnimatePresence>
             {isExpanded && (
               <motion.div
-                className="fixed inset-0 z-50 bg-slate-50/50 backdrop-blur-md dark:bg-slate-900/80"
+                className="fixed inset-0 z-50 bg-slate-50/70 backdrop-blur-md dark:bg-slate-950/80"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
                 onClick={handleToggleExpand}
               />
             )}
           </AnimatePresence>
-          <motion.div
-            layoutId={`project-container-${project.id}`}
+          <div
             className={
               isExpanded
                 ? "fixed inset-0 z-50 flex items-center justify-center"
@@ -69,10 +84,12 @@ export function ProjectCard({ project }: { project: Project }) {
             >
               <motion.figure
                 layoutId={`project-figure-${project.id}`}
+                transition={imageTransition}
+                onLayoutAnimationComplete={() => setHasSettled(isExpanded)}
                 className={
                   isExpanded
-                    ? "relative aspect-square w-full overflow-hidden rounded-lg"
-                    : "aspect-video w-full flex-none cursor-pointer overflow-hidden rounded-lg md:aspect-square md:w-40"
+                    ? "relative aspect-square w-full overflow-hidden rounded-xl"
+                    : "aspect-video w-full flex-none cursor-pointer overflow-hidden rounded-xl md:aspect-square md:w-40"
                 }
                 onClick={isExpanded ? undefined : handleToggleExpand}
                 style={{
@@ -90,60 +107,66 @@ export function ProjectCard({ project }: { project: Project }) {
                   src={imageUrl}
                   alt={`${project.title} project image ${currentImageIndex + 1} of ${project.images.length}`}
                   className={
-                    isExpanded
+                    isExpanded && hasSettled
                       ? "h-full w-full object-contain"
                       : "h-full w-full object-cover"
                   }
-                  transition={{ layout: { duration: 0.3, ease: "easeInOut" } }}
+                  transition={imageTransition}
                 />
 
                 {isExpanded && (
-                  <div className="absolute right-4 top-4">
+                  <motion.div
+                    className="absolute right-3 top-3"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.2, delay: 0.15 }}
+                  >
                     <button
-                      className="rounded-lg bg-slate-900/50 p-2 text-slate-50"
+                      className="rounded-lg bg-slate-50/70 p-1.5 text-slate-900 backdrop-blur-md hover:bg-slate-600/20 dark:bg-slate-950/70 dark:text-slate-50 dark:hover:bg-slate-200/20"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleToggleExpand();
                       }}
                     >
-                      <X size={24} />
+                      <X size={20} />
                     </button>
-                  </div>
+                  </motion.div>
                 )}
               </motion.figure>
 
               {isExpanded && project.images.length > 1 && (
                 <motion.div
-                  className="mt-4 flex w-full items-center justify-between rounded-xl bg-slate-900/30 p-3 backdrop-blur-md dark:bg-slate-50/10"
+                  className="mt-3 flex items-center gap-1 rounded-xl bg-slate-50/70 p-1.5 backdrop-blur-md dark:bg-slate-950/70"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2, delay: 0.15 }}
                   onClick={(e) => e.stopPropagation()}
                 >
                   <button
-                    className="rounded-xl p-2 text-slate-900 hover:bg-slate-600/20 dark:text-slate-50"
+                    className="rounded-lg p-1.5 text-slate-900 hover:bg-slate-600/20 dark:text-slate-50 dark:hover:bg-slate-200/20"
                     onClick={(e) => {
                       e.stopPropagation();
                       navigateImages("prev");
                     }}
                   >
-                    <ChevronLeft size={20} />
+                    <ChevronLeft size={18} />
                   </button>
-                  <div className="rounded-xl bg-slate-900/50 px-3 py-1 text-sm font-semibold text-slate-50 dark:bg-slate-50/10">
+                  <div className="rounded-lg px-2 text-xs font-semibold text-slate-900 dark:text-slate-50">
                     {currentImageIndex + 1} / {project.images.length}
                   </div>
                   <button
-                    className="rounded-xl p-2 text-slate-900 hover:bg-slate-600/20 dark:text-slate-50"
+                    className="rounded-lg p-1.5 text-slate-900 hover:bg-slate-600/20 dark:text-slate-50 dark:hover:bg-slate-200/20"
                     onClick={(e) => {
                       e.stopPropagation();
                       navigateImages("next");
                     }}
                   >
-                    <ChevronRight size={20} />
+                    <ChevronRight size={18} />
                   </button>
                 </motion.div>
               )}
             </div>
-          </motion.div>
+          </div>
         </div>
         <div className="flex-1 space-y-2">
           <header>
