@@ -8,6 +8,8 @@ import { BASE_URL, TEAM_ID } from "@/constants/base.constants";
 
 import { Client } from "@kurioh/client";
 
+export const revalidate = 600;
+
 const fetchPortfolio = async () => {
   const client = new Client(BASE_URL, TEAM_ID);
 
