@@ -34,11 +34,11 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <LayoutGroup id={`project-${project.id}`}>
-      <article className="flex flex-col items-start gap-4 md:flex-row">
+      <article className="flex flex-col items-start gap-3 md:flex-row">
         <div className="relative">
           {isExpanded && (
             <div
-              className="invisible aspect-video w-full md:aspect-square md:w-64"
+              className="invisible aspect-video w-full md:aspect-square md:w-40"
               aria-hidden="true"
             />
           )}
@@ -72,7 +72,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 className={
                   isExpanded
                     ? "relative aspect-square w-full overflow-hidden rounded-lg"
-                    : "aspect-video w-full flex-none cursor-pointer overflow-hidden rounded-lg md:aspect-square md:w-64"
+                    : "aspect-video w-full flex-none cursor-pointer overflow-hidden rounded-lg md:aspect-square md:w-40"
                 }
                 onClick={isExpanded ? undefined : handleToggleExpand}
                 style={{
@@ -145,9 +145,9 @@ export function ProjectCard({ project }: { project: Project }) {
             </div>
           </motion.div>
         </div>
-        <div className="flex-1 space-y-4">
+        <div className="flex-1 space-y-2">
           <header>
-            <h3 className="flex flex-row items-center gap-2 text-3xl font-bold">
+            <h3 className="flex flex-row items-center gap-2 text-xl font-bold">
               <span>{project.title}</span>
               <Links links={project.links} />
             </h3>
@@ -156,7 +156,7 @@ export function ProjectCard({ project }: { project: Project }) {
             <Tags tags={project.tags} />
           </section>
           <section aria-label="Project description">
-            <p className="max-w-2xl">{project.description}</p>
+            <p className="max-w-2xl text-sm">{project.description}</p>
           </section>
         </div>
       </article>

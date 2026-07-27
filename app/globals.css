@@ -11,11 +11,8 @@
 }
 
 .background {
-  background: radial-gradient(
-      at 32% 25%,
-      hsla(28, 100%, 74%, 1) 0px,
-      transparent 50%
-    ),
+  background:
+    radial-gradient(at 32% 25%, hsla(28, 100%, 74%, 1) 0px, transparent 50%),
     radial-gradient(at 80% 0%, hsla(189, 100%, 56%, 1) 0px, transparent 50%),
     radial-gradient(at 0% 50%, hsla(355, 100%, 93%, 1) 0px, transparent 50%),
     radial-gradient(at 62% 66%, hsla(340, 100%, 76%, 1) 0px, transparent 50%),

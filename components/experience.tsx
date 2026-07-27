@@ -4,7 +4,7 @@ import { ExperienceCard } from "@/components/experience-card";
 
 export function Experience({ experience }: { experience: ExperienceType[] }) {
   return (
-    <ul className="space-y-8">
+    <ul className="space-y-6">
       {experience
         .sort(
           (a, b) =>

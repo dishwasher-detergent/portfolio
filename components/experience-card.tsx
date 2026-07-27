@@ -9,7 +9,7 @@ export function ExperienceCard({ experience }: { experience: Experience }) {
       <header>
         <time
           dateTime={experience.startDate.toString()}
-          className="flex flex-row gap-2"
+          className="flex flex-row gap-2 text-sm"
         >
           <span>
             {new Date(experience.startDate).toLocaleDateString(undefined, {
@@ -31,8 +31,8 @@ export function ExperienceCard({ experience }: { experience: Experience }) {
             <span>Present</span>
           )}
         </time>
-        <h3 className="my-0.5 text-3xl font-bold">{experience.title}</h3>
-        <div className="organization flex flex-row items-center gap-2">
+        <h3 className="my-0.5 text-xl font-bold">{experience.title}</h3>
+        <div className="organization flex flex-row items-center gap-2 text-sm">
           <span>{experience.company}</span>
           {experience.website && (
             <a
@@ -50,7 +50,7 @@ export function ExperienceCard({ experience }: { experience: Experience }) {
       <section className="experience-details">
         <Tags tags={experience.skills} />
         {experience.description && (
-          <p className="experience-description max-w-2xl">
+          <p className="experience-description max-w-2xl text-sm">
             {experience.description}
           </p>
         )}

@@ -2,13 +2,16 @@ import { extractWebsiteName, isValidUrl, renderSiteIcon } from "@/lib/utils";
 
 interface LinksProps {
   links: string[];
+  orientation?: "row" | "col";
 }
 
-export const Links = ({ links }: LinksProps) => {
+export const Links = ({ links, orientation = "row" }: LinksProps) => {
   return (
     links &&
     links.length > 0 && (
-      <div className="flex flex-row flex-wrap">
+      <div
+        className={`flex ${orientation === "col" ? "flex-col" : "flex-row flex-wrap"}`}
+      >
         {links.map((link, index) => {
           if (!isValidUrl(link)) return null;
 

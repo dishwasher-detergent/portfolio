@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${fontClass} relative w-full bg-slate-50 pb-16 text-slate-900 dark:bg-slate-950 dark:text-slate-50`}
+        className={`${fontClass} relative w-full bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50`}
       >
         <ThemeProvider
           attribute="class"
@@ -26,15 +26,17 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <HueProvider>
-            <nav className="sticky top-0 z-50 bg-slate-50/10 backdrop-blur-md dark:bg-slate-950/10">
-              <div className="mx-auto flex max-w-5xl items-center justify-between p-4">
-                <Link href="/" className={`font-bold`}>
-                  KB
-                </Link>
-                <ThemeToggle />
-              </div>
-            </nav>
-            {children}
+            <div className="relative mx-auto min-h-screen max-w-3xl">
+              <nav className="sticky top-0 z-50 bg-slate-50/70 backdrop-blur-md dark:bg-slate-950/70">
+                <div className="flex items-center justify-between p-3 px-4">
+                  <Link href="/" className={`font-bold`}>
+                    KB
+                  </Link>
+                  <ThemeToggle />
+                </div>
+              </nav>
+              {children}
+            </div>
             <Hue />
           </HueProvider>
         </ThemeProvider>

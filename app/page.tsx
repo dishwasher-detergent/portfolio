@@ -69,28 +69,28 @@ export default async function Home() {
   const { data, projects, experience } = await fetchPortfolio();
 
   return (
-    <main className="relative flex min-h-screen w-full flex-col gap-16 overflow-hidden px-4">
-      <section className="mx-auto w-full max-w-5xl overflow-hidden pt-12">
+    <main className="relative flex w-full flex-col overflow-hidden">
+      <section className="w-full overflow-hidden px-4 pt-8">
         <Header
           title={data.title}
           description={data.description}
           socials={data.socials}
         />
       </section>
-      <section className="mx-auto w-full max-w-5xl">
-        <h2 className="pb-4 text-xl font-semibold">Experience</h2>
+      <section className="w-full px-4 py-8">
+        <h2 className="pb-2 text-lg font-semibold">Experience</h2>
         <Experience experience={experience} />
       </section>
-      <section className="mx-auto w-full max-w-5xl">
-        <h2 className="pb-4 text-xl font-semibold">Projects</h2>
-        <div className="space-y-8">
+      <section className="w-full px-4 py-8">
+        <h2 className="pb-2 text-lg font-semibold">Projects</h2>
+        <div className="flex flex-col gap-4">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} />
           ))}
         </div>
       </section>
-      <footer className="py-12">
-        <div className="mx-auto flex max-w-5xl flex-col items-center">
+      <footer className="w-full py-8">
+        <div className="flex flex-col items-center px-4">
           <p className="font-bold">
             Made by the most rootin tootin cowboy in Oklahoma
           </p>
